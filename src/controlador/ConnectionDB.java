@@ -63,13 +63,11 @@ public class ConnectionDB {
     }
     
     public ArrayList<Usuario> getUsuariosByName(String nombre) {
-    	ArrayList<Usuario> usuarios = new ArrayList<>(); // para guardar los datos en un array.
+    	ArrayList<Usuario> usuarios = new ArrayList<>(); // para guardar los datos en un array
         try {
-            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM usuarios WHERE nombre = ?");
-            sql.setString(1, nombre);
-            
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM usuarios WHERE nombre like ?");
+            sql.setString(1, "%" + nombre + "%");
             ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
-            
             while (rs.next()){ // guardar los datos en la lista de usuarios.
                 Usuario unUsuario = new Usuario(rs.getString(1),
                                                 rs.getString(2),
@@ -84,10 +82,6 @@ public class ConnectionDB {
             }
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
-        }
-        System.out.println(nombre);
-        for(int i=0;i<usuarios.size();i++){
-            System.out.println(usuarios.get(i).getCedula());
         }
         return usuarios;   
     }
