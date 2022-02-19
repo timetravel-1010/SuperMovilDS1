@@ -1,4 +1,4 @@
-package vista;
+package vista.usuarios;
 
 import controlador.ConnectionDB;
 import javax.swing.JOptionPane;

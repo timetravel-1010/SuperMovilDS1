@@ -1,6 +1,7 @@
-package vista;
+package vista.usuarios;
 
 import javax.swing.JPanel;
+import vista.menuPrincipal;
 
 /**
  *

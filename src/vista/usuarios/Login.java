@@ -1,10 +1,11 @@
-package vista;
+package vista.usuarios;
 
 import controlador.ConnectionDB;
 import enums.TipoLogin;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import vista.menuPrincipal;
 /**
  *
  * @author pc

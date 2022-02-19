@@ -1,5 +1,7 @@
 package vista;
 
+import vista.usuarios.Login;
+import vista.usuarios.JPanelUsuarios;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import controlador.ConnectionDB;
