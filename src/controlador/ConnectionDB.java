@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Usuario;
+import modelo.Plan;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ConnectionDB {
     private Connection conexion;
     private Usuario elUsuario;
     private boolean validar ;
+    private Plan elPlan;
     
     public ConnectionDB() {        
         try {
@@ -271,10 +273,7 @@ public class ConnectionDB {
     
     public boolean registrarClientes(String cedula, String nombre, String telefono,
                                   String direccion, String ciudad, String tipo){
-        validarUsuarioRe(cedula);
         int filasAfectadas = 0;
-        
-        if(!validar){ // se comprueba que el usuario no exista.
             try {
 
             PreparedStatement sql = conexion.prepareStatement("INSERT INTO clientes VALUES(?,?,?,?,?,?::tipo_cliente)");
@@ -290,8 +289,23 @@ public class ConnectionDB {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-        }
+        
         return filasAfectadas != 0;
+    }
+    
+    public boolean eliminarCliente(String cedula){
+        int filasAfectadas = 0;
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("DELETE from clientes where cedula=?");
+
+            sql.setString(1, cedula);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            return filasAfectadas != 0;
     }
     
     public Boolean updateCliente(String cedula, String nombre, String telefono, String direccion, 
@@ -351,6 +365,78 @@ public class ConnectionDB {
             return false;
         }
         
+    }
+    
+    public ArrayList<Plan> getPlanes() {
+    	ArrayList<Plan> planes = new ArrayList<>(); // para guardar los datos en un array.
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM planes");
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                Plan unPlan = new Plan(rs.getInt(1),
+                                                rs.getString(2),
+                                                rs.getString(3),
+                                                rs.getInt(4),
+                                                rs.getInt(5),
+                                                rs.getInt(6),
+                                                rs.getInt(7));
+                planes.add(unPlan);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return planes;   
+    }
+    
+    public boolean registrarCuenta(String cedula_titular, String numero){
+        String estado="activo";
+        int filasAfectadas = 0;
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO cuentas (cedula_titular, numero, estado) VALUES(?,?,?::status)");
+
+            sql.setString(1, cedula_titular);
+            sql.setString(2, numero);
+            sql.setString(3, estado);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            return filasAfectadas != 0;
+    }
+    
+   
+    
+    public boolean registrarLinea(String numero, int idPlan){
+        int filasAfectadas = 0;
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO lineas VALUES(?,?,0,0,0)");
+
+            sql.setString(1, numero);
+            sql.setInt(2, idPlan);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            return filasAfectadas != 0;
+    }
+    
+     public boolean eliminarLinea(String numero){
+        int filasAfectadas = 0;
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("DELETE from lineas where numero =?");
+            sql.setString(1, numero);
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+            return filasAfectadas != 0;
     }
     
    /**
