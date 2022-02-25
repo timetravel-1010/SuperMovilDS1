@@ -132,6 +132,13 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         this.repaint();
     }
     
+    public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
+        panelActual=panel;
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 1110, 570));
+        this.revalidate();
+        this.repaint();
+    }
+    
     public void pintarPanel(JPanelTablaUsuarios panel){
         tabla = panel;
         panelTabla = panel;
@@ -195,7 +202,7 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         usuario.jTextCedula2.setEditable(false);
         if (flag)this.eliminarTabla();
         
-        this.pintarPanel(usuario);
+        this.pintarPanel(usuario, 135, 75);
         this.enableButtons(false);
         this.refrescarGUI();
         flag=false;

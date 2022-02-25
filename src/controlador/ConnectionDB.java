@@ -245,6 +245,80 @@ public class ConnectionDB {
         return filasAfectadas != 0;
     }
     
+    public Boolean updateUsuario(String cedula, String nombre, String telefono, String direccion, 
+                            String nombre_usuario, String passwordd, String rol) {
+       try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE usuarios SET nombre = ?, telefono = ?, direccion = ?, nombre_usuario = ?," 
+                                                                +""+ "passwordd = ?, rol = ?::roles  WHERE cedula = ?"                                                           
+                                                               );
+            sql.setString(1, nombre);
+            sql.setString(2, telefono);
+            sql.setString(3, direccion);
+            sql.setString(4, nombre_usuario);
+            sql.setString(5, passwordd);
+            sql.setString(6, rol);
+            sql.setString(7, cedula);
+            
+            int rs = sql.executeUpdate();
+            
+            return rs != 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+   }
+    
+    public boolean registrarClientes(String cedula, String nombre, String telefono,
+                                  String direccion, String ciudad, String tipo){
+        validarUsuarioRe(cedula);
+        int filasAfectadas = 0;
+        
+        if(!validar){ // se comprueba que el usuario no exista.
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO clientes VALUES(?,?,?,?,?,?::tipo_cliente)");
+
+            sql.setString(1, cedula);
+            sql.setString(2, nombre);
+            sql.setString(3, telefono);
+            sql.setString(4, direccion);
+            sql.setString(5, ciudad);
+            sql.setString(6, tipo);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        return filasAfectadas != 0;
+    }
+    
+    public Boolean updateCliente(String cedula, String nombre, String telefono, String direccion, 
+                            String ciudad, String tipo) {
+       try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE clientes SET nombre = ?, telefono = ?, direccion = ?, ciudad = ?," 
+                                                                +""+ "tipo = ?::tipo_cliente WHERE cedula = ?"                                                           
+                                                               );
+            sql.setString(1, nombre);
+            sql.setString(2, telefono);
+            sql.setString(3, direccion);
+            sql.setString(4, ciudad);
+            sql.setString(5, tipo);
+            sql.setString(6, cedula);
+            
+            int rs = sql.executeUpdate();
+            
+            return rs != 0;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+   }
+    
+    
+    
     public Usuario getUsuarioOnline() {
         return elUsuario;
     }
@@ -289,27 +363,5 @@ public class ConnectionDB {
     * @param passwordd
     * @param rol 
     */
-   public boolean updateUsuario(String cedula, String nombre, String telefono, String direccion, 
-                            String nombre_usuario, String passwordd, String rol) {
-       try {
-            PreparedStatement sql = conexion.prepareStatement("UPDATE usuarios SET nombre = ?, telefono = ?, direccion = ?, nombre_usuario = ?," 
-                                                                +""+ "passwordd = ?, rol = ?::roles  WHERE cedula = ?"                                                           
-                                                               );
-            sql.setString(1, nombre);
-            sql.setString(2, telefono);
-            sql.setString(3, direccion);
-            sql.setString(4, nombre_usuario);
-            sql.setString(5, passwordd);
-            sql.setString(6, rol);
-            sql.setString(7, cedula);
-            
-            int rs = sql.executeUpdate();
-            
-            return rs != 0;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-   }
+   
 }

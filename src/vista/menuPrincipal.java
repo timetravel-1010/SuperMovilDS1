@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import vista.clientes.JPanelClientes;
 
 /**
  *
@@ -197,8 +198,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPagosActionPerformed
 
     private void buttonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClientesActionPerformed
-    JOptionPane.showMessageDialog(this, "Boton clientes pulsado");  
-    // TODO add your handling code here:
+        // TODO add your handling code here:
+        this.pintarPanelActual(new JPanelClientes(this));
     }//GEN-LAST:event_buttonClientesActionPerformed
 
     private void buttonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUsuariosActionPerformed

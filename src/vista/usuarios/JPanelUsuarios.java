@@ -68,7 +68,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelDatosUsuario(this));
+        this.pintarPanel(new JPanelDatosUsuario(this), 290, 120);
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonRegistrarUsuarioActionPerformed
@@ -76,6 +76,13 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     public void pintarPanel(JPanel panel){
         panelActual=panel;
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
+        panelActual=panel;
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 1110, 570));
         this.revalidate();
         this.repaint();
     }
