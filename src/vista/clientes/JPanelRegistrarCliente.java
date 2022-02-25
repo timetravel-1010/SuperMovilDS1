@@ -361,58 +361,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         String direccion = jTextDireccion.getText();
         String ciudad = jTextCiudad.getText();
         String tipo = jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex());
-        boolean resultadoRegistrarCliente;
-        
-        if (accion) {//Caso en el que se hace un registro
-            resultadoRegistrarCliente = conexion.registrarClientes(cedula, nombre, telefono, direccion, ciudad, tipo);//Se hace la consulta
-
-            if (resultadoRegistrarCliente) {//La consulta es exitosa
-                //Una vez se registro el cliente, se le debe crear una cuenta y sus respectivas lineas
-                if (tipoCliente){//Si es un cliente natural, es decir, un solo numero
-                    String numero = jTextNumero1.getText();
-                    int idPlan = jComboBoxPlan1.getSelectedIndex()+1;
-                    Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero, idPlan);//Se hace el registro de la linea
-                    if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
-                        Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero);//Se hace el registro de la cuenta
-                        if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
-                            JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
-                    "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                        } else {//El registro de cuenta fallo
-                            //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
-                            conexion.eliminarLinea(numero);
-                            conexion.eliminarCliente(cedula);
-                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
-                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else {//El registro de Linea fallo
-                        //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
-                        conexion.eliminarCliente(cedula);
-                        JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
-                        "Registro fallido", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {//Si son varios numeros
-                    //Basicamente toca hacer lo mismo para los tres distintos numeros, valiendose de las validaciones
-                }
-            } else {//La consulta falla
-                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
-                    "Registro fallido", JOptionPane.ERROR_MESSAGE);
-            }
-           padreAdmin.eliminarPanel();
-           padreAdmin.enableButtons(true);
-        } else {//Caso en el que se hace una actualización
-            resultadoRegistrarCliente = conexion.updateCliente(cedula, nombre, telefono, direccion, ciudad, tipo);
-            if(resultadoRegistrarCliente){
-                JOptionPane.showMessageDialog(null, "¡La actualización de los datos del usuario fue exitosa!",
-                    "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-                //padre.eliminarPanel();
-                //padre.enableButtons(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
-                    "Actualizacion fallida", JOptionPane.ERROR_MESSAGE);
-                //padre.eliminarPanel();
-                //padre.enableButtons(true);
-            }
-        }
+        this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo);
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -500,6 +449,121 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         }
         //En este punto ya se genero un numero aleatorio y aunque es muy dificil que ya se haya registrado, va a ser necesario validarlo luego.
         return numero;
+    }
+    
+    private void registrarCliente(String cedula, String nombre, String telefono, String direccion, String ciudad, String tipo){//Metodo que recibe informacion para registrar un cliente, dependiendo del tipo de cliente
+            
+        boolean resultadoRegistrarCliente = conexion.registrarClientes(cedula, nombre, telefono, direccion, ciudad, tipo);//Se hace la consulta
+            if (resultadoRegistrarCliente) {//La consulta es exitosa
+                //Una vez se registro el cliente, se le debe crear una cuenta y sus respectivas lineas
+                if (tipoCliente){//Si es un cliente natural, es decir, un solo numero
+                    int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
+                    String numero1 = jTextNumero1.getText();
+                    Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero1, idPlan1);//Se hace el registro de la linea
+                    if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                        Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero1);//Se hace el registro de la cuenta
+                        if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                            JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                    "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//El registro de cuenta fallo
+                            //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                            conexion.eliminarLinea(numero1);
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {//El registro de Linea fallo
+                        //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                        conexion.eliminarCliente(cedula);
+                        JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                        "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {//Si son varios numeros
+                    //Basicamente toca hacer lo mismo para los tres distintos numeros, valiendose de las validaciones
+                    boolean vacio1 = false;
+                    boolean vacio2 = false;
+                    boolean vacio3 = false;
+                    if(jTextNumero1.getText().isBlank())vacio1 = true;
+                    if(jTextNumero2.getText().isBlank())vacio2 = true;//Se determina cuales campos de numeros estan vacios
+                    if(jTextNumero3.getText().isBlank())vacio3 = true;
+                    if(!vacio1){ //Se hace el registro de linea y cuenta para el numero y plan 1
+                        int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
+                        String numero1 = jTextNumero1.getText();
+                        Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero1, idPlan1);//Se hace el registro de la linea
+                        if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                            Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero1);//Se hace el registro de la cuenta
+                            if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {//El registro de cuenta fallo
+                                //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                                conexion.eliminarLinea(numero1);
+                                conexion.eliminarCliente(cedula);
+                                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                                "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {//El registro de Linea fallo
+                            //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    
+                    if(!vacio2){ //Se hace el registro de linea y cuenta para el numero y plan 2
+                        int idPlan2 = jComboBoxPlan2.getSelectedIndex()+1;
+                        String numero2 = jTextNumero2.getText();
+                        Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero2, idPlan2);//Se hace el registro de la linea
+                        if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                            Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero2);//Se hace el registro de la cuenta
+                            if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {//El registro de cuenta fallo
+                                //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                                conexion.eliminarLinea(numero2);
+                                conexion.eliminarCliente(cedula);
+                                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                                "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {//El registro de Linea fallo
+                            //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    
+                    if(!vacio3){ //Se hace el registro de linea y cuenta para el numero y plan 3
+                        int idPlan3 = jComboBoxPlan3.getSelectedIndex()+1;
+                        String numero3 = jTextNumero3.getText();
+                        Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero3, idPlan3);//Se hace el registro de la linea
+                        if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                            Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero3);//Se hace el registro de la cuenta
+                            if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {//El registro de cuenta fallo
+                                //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                                conexion.eliminarLinea(numero3);
+                                conexion.eliminarCliente(cedula);
+                                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                                "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {//El registro de Linea fallo
+                            //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } //En este punto se reaizaron los registros de todos los numeros si todo salio bien
+                }
+            } else {//El registro del cliente en cuestion falla
+                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                    "Registro fallido", JOptionPane.ERROR_MESSAGE);
+            }
+           padreAdmin.eliminarPanel();//Independientemente de si la consulta es exitosa o falla, se elimina el panel y se habilitan los botones
+           padreAdmin.enableButtons(true);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
