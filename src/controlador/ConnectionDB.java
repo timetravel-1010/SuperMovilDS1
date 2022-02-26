@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Cliente;
+import modelo.Cuenta;
+import modelo.Linea;
 import modelo.Usuario;
 import modelo.Plan;
 
@@ -293,6 +296,21 @@ public class ConnectionDB {
         return filasAfectadas != 0;
     }
     
+    public boolean validarCliente(String cedula){ //Metodo que valida si un cliente ya se encuentra registrado
+        String validarC = "";
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT cedula FROM clientes WHERE cedula = ?");
+            sql.setString(1, cedula);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                validarC = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return validarC.equals(cedula);
+    }
+    
     public boolean eliminarCliente(String cedula){
         int filasAfectadas = 0;
             try {
@@ -309,17 +327,15 @@ public class ConnectionDB {
     }
     
     public Boolean updateCliente(String cedula, String nombre, String telefono, String direccion, 
-                            String ciudad, String tipo) {
+                            String ciudad) {
        try {
-            PreparedStatement sql = conexion.prepareStatement("UPDATE clientes SET nombre = ?, telefono = ?, direccion = ?, ciudad = ?," 
-                                                                +""+ "tipo = ?::tipo_cliente WHERE cedula = ?"                                                           
+            PreparedStatement sql = conexion.prepareStatement("UPDATE clientes SET nombre = ?, telefono = ?, direccion = ?, ciudad = ? WHERE cedula = ?"                                                           
                                                                );
             sql.setString(1, nombre);
             sql.setString(2, telefono);
             sql.setString(3, direccion);
             sql.setString(4, ciudad);
-            sql.setString(5, tipo);
-            sql.setString(6, cedula);
+            sql.setString(5, cedula);
             
             int rs = sql.executeUpdate();
             
@@ -330,6 +346,30 @@ public class ConnectionDB {
             return false;
         }
    }
+    
+    public Cliente getCliente(String cedula) {
+        Cliente cliente = null;
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM clientes WHERE cedula = ?");
+            sql.setString(1, cedula);
+            
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                cliente = new Cliente(rs.getString(1),
+                                        rs.getString(2),
+                                        rs.getString(3),
+                                        rs.getString(4),
+                                        rs.getString(5),
+                                        rs.getString(6));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cliente;
+    }
+    
     
     
     
@@ -371,7 +411,7 @@ public class ConnectionDB {
     	ArrayList<Plan> planes = new ArrayList<>(); // para guardar los datos en un array.
         
         try {
-            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM planes");
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM planes order by identificador");
             ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
             
             while (rs.next()){ // guardar los datos en la lista de usuarios.
@@ -408,6 +448,26 @@ public class ConnectionDB {
             return filasAfectadas != 0;
     }
     
+    public ArrayList<Cuenta> getCuentas(String cedula_titular) {
+    	ArrayList<Cuenta> cuentas = new ArrayList<>(); // para guardar los datos en un array
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM cuentas WHERE cedula_titular = ?");
+            sql.setString(1, cedula_titular);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                Cuenta unaCuenta = new Cuenta(rs.getInt(1),
+                                                rs.getString(2),
+                                                rs.getString(3),
+                                                rs.getString(4),
+                                                rs.getString(5));
+                cuentas.add(unaCuenta);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return cuentas;   
+    }
+    
    
     
     public boolean registrarLinea(String numero, int idPlan){
@@ -438,7 +498,59 @@ public class ConnectionDB {
             }
             return filasAfectadas != 0;
     }
+     
+     public Boolean updateLinea(String numeroViejo, int plan, String numeroNuevo) { //Metodo que actualiza los datos de un cliente en la base segun su indentificacion(cedula)
+       try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE lineas SET numero = ?, plan = ? WHERE numero = ?");
+            sql.setString(1, numeroNuevo);
+            sql.setInt(2, plan);
+            sql.setString(3, numeroViejo);
+            
+            int rs = sql.executeUpdate();
+            
+            return rs != 0;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+   }
+     
+    public Linea getLinea(String numero) {
+        Linea linea = null;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM lineas WHERE numero = ?");
+            sql.setString(1, numero);
+            
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                linea = new Linea(rs.getString(1),
+                                        rs.getInt(2),
+                                        rs.getInt(3),
+                                        rs.getInt(4),
+                                        rs.getInt(5));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return linea;
+    }
     
+    public boolean validarLinea(String numero){ //Metodo que valida si un numero ya esta en uso
+        String validarL = "";
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT numero FROM lineas WHERE numero = ?");
+            sql.setString(1, numero);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                validarL = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return validarL.equals(numero);
+    }
    /**
     * 
     * @param cedula

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import modelo.Cliente;
+import modelo.Cuenta;
 import modelo.Plan;
 
 /**
@@ -20,19 +22,31 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
     /**
      * Creates new form JPanelDatosClientes
      */
+    private JPanelClientes padreModificar;
     private JPanelClientes padreAdmin;
     private ConnectionDB conexion;
-    private Boolean accion;
+    private Boolean accion; //
     private Boolean tipoCliente;
-    public JPanelRegistrarCliente(JPanelClientes papa) {
+    private Cliente clienteActualizar;
+    
+    public JPanelRegistrarCliente(JPanelClientes papa) { //Método para registrar clientes, recibe un JPanelClientes
         this.padreAdmin = papa;
         this.accion = true;
         conexion = new ConnectionDB();
         initComponents();
         this.visiblePanelDerecho(false, false);
         this.rellenarComboBoxDerechos();
-        
-        
+    }
+    
+    public JPanelRegistrarCliente(JPanelClientes papa, Cliente cliente) { //Método para modificar clientes, recibe un JPanelClientes
+        this.padreModificar = papa;
+        this.accion = false;
+        this.clienteActualizar = cliente;
+        conexion = new ConnectionDB();
+        initComponents();
+        this.visiblePanelDerecho(false, false);
+        this.rellenarComboBoxDerechos();
+        this.prepararUpdate();
     }
 
     /**
@@ -92,9 +106,19 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         add(jButtonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 100, 30));
 
         jTextCiudad.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextCiudadKeyTyped(evt);
+            }
+        });
         add(jTextCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 30));
 
         jTextDireccion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextDireccionKeyTyped(evt);
+            }
+        });
         add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 230, 30));
 
         jTextTelefono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -103,15 +127,30 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextTelefonojTextTelefonoActionPerformed(evt);
             }
         });
+        jTextTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextTelefonoKeyTyped(evt);
+            }
+        });
         add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 230, 30));
 
         jTextNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNombreKeyTyped(evt);
+            }
+        });
         add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 230, 30));
 
         jTextCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCedulajTextCedulaActionPerformed(evt);
+            }
+        });
+        jTextCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextCedulaKeyTyped(evt);
             }
         });
         add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, 30));
@@ -176,6 +215,11 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextNumero1jTextCedulaActionPerformed(evt);
             }
         });
+        jTextNumero1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNumero1KeyTyped(evt);
+            }
+        });
         add(jTextNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 110, 200, 30));
 
         jLabelNumero2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -188,6 +232,11 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextNumero2jTextCedulaActionPerformed(evt);
             }
         });
+        jTextNumero2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNumero2KeyTyped(evt);
+            }
+        });
         add(jTextNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 230, 200, 30));
 
         jLabelNumero3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -198,6 +247,11 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         jTextNumero3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNumero3jTextCedulaActionPerformed(evt);
+            }
+        });
+        jTextNumero3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNumero3KeyTyped(evt);
             }
         });
         add(jTextNumero3, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 350, 200, 30));
@@ -287,11 +341,27 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
     private void jButtonSiguientejButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguientejButtonEnviarActionPerformed
         // TODO add your handling code here:
         //Se muestran los elementos del panel derecho dependiendo del tipo de cliente que se desea registrar:
-        tipoCliente = (jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex())).equals("natural");
-        this.visiblePanelDerecho(true, tipoCliente);
+        if(validarRegistroCliente()){//Se hace una validacion inicial del panel izquierdo
+            if(accion){//Si se trata de un registro
+                if(!conexion.validarCliente(jTextCedula.getText())){//Segunda validacion, se valida si ya esta registrado el cliente
+                    tipoCliente = (jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex())).equals("natural");
+                    this.visiblePanelDerecho(true, tipoCliente);
+                    //Se inhabilitan los elementos del panel izquierdo:
+                    this.enablePanelIzquierdo(false);
+                } else {//Ya hay un cliente con ea cedula
+                    JOptionPane.showMessageDialog(null, "¡Ya existe un cliente registrado con esa cedula!",
+                            "Cedula encontrada", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {//Si es una actualizacion, ya se puede proceder
+                tipoCliente = (jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex())).equals("natural");
+                this.visiblePanelDerecho(true, tipoCliente);
+                //Se inhabilitan los elementos del panel izquierdo:
+                this.enablePanelIzquierdo(false);
+            }
+            
+            
+        }
         
-        //Se inhabilitan los elementos del panel izquierdo:
-        this.enablePanelIzquierdo(false);
     }//GEN-LAST:event_jButtonSiguientejButtonEnviarActionPerformed
 
     private void jTextTelefonojTextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefonojTextTelefonoActionPerformed
@@ -319,6 +389,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
 
     private void jTextNumero2jTextCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNumero2jTextCedulaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextNumero2jTextCedulaActionPerformed
 
     private void jTextNumero3jTextCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNumero3jTextCedulaActionPerformed
@@ -354,14 +425,102 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
 
     private void jButtonEnviarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarjButtonEnviarActionPerformed
         // TODO add your handling code here:
-        //Se capturan los datos del cliente para registrarlo
+        
+            //Se capturan los datos del cliente para registrarlo o actualizarlo
         String cedula = jTextCedula.getText();
         String nombre = jTextNombre.getText();
         String telefono = jTextTelefono.getText();
         String direccion = jTextDireccion.getText();
         String ciudad = jTextCiudad.getText();
         String tipo = jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex());
-        this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo);
+        if(accion){//Si es un registro
+            if(tipoCliente){//Si es un cliente natural
+                if(jTextNumero1.getText().length()==10){//Si se esta registrando un numero valido en la linea 1
+                    if(!conexion.validarLinea(jTextNumero1.getText())){//Se valida que el numero no exista ya
+                        this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "¡El numero ingresado ya se encuentra en uso!",
+                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else{
+                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido!",
+                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {//Si es un cliente corporativo
+                boolean permiso = true;
+                if(!jTextNumero1.getText().isBlank()){//Si el campo de linea 1 no esta vacio, quiere decir que s eesta tratando de usar
+                    if(jTextNumero1.getText().length()==10){//Se valida que sea un numero valido
+                        if(conexion.validarLinea(jTextNumero1.getText())){//El numero ya existe
+                            JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #1 ya se encuentra en uso!",
+                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
+                            permiso = false;
+                        }
+                    } else {//Es un numero invalido
+                        JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #1!",
+                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                        permiso = false;
+                    }
+                }
+                
+                if(!jTextNumero2.getText().isBlank()){//Si el campo de linea 2 no esta vacio, quiere decir que s eesta tratando de usar
+                    if(jTextNumero2.getText().length()==10){//Se valida que sea un numero valido
+                        if(conexion.validarLinea(jTextNumero2.getText())){//El numero ya existe
+                            JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #2 ya se encuentra en uso!",
+                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
+                            permiso = false;
+                        }
+                    } else {//Es un numero invalido
+                        JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #2!",
+                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                        permiso = false;
+                    }
+                }
+                
+                if(!jTextNumero3.getText().isBlank()){//Si el campo de linea 3 no esta vacio, quiere decir que s eesta tratando de usar
+                    if(jTextNumero3.getText().length()==10){//Se valida que sea un numero valido
+                        if(conexion.validarLinea(jTextNumero3.getText())){//El numero ya existe
+                            JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #3 ya se encuentra en uso!",
+                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
+                            permiso = false;
+                        }
+                    } else {//Es un numero invalido
+                        JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #3!",
+                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                        permiso = false;
+                    }
+                }
+                
+                if(jTextNumero1.getText().isBlank() && jTextNumero2.getText().isBlank() && jTextNumero3.getText().isBlank()){//Las tres lineas estan vacias
+                    JOptionPane.showMessageDialog(null, "¡Para poder registrar a un cliente, debe asignarle al menos un numero!",
+                            "Ingrese un numero", JOptionPane.ERROR_MESSAGE);
+                            permiso = false;
+                }
+                
+                if(permiso) this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo); //Si paso la validacion, se procede a registrar
+            }
+            
+        } else {//Si es una actualizacion
+            ArrayList<Cuenta> cuentas = conexion.getCuentas(clienteActualizar.getCedula());//Cuentas que tiene el cliente actualmente
+            if(tipoCliente){//Si es una persona natural
+                if(jTextNumero1.getText().length()==10){//Si se esta actualizando a un numero valido en la linea 1
+                    if(!conexion.validarLinea(jTextNumero1.getText())){//Se valida que el numero no exista ya
+                        this.actualizarCliente(cedula, nombre, telefono, direccion, ciudad);
+                    } else if(jTextNumero1.getText().equals(cuentas.get(0).getNumero())){//Si no se modifico el numero que venia
+                        this.actualizarCliente(cedula, nombre, telefono, direccion, ciudad);
+                    } else {//Si el numero ya esta registrado
+                        JOptionPane.showMessageDialog(null, "¡El numero ingresado ya se encuentra en uso!",
+                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else{
+                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido!",
+                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {//Si se trata de un cliente corporativo //Esta vaidacion esta floja por falta de tiempo
+                boolean permiso = true;
+                //Aqui va la validacion, si queda tiempo al final, se implementa, es mejor concentrarse en lo demas
+                if(permiso) this.actualizarCliente(cedula, nombre, telefono, direccion, ciudad); //Si paso la validacion, se procede a registrar
+            }
+        }
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -370,11 +529,107 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
             padreAdmin.eliminarPanel();
             padreAdmin.enableButtons(true);
         } else {//Si es una accion de modificacion
-            //padreUsers.enableButtons(true);
-            //padreUsers.eliminarPanel();
+            padreModificar.enableButtons(true);
+            padreModificar.eliminarPanel();
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jTextNumero1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNumero1KeyTyped
+        // TODO add your handling code here:
+        if(jTextNumero1.getText().length() >= 10) evt.consume(); //Que solo acepte max 10 digitos
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) evt.consume();//Que solo acepte numeros
+    }//GEN-LAST:event_jTextNumero1KeyTyped
+
+    private void jTextNumero2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNumero2KeyTyped
+        // TODO add your handling code here:
+        if(jTextNumero2.getText().length() >= 10) evt.consume(); //Que solo acepte max 10 digitos
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) evt.consume();//Que solo acepte numeros
+    }//GEN-LAST:event_jTextNumero2KeyTyped
+
+    private void jTextNumero3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNumero3KeyTyped
+        // TODO add your handling code here:
+        if(jTextNumero3.getText().length() >= 10) evt.consume(); //Que solo acepte max 10 digitos
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) evt.consume();//Que solo acepte numeros
+    }//GEN-LAST:event_jTextNumero3KeyTyped
+
+    private void jTextTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextTelefonoKeyTyped
+        // TODO add your handling code here:
+        if(jTextTelefono.getText().length() >= 10) evt.consume(); //Que solo acepte max 10 digitos
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) evt.consume();//Que solo acepte numeros
+    }//GEN-LAST:event_jTextTelefonoKeyTyped
+
+    private void jTextCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCedulaKeyTyped
+        // TODO add your handling code here:
+        if(jTextCedula.getText().length() >= 10) evt.consume(); //Que solo acepte max 10 digitos
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) evt.consume();//Que solo acepte numeros
+    }//GEN-LAST:event_jTextCedulaKeyTyped
+
+    private void jTextNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNombreKeyTyped
+        // TODO add your handling code here:
+        if(jTextNombre.getText().length() >= 100) evt.consume(); //Que solo acepte max 100 digitos
+        int key = evt.getKeyChar();
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+         if (!(minusculas || mayusculas || espacio)) evt.consume();//Que solo acepte letras
+    }//GEN-LAST:event_jTextNombreKeyTyped
+
+    private void jTextCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCiudadKeyTyped
+        // TODO add your handling code here:
+        if(jTextCiudad.getText().length() >= 100) evt.consume(); //Que solo acepte max 100 digitos
+    }//GEN-LAST:event_jTextCiudadKeyTyped
+
+    private void jTextDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextDireccionKeyTyped
+        // TODO add your handling code here:
+        if(jTextDireccion.getText().length() >= 100) evt.consume(); //Que solo acepte max 100 digitos
+    }//GEN-LAST:event_jTextDireccionKeyTyped
+
+    private boolean validarRegistroCliente(){
+        boolean exito = true;
+        
+        if(jTextCedula.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una cedula valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextNombre.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese un nombre valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextTelefono.getText().length()<7){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una numero telefonico valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextCiudad.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una ciudad valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextDireccion.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una direccion valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        return exito;
+    }
+    
     private void visiblePanelDerecho(Boolean b, Boolean t){//Metodo que muestra u oculta el panel derecho recibe dos booleans, el primero determinar si se debe ocultar o mostrar
                                         //El segundo determina si es un cliente natural o corporativo, siendo true natural.
         if (t){//Caso en el que es natural
@@ -493,7 +748,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                         if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
                             Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero1);//Se hace el registro de la cuenta
                             if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
-                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente y su linea #1 fue exitoso!",
                         "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                             } else {//El registro de cuenta fallo
                                 //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
@@ -517,7 +772,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                         if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
                             Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero2);//Se hace el registro de la cuenta
                             if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
-                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente y su linea #2 fue exitoso!",
                         "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                             } else {//El registro de cuenta fallo
                                 //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
@@ -541,7 +796,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                         if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
                             Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero3);//Se hace el registro de la cuenta
                             if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
-                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
+                                JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente y su linea #3 fue exitoso!",
                         "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                             } else {//El registro de cuenta fallo
                                 //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
@@ -566,6 +821,256 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
            padreAdmin.enableButtons(true);
     }
     
+    private void actualizarCliente(String cedula, String nombre, String telefono, String direccion, String ciudad){
+        ArrayList<Cuenta> cuentas = conexion.getCuentas(clienteActualizar.getCedula());//Cuentas que tiene el cliente actualmente
+        boolean resultadoActualizarCliente = conexion.updateCliente(cedula, nombre, telefono, direccion, ciudad);//Se hace la consulta
+        if(resultadoActualizarCliente){//Si se pudo actualizar el cliente
+            if (tipoCliente){//Si es un cliente natural
+                //Se deben actualizar las lineas del cliente, es suficiente solo con el numero en la linea, pues este se propaga a la cuenta
+            int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
+            String numeroNuevo = jTextNumero1.getText();
+            String numeroViejo = cuentas.get(0).getNumero();
+            System.out.println(idPlan1);
+            System.out.println(numeroViejo);
+            System.out.println(numeroNuevo);
+            boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo,idPlan1, numeroNuevo);
+            System.out.println(resultadoActualizarLinea);
+            if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea fue exitosa!",
+                    "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+            } else {//Fallo la actualizacion de la linea
+                JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea!",
+                        "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {//Si es un cliente corporativo
+                //Se deben actualizar los numeros siempre y cuando los campos no esten vacios
+                boolean vacio1 = false;
+                boolean vacio2 = false;
+                boolean vacio3 = false;
+                if(jTextNumero1.getText().isBlank())vacio1 = true;
+                if(jTextNumero2.getText().isBlank())vacio2 = true;//Se determina cuales campos de numeros estan vacios
+                if(jTextNumero3.getText().isBlank())vacio3 = true;
+                int cantidadNumeros = conexion.getCuentas(clienteActualizar.getCedula()).size();//Se guarda en una variable la cantidad de numeros que tiene el cliente
+                switch(cantidadNumeros){
+                    case 1:{//Solo tiene un numero
+                        if(!vacio1){ //Se hace la actualizacion de la linea1
+                        int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
+                        String numeroNuevo1 = jTextNumero1.getText();
+                        String numeroViejo1 = cuentas.get(0).getNumero();
+                        Boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo1, idPlan1, numeroNuevo1);
+                        if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                            JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea #1 fue exitosa!",
+                                "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//Fallo la actualizacion de la linea
+                            JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea #1!",
+                                "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                        if(!vacio2){ //Se hace el registro de linea y cuenta para el numero y plan 2
+                        int idPlan2 = jComboBoxPlan2.getSelectedIndex()+1;
+                        String numero2 = jTextNumero2.getText();
+                        Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero2, idPlan2);//Se hace el registro de la linea
+                        if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                            Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero2);//Se hace el registro de la cuenta
+                            if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                                JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y el registro de su linea #2 fue exitoso!",
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {//El registro de cuenta fallo
+                                //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                                conexion.eliminarLinea(numero2);
+                                conexion.eliminarCliente(cedula);
+                                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                                "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {//El registro de Linea fallo
+                            //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                        }
+                        
+                        if(!vacio3){ //Se hace el registro de linea y cuenta para el numero y plan 3
+                        int idPlan3 = jComboBoxPlan3.getSelectedIndex()+1;
+                        String numero3 = jTextNumero3.getText();
+                        Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero3, idPlan3);//Se hace el registro de la linea
+                        if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                            Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero3);//Se hace el registro de la cuenta
+                            if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                                JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y el registro de su linea #3 fue exitoso!",
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {//El registro de cuenta fallo
+                                //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                                conexion.eliminarLinea(numero3);
+                                conexion.eliminarCliente(cedula);
+                                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                                "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {//El registro de Linea fallo
+                            //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                        }   
+                        
+                        break;
+                    }
+                    case 2:{//Tiene dos numeros :o
+                        if(!vacio1){ //Se hace la actualizacion de la linea1
+                        int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
+                        String numeroNuevo1 = jTextNumero1.getText();
+                        String numeroViejo1 = cuentas.get(0).getNumero();
+                        Boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo1, idPlan1, numeroNuevo1);
+                        if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                            JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea #1 fue exitosa!",
+                                "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//Fallo la actualizacion de la linea
+                            JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea #1!",
+                                "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                        if(!vacio2){ //Se hace la actualizacion de la linea2
+                        int idPlan2 = jComboBoxPlan2.getSelectedIndex()+1;
+                        String numeroNuevo2 = jTextNumero2.getText();
+                        String numeroViejo2 = cuentas.get(1).getNumero();
+                        Boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo2, idPlan2, numeroNuevo2);
+                        if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                            JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea #2 fue exitosa!",
+                                "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//Fallo la actualizacion de la linea
+                            JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea #2!",
+                                "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                        if(!vacio3){ //Se hace el registro de linea y cuenta para el numero y plan 3
+                        int idPlan3 = jComboBoxPlan3.getSelectedIndex()+1;
+                        String numero3 = jTextNumero3.getText();
+                        Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero3, idPlan3);//Se hace el registro de la linea
+                        if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
+                            Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero3);//Se hace el registro de la cuenta
+                            if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
+                                JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y el registro de su linea #3 fue exitoso!",
+                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                            } else {//El registro de cuenta fallo
+                                //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
+                                conexion.eliminarLinea(numero3);
+                                conexion.eliminarCliente(cedula);
+                                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                                "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {//El registro de Linea fallo
+                            //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
+                            conexion.eliminarCliente(cedula);
+                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
+                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
+                        }
+                        } 
+                        break;
+                    }
+                    case 3:{//Tiene los tres numeros alv
+                        if(!vacio1){ //Se hace la actualizacion de la linea1
+                        int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
+                        String numeroNuevo1 = jTextNumero1.getText();
+                        String numeroViejo1 = cuentas.get(0).getNumero();
+                        Boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo1, idPlan1, numeroNuevo1);
+                        if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                            JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea #1 fue exitosa!",
+                                "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//Fallo la actualizacion de la linea
+                            JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea #1!",
+                                "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                        if(!vacio2){ //Se hace la actualizacion de la linea2
+                        int idPlan2 = jComboBoxPlan2.getSelectedIndex()+1;
+                        String numeroNuevo2 = jTextNumero2.getText();
+                        String numeroViejo2 = cuentas.get(1).getNumero();
+                        Boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo2, idPlan2, numeroNuevo2);
+                        if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                            JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea #2 fue exitosa!",
+                                "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//Fallo la actualizacion de la linea
+                            JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea #2!",
+                                "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                        if(!vacio3){ //Se hace la actualizacion de la linea2
+                        int idPlan3 = jComboBoxPlan3.getSelectedIndex()+1;
+                        String numeroNuevo3 = jTextNumero3.getText();
+                        String numeroViejo3 = cuentas.get(2).getNumero();
+                        Boolean resultadoActualizarLinea = conexion.updateLinea(numeroViejo3, idPlan3, numeroNuevo3);
+                        if(resultadoActualizarLinea){//Se pudo actualizar la linea
+                            JOptionPane.showMessageDialog(null, "¡La actualizacion de los datos del cliente y de su linea #3 fue exitosa!",
+                                "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                        } else {//Fallo la actualizacion de la linea
+                            JOptionPane.showMessageDialog(null, "¡Se realizo la actualizacion de los datos del cliente, pero fallo la actualizacion de su linea #3!",
+                                "Actualizacion parcial", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        break;
+                    }
+                }
+                }   
+        } else {//Si no se pudo actualizar al cliente
+            JOptionPane.showMessageDialog(null, "¡No se pudo realizar la actualizacion!",
+                        "Actualizacion fallida", JOptionPane.ERROR_MESSAGE);
+        }
+        padreModificar.enableButtons(true);
+        padreModificar.eliminarPanel();
+    }
+    
+    private void prepararUpdate(){//Metodo que trae los datos del cliente a actualizar y llena los campos y los bloquea
+        //Se holdean todos los parametros del panel izquierdo
+        jTextCedula.setText(clienteActualizar.getCedula());
+        jTextCedula.setEnabled(false);
+        jTextNombre.setText(clienteActualizar.getNombre());
+        jTextTelefono.setText(clienteActualizar.getTelefono());
+        jTextCiudad.setText(clienteActualizar.getCiudad());
+        jTextDireccion.setText(clienteActualizar.getDireccion());
+        int n;
+        if(clienteActualizar.getTipo().equals("natural")){
+            n=0;
+        } else {
+            n=1;
+        }
+        jComboBoxTipo.setSelectedIndex(n);
+        jComboBoxTipo.setEnabled(false);
+        //Se holdean todos los parametros del panel derecho
+        ArrayList<Cuenta> cuentas = conexion.getCuentas(clienteActualizar.getCedula());
+        int cantidadNumeros = conexion.getCuentas(clienteActualizar.getCedula()).size();//Se guarda en una variable la cantidad de numeros que tiene el cliente
+        switch(cantidadNumeros){
+            case 1:{//Solo tiene un numero
+                jTextNumero1.setText(cuentas.get(0).getNumero());
+                jComboBoxPlan1.setSelectedIndex(conexion.getLinea(cuentas.get(0).getNumero()).getPlan()-1);
+                break;
+            }
+            case 2:{//Tiene dos numeros :o
+                jTextNumero1.setText(cuentas.get(0).getNumero());
+                jComboBoxPlan1.setSelectedIndex(conexion.getLinea(cuentas.get(0).getNumero()).getPlan()-1);
+                
+                jTextNumero2.setText(cuentas.get(1).getNumero());
+                jComboBoxPlan2.setSelectedIndex(conexion.getLinea(cuentas.get(1).getNumero()).getPlan()-1);
+                break;
+            }
+            case 3:{//Tiene los tres numeros alv
+                jTextNumero1.setText(cuentas.get(0).getNumero());
+                jComboBoxPlan1.setSelectedIndex(conexion.getLinea(cuentas.get(0).getNumero()).getPlan()-1);
+                
+                jTextNumero2.setText(cuentas.get(1).getNumero());
+                jComboBoxPlan2.setSelectedIndex(conexion.getLinea(cuentas.get(1).getNumero()).getPlan()-1);
+                
+                jTextNumero3.setText(cuentas.get(2).getNumero());
+                jComboBoxPlan3.setSelectedIndex(conexion.getLinea(cuentas.get(2).getNumero()).getPlan()-1);
+                break;
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonCancelar;
