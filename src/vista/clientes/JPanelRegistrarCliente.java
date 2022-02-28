@@ -5,6 +5,7 @@
 package vista.clientes;
 
 import controlador.ConnectionDB;
+import enums.TipoCliente;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -1034,7 +1035,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         jTextCiudad.setText(clienteActualizar.getCiudad());
         jTextDireccion.setText(clienteActualizar.getDireccion());
         int n;
-        if(clienteActualizar.getTipo().equals("natural")){
+        if(clienteActualizar.getTipo()==TipoCliente.natural){
             n=0;
         } else {
             n=1;
