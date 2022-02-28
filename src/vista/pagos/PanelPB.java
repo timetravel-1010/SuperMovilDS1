@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package pagos;
+package vista.pagos;
 
 
 import java.io.BufferedReader;
@@ -18,6 +18,7 @@ import java.util.List;
 import vista.menuPrincipal;
 import java.util.StringTokenizer;
 import controlador.ConnectionDB;
+import javax.swing.JOptionPane;
 //import pagos.Prueba;
 
 /**
@@ -30,8 +31,12 @@ public class PanelPB extends javax.swing.JPanel {
      * Creates new form NewJPanel
      */
     
+    private ConnectionDB db;
+    private String banco;
+    
     public PanelPB() {
         initComponents();
+        ConnectionDB db = new ConnectionDB();
         
     }
 
@@ -44,12 +49,20 @@ public class PanelPB extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cargarDatos = new javax.swing.JButton();
         nombreBanco = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextNumeroLinea = new javax.swing.JTextField();
         jTextValorAPagar = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        guardar = new javax.swing.JButton();
+
+        cargarDatos.setText("Cargar pagos");
+        cargarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarDatosActionPerformed(evt);
+            }
+        });
 
         nombreBanco.setText("jLabel1");
         nombreBanco.setToolTipText("");
@@ -70,10 +83,10 @@ public class PanelPB extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Guardar pago");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        guardar.setText("Guardar pago");
+        guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                guardarActionPerformed(evt);
             }
         });
 
@@ -84,10 +97,10 @@ public class PanelPB extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nombreBanco)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 339, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(guardar)
                 .addGap(147, 147, 147))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(60, 60, 60)
@@ -114,7 +127,7 @@ public class PanelPB extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jTextValorAPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addComponent(guardar)
                 .addGap(46, 46, 46))
         );
 
@@ -131,15 +144,37 @@ public class PanelPB extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextValorAPagarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // TODO add your handling code here:
-        escribirEnArchivo(jTextNumeroLinea.getText(),jTextValorAPagar.getText());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if(db.validarLineaCliente(jTextNumeroLinea.getText())){
+            escribirEnArchivo(jTextNumeroLinea.getText(),jTextValorAPagar.getText());
+        }else{
+            JOptionPane.showMessageDialog(null, "La linea no existe",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_guardarActionPerformed
+
+    private void cargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDatosActionPerformed
+        // TODO add your handling code here:
+        db.updateValorPagoCuentaM();
+        db.updateUltimoPagoCuentaM();
+        
+    }//GEN-LAST:event_cargarDatosActionPerformed
  
+  /*  public void setBanco(String banco_){
+        this.banco=banco_;
+    }*/
+    
+    
     public ArrayList<String>leerDeArchivo(){
         
         ArrayList<List> lecturaL = new ArrayList<>();
         ArrayList<String> lecturaLinea = new ArrayList<>();
+        /*  if(this.banco.equals("banco A")){
+            rutaBanco = "/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/pagos/pagos.txt";
+        }else{
+            rutaBanco = "/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/pagos/bancoB.txt";
+        }*/
         
         try{
             BufferedReader bf = new BufferedReader(new FileReader("/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/pagos/pagos.txt"));
@@ -167,6 +202,14 @@ public class PanelPB extends javax.swing.JPanel {
         FileWriter fw;
         BufferedWriter bf;
         PrintWriter pw;
+        String rutaBanco;
+        
+      /*  if(this.banco.equals("banco A")){
+            rutaBanco = "/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/pagos/pagos.txt";
+        }else{
+            rutaBanco = "/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/pagos/bancoB.txt";
+        }*/
+        
         try{
             f = new File("/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/pagos/pagos.txt");
             fw = new FileWriter(f,true);
@@ -220,19 +263,20 @@ public class PanelPB extends javax.swing.JPanel {
               
                 PanelPB jp = new PanelPB();
                // jp.escribirEnArchivo("3002130423","10000");
-                ConnectionDB db = new ConnectionDB();
+                
                 /*Date fecha = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 String fechaN = sdf.format(fecha);*/
                // db.bucarIdentificadorCliente("3002130423");
-               db.updateValorPagoCuentaM();
+              // db.updateValorPagoCuentaM();
                 //jp.leerDeArchivo();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cargarDatos;
+    private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextNumeroLinea;

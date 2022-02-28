@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Usuario;
-import pagos.PanelPB;
+import vista.pagos.PanelPB;
 
 /**
  *
@@ -314,6 +314,29 @@ public class ConnectionDB {
             return false;
         }
    }
+   
+   /**
+    * Bvalida si el numero de linea existe en la base de datos
+    */
+   
+   public boolean validarLineaCliente(String linea){
+       
+       boolean lineaExiste=true;
+       try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT numero FROM lineas WHERE numero = ?");
+            sql.setString(1, linea);
+                         
+            int rs = sql.executeUpdate();  // ejecutar la sentencia.
+            System.out.println("Se han actualizado: "+rs+" filas.\n");
+            if (rs == 0) { 
+                lineaExiste= false; 
+                }
+            }catch (SQLException ex) {
+            System.out.println("no funciona Busqueda");
+            }
+       return lineaExiste;
+    }
+
    /**
     * Busca el numero de la cedula del cliente segun, el numero de linea
     */
