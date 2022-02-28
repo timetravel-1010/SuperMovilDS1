@@ -73,16 +73,16 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
                 jButtonEnviar2jButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonEnviar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
+        add(jButtonEnviar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 100, 30));
 
         jTextPassword2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 272, 230, -1));
+        add(jTextPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
 
         jTextUsername2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextUsername2, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 224, 230, -1));
+        add(jTextUsername2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
 
         jTextDireccion2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 176, 230, -1));
+        add(jTextDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
 
         jTextTelefono2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextTelefono2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,10 +90,10 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
                 jTextTelefono2jTextTelefonoActionPerformed(evt);
             }
         });
-        add(jTextTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 132, 230, -1));
+        add(jTextTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 230, 30));
 
         jTextNombre2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 90, 230, -1));
+        add(jTextNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
 
         jTextCedula2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextCedula2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,39 +101,39 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
                 jTextCedula2jTextCedulaActionPerformed(evt);
             }
         });
-        add(jTextCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 44, 230, -1));
+        add(jTextCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 230, 30));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel20.setText("Cedula");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 40, 108, 30));
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 130, 30));
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel18.setText("Nombre");
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 86, 108, 30));
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 130, 30));
 
         jLabel19.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel19.setText("Telefono");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 128, 108, 30));
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 130, 30));
 
         jLabel23.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel23.setText("Dirección");
-        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 172, 108, 30));
+        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 130, 30));
 
         jLabel21.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel21.setText("Nombre de usuario");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 220, 108, 30));
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 130, 30));
 
         jLabel22.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel22.setText("Password");
-        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 268, 108, 30));
+        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 130, 30));
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Rol");
-        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 316, 108, 30));
+        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 130, 30));
 
         titulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         titulo.setText("jLabel1");
-        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 120, 30));
+        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 120, 30));
 
         jComboBoxRol.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "administrador", "gerente", "operador" }));
@@ -142,7 +142,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
                 jComboBoxRolActionPerformed(evt);
             }
         });
-        add(jComboBoxRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 316, 231, -1));
+        add(jComboBoxRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 231, 30));
 
         jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jButtonCancelar.setText("Cancelar");
@@ -151,7 +151,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviar2jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviar2jButtonEnviarActionPerformed
