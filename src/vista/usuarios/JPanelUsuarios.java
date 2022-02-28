@@ -1,7 +1,10 @@
 package vista.usuarios;
 
 import javax.swing.JPanel;
+import vista.clientes.JPanelDatosPlanes;
+import vista.clientes.JPanelTablaPlanes;
 import vista.menuPrincipal;
+import vista.pagos.JPanelPagos;
 
 /**
  *
@@ -14,6 +17,9 @@ public class JPanelUsuarios extends javax.swing.JPanel {
      */
     private JPanel panelActual;
     private menuPrincipal menup;
+    private JPanelTablaPlanes tabla;
+    //private JPanelPagos pagos;
+    
     public JPanelUsuarios(menuPrincipal menu) {
         initComponents();
         panelActual=new JPanel();
@@ -68,7 +74,12 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelDatosUsuario(this));
+        //this.pintarPanel(new JPanelTablaPlanes(this)); // Cambiar a JPanelDatosUsuarios
+        //this.pintarPanel(new JPanelPagos(this));
+        this.pintarPanel(new JPanelDatosPlanes(this)); //borrar
+
+        //tabla.agregarTodos();
+        
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonRegistrarUsuarioActionPerformed
@@ -80,17 +91,40 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         this.repaint();
     }
     
+    public void pintarPanel(JPanelTablaPlanes panel){
+        tabla = panel;
+        //panelTabla = panel;
+        add(tabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
+        this.revalidate();
+        this.repaint();
+    }
+    
     public void eliminarPanel(){
         this.remove(panelActual);
         this.revalidate();
         this.repaint();
     }
     
+
     public void enableButtons(boolean b){
         jButtonAdmiinistrarUsuarios.setEnabled(b);
         jButtonRegistrarUsuario.setEnabled(b);
     }
 
+    
+    //Borrar despues de pruebas
+    public void eliminarTabla(){
+        this.remove(tabla);
+        tabla=null;
+        //tabla=null;
+        this.revalidate();
+        this.repaint();
+    }
+    
+    
+    public void refrescarGUI(){
+        menup.refrescarGUI();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdmiinistrarUsuarios;
