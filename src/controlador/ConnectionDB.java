@@ -1,5 +1,6 @@
 package controlador;
 
+import enums.TipoCliente;
 import enums.TipoLogin;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,8 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Cliente;
 import modelo.Usuario;
 
 /**
@@ -60,6 +63,28 @@ public class ConnectionDB {
             System.out.println("Error: " + ex.getMessage());
         }
         return usuarios;   
+    }
+    
+    public List<Cliente> getClientes() {
+        List<Cliente> clientes = new ArrayList<>(); // para guardar los datos en un array.
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM Clientes");
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                Cliente unCliente = new Cliente(rs.getString(1),
+                                                rs.getString(2),
+                                                rs.getString(3),
+                                                rs.getString(4),
+                                                rs.getString(5),
+                                                TipoCliente.valueOf(rs.getString(6)));
+                clientes.add(unCliente);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return clientes;   
     }
     
     public ArrayList<Usuario> getUsuariosByName(String nombre) {
