@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import vista.clientes.JPanelPlanes;
+import vista.pagos.JPanelPagos;
 
 /**
  *
@@ -196,6 +197,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void buttonPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagosActionPerformed
         // TODO add your handling code here:
+        this.pintarPanelActual(new JPanelPagos(this));
     }//GEN-LAST:event_buttonPagosActionPerformed
 
     private void buttonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClientesActionPerformed

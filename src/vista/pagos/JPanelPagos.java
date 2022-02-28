@@ -4,33 +4,28 @@
  */
 package vista.pagos;
 
-import controlador.ConnectionDB;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import vista.usuarios.JPanelUsuarios;
+import vista.clientes.JPanelTablaPlanes;
+import vista.menuPrincipal;
 
 /**
  *
- * @author Manuel
+ * @author Arman
  */
 public class JPanelPagos extends javax.swing.JPanel {
 
-    private ConnectionDB db;
-    private JPanelUsuarios padreAdmin;
-    private JPanel panelActual;
-
     /**
-     * Creates new form JPanelPagos
+     * Creates new form JPanelPAgos
      */
-    public JPanelPagos(JPanelUsuarios papa) {
+    private JPanel panelActual;
+    private menuPrincipal menup;
+    
+    
+    public JPanelPagos(menuPrincipal menu) {
         initComponents();
-        db = new ConnectionDB();
-        panelActual = new JPanel();
-        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
-        padreAdmin = papa;
+        panelActual=new JPanel();
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
+        menup=menu;
     }
 
     /**
@@ -42,109 +37,69 @@ public class JPanelPagos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabelNumeroFactura = new javax.swing.JLabel();
-        jLabelValorPagado = new javax.swing.JLabel();
-        jTextFieldValorPagado = new javax.swing.JTextField();
-        jTextFieldNumeroFactura = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonPagoIndividual = new javax.swing.JButton();
+        jButtonPagosBancos = new javax.swing.JButton();
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pago Factura");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelNumeroFactura.setText("Numero de factura");
-
-        jLabelValorPagado.setText("Valor a pagar");
-
-        jTextFieldNumeroFactura.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPagoIndividual.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonPagoIndividual.setText("Registrar pago individual");
+        jButtonPagoIndividual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNumeroFacturaActionPerformed(evt);
+                jButtonPagoIndividualActionPerformed(evt);
             }
         });
+        add(jButtonPagoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 210, 30));
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPagosBancos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonPagosBancos.setText("Cargar pagos bancarios");
+        jButtonPagosBancos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonPagosBancosActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(494, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addContainerGap(304, Short.MAX_VALUE))
-        );
+        add(jButtonPagosBancos, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 210, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNumeroFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroFacturaActionPerformed
+    private void jButtonPagoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagoIndividualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNumeroFacturaActionPerformed
+        this.eliminarPanel();
+        //this.pintarPanel(new JPanelTablaPlanes(this)); // Cambiar a JPanelDatosUsuarios
+        this.pintarPanel(new JPanelRegistrarPagos(this));
+        //this.pintarPanel(new JPanelDatosPlanes(this)); //borrar
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //tabla.agregarTodos();
+        
+        menup.refrescarGUI();
+    }//GEN-LAST:event_jButtonPagoIndividualActionPerformed
+
+    private void jButtonPagosBancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagosBancosActionPerformed
         // TODO add your handling code here:
-        boolean resultado;
-        Integer numeroFactura = Integer.parseInt(jTextFieldNumeroFactura.getText());
-        Integer ValorPagado = Integer.parseInt(jTextFieldValorPagado.getText());
-        
-        resultado = db.registrarPago(numeroFactura, ValorPagado);
-        
-        if (resultado) {
-            try {
-                db.modificarFechaPago(numeroFactura);
-            } catch (ParseException ex) {
-                Logger.getLogger(JPanelPagos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            JOptionPane.showMessageDialog(null, "¡El registro del pago de factura fue exitoso!",
-                    "Registro", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
-                        "Registro", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.eliminarPanel();
+        menup.refrescarGUI();
 
+    }//GEN-LAST:event_jButtonPagosBancosActionPerformed
+
+    public void eliminarPanel(){
+        this.remove(panelActual);
+        this.revalidate();
+        this.repaint();
+    }
+        
+    public void refrescarGUI(){
+        menup.refrescarGUI();
+    }
+    
+    public void pintarPanel(JPanel panel){
+        panelActual=panel;
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
+        this.revalidate();
+        this.repaint();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelNumeroFactura;
-    private javax.swing.JLabel jLabelValorPagado;
-    private javax.swing.JTextField jTextFieldNumeroFactura;
-    private javax.swing.JTextField jTextFieldValorPagado;
+    private javax.swing.JButton jButtonPagoIndividual;
+    private javax.swing.JButton jButtonPagosBancos;
     // End of variables declaration//GEN-END:variables
 }
