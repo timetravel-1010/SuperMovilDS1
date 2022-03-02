@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Planes;
 import modelo.Usuario;
+import vista.pagos.PagosBancos;
 
 /**
  *
@@ -33,6 +34,7 @@ public class ConnectionDB {
     private Connection conexion;
     private Usuario elUsuario;
     private boolean validar ;
+    private PagosBancos pb;
     
     public ConnectionDB() {        
         try {
@@ -477,4 +479,147 @@ public class ConnectionDB {
         return filasAfectadas != 0;
         
     }
+    
+    /**
+    * valida si el numero de linea existe en la base de datos
+    */
+   
+    public boolean validarLineaCliente(String linea){
+       
+       boolean lineaExiste=true;
+       try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT numero FROM lineas WHERE numero = ?");
+            sql.setString(1, linea);
+                         
+            int rs = sql.executeUpdate();  // ejecutar la sentencia.
+            System.out.println("Se han actualizado: "+rs+" filas.\n");
+            if (rs == 0) { 
+                lineaExiste= false; 
+                }
+            }catch (SQLException ex) {
+            System.out.println("no funciona Busqueda");
+            }
+       return lineaExiste;
+    }
+
+   /**
+    * Busca el numero de la cedula del cliente segun, el numero de linea
+    */
+   
+    public String bucarIdentificadorCliente (String numero){
+       
+       String identificador="";
+       
+       try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT identificador FROM cuentas WHERE numero = ?");
+            sql.setString(1, numero);
+                         
+            ResultSet rs = sql.executeQuery(); // ejecutar la sentencia.
+            if (rs.next()) {
+                identificador = rs.getString(1);
+            }
+            
+            //System.out.println(identificador);
+             
+        
+            }catch (SQLException ex) {
+            System.out.println("no funciona Busqueda");
+            }
+
+       
+       return identificador;
+    }
+   
+    /**
+    * realiza cambios masivos en la tabla facturas segun los pagos realizados en los bancos
+    */
+    public void updateValorPagoCuentaM() {
+       
+                
+        String identificador="";
+        String numero ;
+        String pago;
+        
+        ArrayList<String> datos = new ArrayList<>();
+        datos = pb.leerDeArchivo();
+        
+        int n=0;
+        int p=1;
+        int iteracciones = datos.size()/3;
+        
+     for(int i = 0; i<iteracciones; i++){
+               
+           numero = datos.get(n);
+           identificador = bucarIdentificadorCliente(numero);
+           pago = datos.get(p);
+           System.out.println(numero +"\n");
+           System.out.println(pago+"\n");
+           System.out.println(identificador+"\n");
+            try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE facturas SET valor_pagado = ?::int WHERE numero_cuenta = ?::int");
+            sql.setString(1, pago);
+            sql.setString(2, identificador);
+            
+            int rs = sql.executeUpdate();  // ejecutar la sentencia.
+            System.out.println("Se han actualizado: "+rs+" filas.\n");
+            if (rs == 0) { // no se afecto ninguna fila.
+                //return false; // se debe mostrar un mensaje de error o algo.
+             }
+        
+            } catch (SQLException ex) {
+            System.out.println("no funciona upDate facturas");
+            }
+         n = 3+n;
+         p = 3+p;
+           
+       } 
+       
+   }
+    
+    
+    /**
+    * realiza cambios masivos en la tabla cuenta segun los pagos realizados en los bancos
+    */
+    public void updateUltimoPagoCuentaM() {
+
+
+        String fechaPago ;
+        String numero ;
+
+        ArrayList<String> datos = new ArrayList<>();
+        datos = pb.leerDeArchivo();
+
+        int n=0;
+        int f=2;
+        int iteracciones = datos.size()/3;
+
+        for(int i = 0; i<iteracciones; i++){
+
+
+
+           numero = datos.get(n);
+           fechaPago = datos.get(f);
+           System.out.println(numero +"\n");
+           System.out.println(fechaPago+"\n");
+            try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE cuentas SET ultimo_pago = ?::date WHERE numero = ?");
+            sql.setString(1, fechaPago);
+            sql.setString(2, numero);
+
+            int rs = sql.executeUpdate();  // ejecutar la sentencia.
+            System.out.println("Se han actualizado: "+rs+" filas.\n");
+            if (rs == 0) { // no se afecto ninguna fila.
+                //return false; // se debe mostrar un mensaje de error o algo.
+             }
+
+            } catch (SQLException ex) {
+            System.out.println("no funciona upDate");
+            }
+         n = 3+n;
+         f = 3+f;
+
+       } 
+
+
+   }
 }

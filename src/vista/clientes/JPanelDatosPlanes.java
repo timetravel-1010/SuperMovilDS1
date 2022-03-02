@@ -255,7 +255,13 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
 
     private void jButtonCancelarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarjButtonEnviarActionPerformed
         // TODO add your handling code here:
-        padrePlan.auxUpdateGui();
+        if (tipoPanel) {
+            padrePlan.auxUpdateGui();
+        }else{
+            padreAdmin.eliminarPanel();
+            padreAdmin.enableButtons(true);
+        }
+        
     }//GEN-LAST:event_jButtonCancelarjButtonEnviarActionPerformed
 
     

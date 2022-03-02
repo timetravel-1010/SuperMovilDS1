@@ -37,7 +37,6 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         initComponents();
         jTablePlanes.setModel(modeloT);
         
-        //this.agregarTodos();
     }
     
     
@@ -181,29 +180,20 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         this.repaint();
     }
     
-    /*public void eliminarPanel(){
-        this.remove(panelActual);
-        this.revalidate();
-        this.repaint();
-    }*/
-    
-    
-    
+   
+      
     public Integer indexTabla() {
         int row = jTablePlanes.getSelectedRow();
-        //String cedula = jTablePlanes.getValueAt(row, 0).toString();
         return row+1;
     }
     
     public void auxUpdateGui() {
         padrePlan.eliminarPanel();
         padrePlan.enableButtons(true);
-        //padrePlan.refrescarGUI();
     }
     
     public void enableMC(boolean b) { 
         jButtonModificar.setEnabled(b);
-        //jButtonCancelar.setEnabled(b);
     }
     
     

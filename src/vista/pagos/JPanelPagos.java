@@ -4,6 +4,7 @@
  */
 package vista.pagos;
 
+import controlador.ConnectionDB;
 import javax.swing.JPanel;
 import vista.clientes.JPanelTablaPlanes;
 import vista.menuPrincipal;
@@ -19,6 +20,7 @@ public class JPanelPagos extends javax.swing.JPanel {
      */
     private JPanel panelActual;
     private menuPrincipal menup;
+    private ConnectionDB db;
     
     
     public JPanelPagos(menuPrincipal menu) {
@@ -72,10 +74,11 @@ public class JPanelPagos extends javax.swing.JPanel {
 
     private void jButtonPagosBancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagosBancosActionPerformed
         // TODO add your handling code here:
+        db.updateValorPagoCuentaM();
+        db.updateUltimoPagoCuentaM();
         this.eliminarPanel();
         menup.refrescarGUI();
         this.enableButtons(false);
-
     }//GEN-LAST:event_jButtonPagosBancosActionPerformed
 
     public void eliminarPanel(){
