@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista.clientes;
 
-import javax.swing.JPanel;
+import java.awt.Dimension;
 
 /**
  *
@@ -12,23 +8,25 @@ import javax.swing.JPanel;
  */
 public class ModuloClientes extends javax.swing.JFrame {
     
-    private JPanelTablaClientes panelTabla;
+    private JPanelTablaClientes tablaClientes;
 
     /**
      * Creates new form ModuloClientes
      */
     public ModuloClientes() {
-        
         initComponents();
         this.setLocationRelativeTo(null);
-        tablaC.setVisible(false);
+        tablaClientes = new JPanelTablaClientes(this);
+        //pintarPanel();
     }
     
     public void pintarPanel(){
-        add(panelTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 620, 256));
-        panelTabla.agregarTodos();
-        this.revalidate();
-        this.repaint();
+        panelInicial.remove(tablaClientes);
+        Dimension dimension = tablaClientes.getPreferredSize();
+        panelInicial.add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, dimension.width, dimension.height));
+        System.out.println("ancho: "+dimension.width+" alto: "+dimension.height);
+        tablaClientes.agregarTodos();
+        this.refreshGUI();
     }
 
     /**
@@ -40,43 +38,44 @@ public class ModuloClientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelTablaClientes1 = new vista.clientes.JPanelTablaClientes();
-        jPanel1 = new javax.swing.JPanel();
         panelInicial = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        tablaC = new vista.clientes.JPanelTablaClientes();
+        mostrarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         panelInicial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        mostrarBtn.setText("Mostrar");
+        mostrarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                mostrarBtnActionPerformed(evt);
             }
         });
-        panelInicial.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, -1, -1));
-        panelInicial.add(tablaC, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 540, 270));
+        panelInicial.add(mostrarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
 
-        getContentPane().add(panelInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 825, 600));
+        getContentPane().add(panelInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mostrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarBtnActionPerformed
         // TODO add your handling code here:        
         //this.remove(panelInicial);
         //this.revalidate();
         //this.repaint();
         //panelTabla = new JPanelTablaClientes();
-        //this.pintarPanel();
-        tablaC.setVisible(true);
-        tablaC.agregarTodos();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.pintarPanel();
+        this.refreshGUI();
+    }//GEN-LAST:event_mostrarBtnActionPerformed
 
+    public void refreshGUI() {
+        panelInicial.repaint();
+        panelInicial.revalidate();
+        this.repaint();
+        this.revalidate();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -111,12 +110,10 @@ public class ModuloClientes extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private vista.clientes.JPanelTablaClientes jPanelTablaClientes1;
+    private javax.swing.JButton mostrarBtn;
     private javax.swing.JPanel panelInicial;
-    private vista.clientes.JPanelTablaClientes tablaC;
     // End of variables declaration//GEN-END:variables
 }

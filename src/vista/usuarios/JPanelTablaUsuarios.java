@@ -101,11 +101,11 @@ public class JPanelTablaUsuarios extends javax.swing.JPanel {
     }
      
      
-     public String indexTabla() {
+    public String indexTabla() {
          int row = tablaUsuarios.getSelectedRow();
          String cedula = tablaUsuarios.getValueAt(row, 0).toString();
          return cedula;
-     }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

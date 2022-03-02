@@ -91,6 +91,26 @@ public class ConnectionDB {
         return clientes;   
     }
     
+     public ArrayList<String[]> obtenerClientesReactivacion() {
+    	ArrayList<String[]> tabla = new ArrayList<>();
+        try {
+        	PreparedStatement sql = conexion.prepareStatement("SELECT * from mostrarClientes");
+                ResultSet rs = sql.executeQuery();
+                int numCol = 5;
+                while (rs.next()){
+                    String[] fila = new String[numCol];
+                    for (int i = 0; i < numCol; i++) {
+                        fila[i] = rs.getString(i+1);
+                    }
+                    tabla.add(fila);
+                }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return tabla;
+    }
+    
     public ArrayList<Usuario> getUsuariosByName(String nombre) {
     	ArrayList<Usuario> usuarios = new ArrayList<>(); // para guardar los datos en un array
         try {
@@ -479,7 +499,7 @@ public class ConnectionDB {
             sql.setString(1, cedula_titular);
             ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
             while (rs.next()){ // guardar los datos en la lista de usuarios.
-                Cuenta unaCuenta = new Cuenta(rs.getInt(1),
+                Cuenta unaCuenta = new Cuenta(  rs.getInt(1),
                                                 rs.getString(2),
                                                 rs.getString(3),
                                                 rs.getString(4),
@@ -575,15 +595,23 @@ public class ConnectionDB {
         }
         return validarL.equals(numero);
     }
-   /**
-    * 
-    * @param cedula
-    * @param nombre
-    * @param telefono
-    * @param direccion
-    * @param nombre_usuario
-    * @param passwordd
-    * @param rol 
-    */
+
+    
+    public boolean cambiarEstadoPlan(String numero, Boolean activar) {
+        try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE cuentas SET estado = ?::status WHERE numero = ?");
+            
+            String nuevoEstado = activar ? "activo" : "inactivo";
+            sql.setString(1, nuevoEstado);
+            sql.setString(2, numero);
+            
+            int rs = sql.executeUpdate();
+            
+            return rs != 0;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
    
 }

@@ -2,8 +2,10 @@ package vista.clientes;
 
 import vista.usuarios.*;
 import controlador.ConnectionDB;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.Usuario;
@@ -14,30 +16,19 @@ import modelo.Usuario;
  */
 public class JPanelTablaClientes extends javax.swing.JPanel {
     private ConnectionDB db;
-    private JPanelAdministrarUsuarios padre;
+    private ModuloClientes padre;
     private DefaultTableModel modeloT;  
-    
-    public JPanelTablaClientes(JPanelAdministrarUsuarios papa) {
-        padre=papa;
-        db = new ConnectionDB();
-        modeloT = new DefaultTableModel();
-        String [] titulo = new String[]{"Cedula", "Nombre", "Telefono", "Direccion", "Nombre_usuario", "password", "estado", "Rol", "Status_login"};
-        modeloT.setColumnIdentifiers(titulo);
-        initComponents();
-        tablaClientes.setModel(modeloT);
-        
-        //this.agregarTodos();
-    }
 
-    public JPanelTablaClientes() {
-        db = new ConnectionDB();
-        modeloT = new DefaultTableModel();
-        String [] titulo = new String[]{"Cedula", "Nombre", "Telefono", "Direccion", "Ciudad", "Tipo"};
+    public JPanelTablaClientes(ModuloClientes papa) {
+        this.padre = papa;
+        this.db = new ConnectionDB();
+        //modeloT = new DefaultTableModel();
+        //String [] titulo = new String[]{"Cedula", "Nombre", "Telefono", "Direccion", "Ciudad", "Tipo"};
         
         
-        modeloT.setColumnIdentifiers(titulo);
+        //modeloT.setColumnIdentifiers(titulo);
         initComponents();
-        tablaClientes.setModel(modeloT);
+        //tablaClientes.setModel(modeloT);
         //this.agregarTodos();
         this.setVisible(true);
         this.revalidate();
@@ -45,22 +36,36 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
     }
     
     public void agregarTodos(){
-        List<Cliente> lista = db.getClientes();
-        
-        for(int i =0; i<lista.size();i++){
-            modeloT.addRow(new Object[]{
-                lista.get(i).getCedula(),
-                lista.get(i).getNombre(),
-                lista.get(i).getTelefono(),
-                lista.get(i).getDireccion(),
-                lista.get(i).getCiudad(),
-                lista.get(i).getTipo()
+        List<String[]> lista = db.obtenerClientesReactivacion();
+        DefaultTableModel modeloDatos = (DefaultTableModel) tablaClientes.getModel();
+        /*for(int i =0; i<lista.size();i++){
+            modeloDatos.addRow(new Object[]{
+                lista.get(i),
+                lista.get(i),
+                lista.get(i),
+                lista.get(i),
+                lista.get(i),
+                lista.get(i)
             });            
-            System.out.println("Nombre "+i+": "+lista.get(i).getNombre());
+            System.out.println("Nombre "+i+": "+lista.get(i)[0]);
+        }*/
+        while (modeloDatos.getRowCount() > 0) {
+            modeloDatos.removeRow(modeloDatos.getRowCount()-1);
+        }
+        for (int i = 0; i < lista.size(); i++) {
+            String[] row =  lista.get(i);
+            Object[] fila = new Object[]{row[0], row[1], row[2], row[3], row[4]};
+            modeloDatos.addRow(fila);
         }
         this.revalidate();
         this.repaint();
         System.out.println("Entra y sale.");
+    }
+    
+    public String obtenerNumeroSeleccionado() {
+        int row = tablaClientes.getSelectedRow();
+        String numero = tablaClientes.getValueAt(row, 2).toString();
+        return numero;
     }
     
     public void agregarSelectivo(String nombreU){
@@ -112,13 +117,6 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
         });
         
     }
-     
-     
-     public String indexTabla() {
-         int row = tablaClientes.getSelectedRow();
-         String cedula = tablaClientes.getValueAt(row, 0).toString();
-         return cedula;
-     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,6 +134,8 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
             }
         }
         ;
+        reactivarBtn = new javax.swing.JButton();
+        suspenderBtn = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(890, 510));
         setPreferredSize(new java.awt.Dimension(890, 510));
@@ -143,17 +143,17 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Cedula", "Nombre", "Telefono", "Direccion", "Ciudad", "Tipo"
+                "Nombre", "Cedula", "Número", "Plan", "Estado Plan"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -171,19 +171,95 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaClientes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, -2, 500, 250));
-    }// </editor-fold>//GEN-END:initComponents
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, -2, 600, 260));
 
+        reactivarBtn.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        reactivarBtn.setText("Reactivar Plan");
+        reactivarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reactivarBtnActionPerformed(evt);
+            }
+        });
+        add(reactivarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, -1, -1));
+
+        suspenderBtn.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        suspenderBtn.setText("Suspender Plan");
+        suspenderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suspenderBtnActionPerformed(evt);
+            }
+        });
+        add(suspenderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 150, -1));
+    }// </editor-fold>//GEN-END:initComponents
+    
     private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
         if (tablaClientes.getSelectedRow() != -1) {
-            padre.enableMAD(true);
+           // padre.enableMAD(true);
         }
     }//GEN-LAST:event_tablaClientesMouseClicked
     
+    private void reactivarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reactivarBtnActionPerformed
+        // TODO add your handling code here:
+        String numero = this.obtenerNumeroSeleccionado();
+        int result = JOptionPane.showConfirmDialog(null,"¿Seguro que desea reactivar el plan del cliente?", "Confirmación",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION){
+           Boolean correcto = db.cambiarEstadoPlan(numero, true);
+           if (correcto) {
+               JOptionPane.showMessageDialog(null, "¡La reactivación fue exitosa!",
+                        "Exito", JOptionPane.INFORMATION_MESSAGE);
+               this.refrescarGUI();
+           } else {
+               JOptionPane.showMessageDialog(null, "¡No se ha realizado ninguna modificación!",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+           }
+        }
+        this.actualizarTabla();
+    }//GEN-LAST:event_reactivarBtnActionPerformed
 
+    private void suspenderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspenderBtnActionPerformed
+        String numero = this.obtenerNumeroSeleccionado();
+        int result = JOptionPane.showConfirmDialog(null,"¿Seguro que desea suspender el plan del cliente?", "Confirmación",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION){
+           Boolean correcto = db.cambiarEstadoPlan(numero, false);
+           if (correcto) {
+               JOptionPane.showMessageDialog(null, "¡Se ha suspendido el plan correctamente!",
+                        "Exito", JOptionPane.INFORMATION_MESSAGE);
+               this.refrescarGUI();
+           } else {
+               JOptionPane.showMessageDialog(null, "¡No se ha realizado ninguna modificación!",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+           }
+               
+        }
+        this.actualizarTabla();
+    }//GEN-LAST:event_suspenderBtnActionPerformed
+    
+    public void actualizarTabla() {
+        this.agregarTodos();
+    }
+    
+    public void refrescarGUI(){
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public int obtenerAncho() {
+        return this.getWidth();
+    }
+    
+    public int obtenerAlto() {
+        return this.getHeight();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton reactivarBtn;
+    private javax.swing.JButton suspenderBtn;
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }
