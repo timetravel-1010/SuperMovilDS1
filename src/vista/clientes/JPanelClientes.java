@@ -75,7 +75,7 @@ public class JPanelClientes extends javax.swing.JPanel {
     private void jButtonAdministrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarClientesActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarCliente(this, conexion.getCliente("1234567766")));
+        this.pintarPanel(new JPanelModificarCliente(this, conexion.getCliente("1007597324")));
         menup.refrescarGUI();
         this.enableButtons(false);
 

@@ -9,7 +9,6 @@ import enums.TipoCliente;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import modelo.Cliente;
 import modelo.Cuenta;
 import modelo.Plan;
@@ -19,37 +18,22 @@ import modelo.Plan;
  * @author Arman
  */
 public class JPanelRegistrarCliente extends javax.swing.JPanel {
-
     /**
      * Creates new form JPanelDatosClientes
      */
     private JPanelClientes padreModificar;
     private JPanelClientes padreAdmin;
     private ConnectionDB conexion;
-    private Boolean accion; //
     private Boolean tipoCliente;
     private Cliente clienteActualizar;
     
     public JPanelRegistrarCliente(JPanelClientes papa) { //Método para registrar clientes, recibe un JPanelClientes
         this.padreAdmin = papa;
-        this.accion = true;
         conexion = new ConnectionDB();
         initComponents();
         this.visiblePanelDerecho(false, false);
         this.rellenarComboBoxDerechos();
     }
-    
-    public JPanelRegistrarCliente(JPanelClientes papa, Cliente cliente) { //Método para modificar clientes, recibe un JPanelClientes
-        this.padreModificar = papa;
-        this.accion = false;
-        this.clienteActualizar = cliente;
-        conexion = new ConnectionDB();
-        initComponents();
-        this.visiblePanelDerecho(false, false);
-        this.rellenarComboBoxDerechos();
-        this.prepararUpdate();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,8 +141,8 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, 30));
 
         jLabelCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCedula.setText("Cedula");
-        add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 65, 30));
+        jLabelCedula.setText("Identificacion");
+        add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 110, 90, 30));
 
         jLabelNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabelNombre.setText("Nombre");
@@ -343,26 +327,16 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         //Se muestran los elementos del panel derecho dependiendo del tipo de cliente que se desea registrar:
         if(validarRegistroCliente()){//Se hace una validacion inicial del panel izquierdo
-            if(accion){//Si se trata de un registro
                 if(!conexion.validarCliente(jTextCedula.getText())){//Segunda validacion, se valida si ya esta registrado el cliente
                     tipoCliente = (jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex())).equals("natural");
-                    this.visiblePanelDerecho(true, tipoCliente);
+                    this.visiblePanelDerecho(true, false);
                     //Se inhabilitan los elementos del panel izquierdo:
                     this.enablePanelIzquierdo(false);
                 } else {//Ya hay un cliente con ea cedula
                     JOptionPane.showMessageDialog(null, "¡Ya existe un cliente registrado con esa cedula!",
                             "Cedula encontrada", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {//Si es una actualizacion, ya se puede proceder
-                tipoCliente = (jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex())).equals("natural");
-                this.visiblePanelDerecho(true, tipoCliente);
-                //Se inhabilitan los elementos del panel izquierdo:
-                this.enablePanelIzquierdo(false);
-            }
-            
-            
         }
-        
     }//GEN-LAST:event_jButtonSiguientejButtonEnviarActionPerformed
 
     private void jTextTelefonojTextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefonojTextTelefonoActionPerformed
@@ -434,20 +408,6 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         String direccion = jTextDireccion.getText();
         String ciudad = jTextCiudad.getText();
         String tipo = jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex());
-        if(accion){//Si es un registro
-            if(tipoCliente){//Si es un cliente natural
-                if(jTextNumero1.getText().length()==10){//Si se esta registrando un numero valido en la linea 1
-                    if(!conexion.validarLinea(jTextNumero1.getText())){//Se valida que el numero no exista ya
-                        this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "¡El numero ingresado ya se encuentra en uso!",
-                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else{
-                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido!",
-                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {//Si es un cliente corporativo
                 boolean permiso = true;
                 if(!jTextNumero1.getText().isBlank()){//Si el campo de linea 1 no esta vacio, quiere decir que s eesta tratando de usar
                     if(jTextNumero1.getText().length()==10){//Se valida que sea un numero valido
@@ -496,43 +456,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                             "Ingrese un numero", JOptionPane.ERROR_MESSAGE);
                             permiso = false;
                 }
-                
                 if(permiso) this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo); //Si paso la validacion, se procede a registrar
-            }
-            
-        } else {//Si es una actualizacion
-            ArrayList<Cuenta> cuentas = conexion.getCuentas(clienteActualizar.getCedula());//Cuentas que tiene el cliente actualmente
-            if(tipoCliente){//Si es una persona natural
-                if(jTextNumero1.getText().length()==10){//Si se esta actualizando a un numero valido en la linea 1
-                    if(!conexion.validarLinea(jTextNumero1.getText())){//Se valida que el numero no exista ya
-                        this.actualizarCliente(cedula, nombre, telefono, direccion, ciudad);
-                    } else if(jTextNumero1.getText().equals(cuentas.get(0).getNumero())){//Si no se modifico el numero que venia
-                        this.actualizarCliente(cedula, nombre, telefono, direccion, ciudad);
-                    } else {//Si el numero ya esta registrado
-                        JOptionPane.showMessageDialog(null, "¡El numero ingresado ya se encuentra en uso!",
-                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else{
-                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido!",
-                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {//Si se trata de un cliente corporativo //Esta vaidacion esta floja por falta de tiempo
-                boolean permiso = true;
-                //Aqui va la validacion, si queda tiempo al final, se implementa, es mejor concentrarse en lo demas
-                if(permiso) this.actualizarCliente(cedula, nombre, telefono, direccion, ciudad); //Si paso la validacion, se procede a registrar
-            }
-        }
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-        if(accion){//Si es una accion de registro
             padreAdmin.eliminarPanel();
             padreAdmin.enableButtons(true);
-        } else {//Si es una accion de modificacion
-            padreModificar.enableButtons(true);
-            padreModificar.eliminarPanel();
-        }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextNumero1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNumero1KeyTyped
@@ -712,29 +642,6 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         boolean resultadoRegistrarCliente = conexion.registrarClientes(cedula, nombre, telefono, direccion, ciudad, tipo);//Se hace la consulta
             if (resultadoRegistrarCliente) {//La consulta es exitosa
                 //Una vez se registro el cliente, se le debe crear una cuenta y sus respectivas lineas
-                if (tipoCliente){//Si es un cliente natural, es decir, un solo numero
-                    int idPlan1 = jComboBoxPlan1.getSelectedIndex()+1;
-                    String numero1 = jTextNumero1.getText();
-                    Boolean resultadoRegistrarLinea = conexion.registrarLinea(numero1, idPlan1);//Se hace el registro de la linea
-                    if (resultadoRegistrarLinea){//El registro de Linea fue exitoso
-                        Boolean resultadoRegistrarCuenta = conexion.registrarCuenta(cedula, numero1);//Se hace el registro de la cuenta
-                        if(resultadoRegistrarCuenta){//El registro de cuenta fue exitoso
-                            JOptionPane.showMessageDialog(null, "¡El registro de los datos del cliente fue exitoso!",
-                    "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                        } else {//El registro de cuenta fallo
-                            //Como no se pudo registrar la cuenta, pero si la linea y el cliente, se deben borrar
-                            conexion.eliminarLinea(numero1);
-                            conexion.eliminarCliente(cedula);
-                            JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
-                            "Registro fallido", JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else {//El registro de Linea fallo
-                        //Como no se pudo registrar la Linea, se debe borrar el cliente que se registro
-                        conexion.eliminarCliente(cedula);
-                        JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
-                        "Registro fallido", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {//Si son varios numeros
                     //Basicamente toca hacer lo mismo para los tres distintos numeros, valiendose de las validaciones
                     boolean vacio1 = false;
                     boolean vacio2 = false;
@@ -813,7 +720,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                             "Registro fallido", JOptionPane.ERROR_MESSAGE);
                         }
                     } //En este punto se reaizaron los registros de todos los numeros si todo salio bien
-                }
+                
             } else {//El registro del cliente en cuestion falla
                 JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
                     "Registro fallido", JOptionPane.ERROR_MESSAGE);
