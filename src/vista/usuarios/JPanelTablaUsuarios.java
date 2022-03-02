@@ -23,7 +23,6 @@ public class JPanelTablaUsuarios extends javax.swing.JPanel {
         initComponents();
         tablaUsuarios.setModel(modeloT);
         
-        //this.agregarTodos();
     }
     
     public void agregarTodos(){

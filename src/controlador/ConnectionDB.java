@@ -49,7 +49,7 @@ public class ConnectionDB {
     	ArrayList<Usuario> usuarios = new ArrayList<>(); // para guardar los datos en un array.
         
         try {
-            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM usuarios");
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM usuarios order by nombre");
             ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
             
             while (rs.next()){ // guardar los datos en la lista de usuarios.

@@ -64,19 +64,17 @@ public class JPanelPagos extends javax.swing.JPanel {
     private void jButtonPagoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagoIndividualActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        //this.pintarPanel(new JPanelTablaPlanes(this)); // Cambiar a JPanelDatosUsuarios
-        this.pintarPanel(new JPanelRegistrarPagos(this));
-        //this.pintarPanel(new JPanelDatosPlanes(this)); //borrar
-
-        //tabla.agregarTodos();
-        
+        this.pintarPanel(new JPanelRegistrarPagos(this));        
         menup.refrescarGUI();
+        this.enableButtons(false);
+
     }//GEN-LAST:event_jButtonPagoIndividualActionPerformed
 
     private void jButtonPagosBancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagosBancosActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
         menup.refrescarGUI();
+        this.enableButtons(false);
 
     }//GEN-LAST:event_jButtonPagosBancosActionPerformed
 
@@ -95,6 +93,11 @@ public class JPanelPagos extends javax.swing.JPanel {
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
         this.revalidate();
         this.repaint();
+    }
+    
+    public void enableButtons(boolean b){
+        jButtonPagoIndividual.setEnabled(b);
+        jButtonPagosBancos.setEnabled(b);        
     }
     
 

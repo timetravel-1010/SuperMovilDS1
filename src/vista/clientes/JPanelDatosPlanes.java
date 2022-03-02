@@ -64,6 +64,7 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         jTextFieldDescripcion = new javax.swing.JTextField();
         jTextFieldMegas = new javax.swing.JTextField();
         jButtonEnviar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         jLabelNombrePlan.setText("Nombre");
 
@@ -110,37 +111,47 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
             }
         });
 
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarjButtonEnviarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(205, 205, 205)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonEnviar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextFieldNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelMegas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldMegas, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelMegas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldMegas, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonCancelar)
+                                .addGap(86, 86, 86)
+                                .addComponent(jButtonEnviar)))))
                 .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -173,7 +184,9 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
                     .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDescripcion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButtonEnviar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEnviar)
+                    .addComponent(jButtonCancelar))
                 .addGap(24, 24, 24))
         );
 
@@ -190,8 +203,6 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
 
     private void jButtonEnviarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarjButtonEnviarActionPerformed
         // TODO add your handling code here:
-        Integer identificador = padrePlan.indexTabla();
-        System.out.println(identificador);
         String nombre = jTextFieldNombrePlan.getText();
         String descripcion = jTextFieldDescripcion.getText();
         Integer precio = Integer.parseInt(jTextFieldPrecio.getText());
@@ -202,6 +213,9 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         boolean resultado;
 
         if (tipoPanel) { 
+            
+            Integer identificador = padrePlan.indexTabla();
+
             //Corregir
             resultado = db.updatePlan(identificador, nombre, descripcion, precio, minutos, megas, mensajes);
 
@@ -212,22 +226,21 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
                     "Actualización", JOptionPane.ERROR_MESSAGE);
             }
-            padreAdmin.eliminarPanel();
-            //padreAdmin.enableButtons(true);
+            padrePlan.auxUpdateGui();
         } else {
             resultado = db.registrarPlanes(nombre, descripcion, precio, minutos, megas, mensajes);
 
             if(resultado){
                 JOptionPane.showMessageDialog(null, "¡El registro de los datos del usuario fue exitoso!",
                     "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                padrePlan.eliminarTabla();
                 //padreUsers.enableButtons(true);
             } else {
                 JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!",
                     "Registro Incorrecto", JOptionPane.ERROR_MESSAGE);
-                padrePlan.eliminarTabla();
-                //padreUsers.enableButtons(true);
+                
             }
+            padreAdmin.eliminarPanel();
+            padreAdmin.enableButtons(true);
         }
 
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
@@ -240,10 +253,16 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDescripcionActionPerformed
 
+    private void jButtonCancelarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarjButtonEnviarActionPerformed
+        // TODO add your handling code here:
+        padrePlan.auxUpdateGui();
+    }//GEN-LAST:event_jButtonCancelarjButtonEnviarActionPerformed
+
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;
     private javax.swing.JLabel jLabelDescripcion;
     private javax.swing.JLabel jLabelMegas;

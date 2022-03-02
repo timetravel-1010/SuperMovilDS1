@@ -73,6 +73,7 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePlanes = new javax.swing.JTable();
         jButtonModificar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         jTablePlanes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,12 +94,25 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTablePlanes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePlanesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablePlanes);
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.setEnabled(false);
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -109,7 +123,10 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonModificar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonCancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonModificar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
@@ -119,7 +136,9 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -137,10 +156,23 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         plan.jTextFieldPrecio.setText(datosPlan.getPrecio());
         plan.jTextFieldDescripcion.setText(datosPlan.getDescripcion());
         //this.eliminarPanel();
-        padrePlan.eliminarTabla();
+        padrePlan.eliminarTablaPlanes();
         padrePlan.pintarPanel(plan);
         padrePlan.refrescarGUI();
     }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        padrePlan.eliminarTablaPlanes();
+        padrePlan.enableButtons(true);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTablePlanesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePlanesMouseClicked
+        // TODO add your handling code here:
+        if (jTablePlanes.getSelectedRow() != -1) {
+            enableMC(true);
+        }
+    }//GEN-LAST:event_jTablePlanesMouseClicked
 
     public void pintarPanel(JPanelDatosPlanes panel){
         plan = panel;
@@ -149,9 +181,11 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         this.repaint();
     }
     
-    public void eliminarTabla() {
-        padrePlan.eliminarTabla();
-    }
+    /*public void eliminarPanel(){
+        this.remove(panelActual);
+        this.revalidate();
+        this.repaint();
+    }*/
     
     
     
@@ -161,10 +195,22 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         return row+1;
     }
     
+    public void auxUpdateGui() {
+        padrePlan.eliminarPanel();
+        padrePlan.enableButtons(true);
+        //padrePlan.refrescarGUI();
+    }
+    
+    public void enableMC(boolean b) { 
+        jButtonModificar.setEnabled(b);
+        //jButtonCancelar.setEnabled(b);
+    }
+    
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePlanes;
