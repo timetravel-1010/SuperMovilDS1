@@ -2,6 +2,7 @@ package vista;
 
 import vista.usuarios.Login;
 import vista.usuarios.JPanelUsuarios;
+import vista.clientes.JPanelTablaPlanes;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import controlador.ConnectionDB;
@@ -11,6 +12,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import vista.clientes.JPanelPlanes;
+import vista.pagos.JPanelPagos;
 
 /**
  *
@@ -194,6 +197,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void buttonPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagosActionPerformed
         // TODO add your handling code here:
+        this.pintarPanelActual(new JPanelPagos(this));
     }//GEN-LAST:event_buttonPagosActionPerformed
 
     private void buttonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClientesActionPerformed
@@ -204,6 +208,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void buttonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUsuariosActionPerformed
         // TODO add your handling code here:
         this.pintarPanelActual(new JPanelUsuarios(this));
+        //this.pintarPanelActual(new JPanelPlanes(this)); // Borrar luego
+
+        
     }//GEN-LAST:event_buttonUsuariosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

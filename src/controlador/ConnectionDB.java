@@ -1,16 +1,25 @@
 package controlador;
 
 import enums.TipoLogin;
+import static java.lang.String.format;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Planes;
 import modelo.Usuario;
-import vista.pagos.PanelPB;
+import vista.pagos.PagosBancos;
+        
 
 /**
  *
@@ -18,7 +27,7 @@ import vista.pagos.PanelPB;
  */
 public class ConnectionDB {
     
-    private PanelPB pb = new PanelPB();
+    private PagosBancos pb = new PagosBancos();
     private String username = "cjtfsjkanranmo";
     private String password = "50b8ab7ebf0bb2df1f231e72fe435ee98c1d29696c1aa5faebeeeaa8390b3055";
     private String dbname = "dd17g890crnth6";
@@ -316,10 +325,10 @@ public class ConnectionDB {
    }
    
    /**
-    * Bvalida si el numero de linea existe en la base de datos
+    * valida si el numero de linea existe en la base de datos
     */
    
-   public boolean validarLineaCliente(String linea){
+    public boolean validarLineaCliente(String linea){
        
        boolean lineaExiste=true;
        try {
@@ -457,4 +466,162 @@ public class ConnectionDB {
         
        
    }
+
+       /**
+     * Metodo utilizado para obtener los datos del plan que se encuentra en el sistema.
+     * @param id
+     * @return Plan, un objeto plan con sus datos.
+     */
+    public Planes getPlan(Integer identificador) {
+        Planes planes = null;
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM planes WHERE identificador = ?");
+            sql.setInt(1, identificador);
+            
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                planes = new Planes(rs.getString(1),
+                                        rs.getString(2),
+                                        rs.getString(3),
+                                        rs.getString(4),
+                                        rs.getString(5),
+                                        rs.getString(6),
+                                        rs.getString(7));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return planes;
+    }
+    
+    
+    public ArrayList<Planes> getPlanes() {
+
+        ArrayList<Planes> planes = new ArrayList<>();        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM planes order by identificador");
+            
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            while (rs.next()) {
+                Planes plan = new Planes(rs.getString(1),
+                                        rs.getString(2),
+                                        rs.getString(3),
+                                        rs.getString(4),
+                                        rs.getString(5),
+                                        rs.getString(6),
+                                        rs.getString(7));
+                planes.add(plan);               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return planes;
+    }
+    
+    public boolean registrarPlanes(String nombre, String descripcion, Integer precio,
+                                  Integer minutos, Integer megas, Integer mensajes){
+        
+        //validarUsuarioRe(cedula);
+        int filasAfectadas = 0;
+        
+        if(!validar){ // se comprueba que el usuario no exista.
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO planes(nombre, descripcion, precio, minutos, megas, mensajes) "
+                    + "VALUES(?,?,?,?,?,?)");
+
+            sql.setString(1, nombre);
+            sql.setString(2, descripcion);
+            sql.setInt(3, precio);
+            sql.setInt(4, minutos);
+            sql.setInt(5, megas);
+            sql.setInt(6, mensajes);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println("No funciona2");
+            }
+        }
+        return filasAfectadas != 0;
+    }
+    
+    public boolean updatePlan(Integer identificador, String nombre, String descripcion, Integer precio,
+                                  Integer minutos, Integer megas, Integer mensajes){
+        
+        int filasAfectadas = 0;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("UPDATE planes SET nombre = ?, descripcion = ?, precio = ?," +
+                    "minutos = ?, megas = ?, mensajes = ? WHERE identificador = ?");
+
+            sql.setString(1, nombre);
+            sql.setString(2, descripcion);
+            sql.setInt(3, precio);
+            sql.setInt(4, minutos);
+            sql.setInt(5, megas);
+            sql.setInt(6, mensajes);
+            sql.setInt(7, identificador);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println("No funciona2");
+            }
+         
+        return filasAfectadas != 0;
+    }
+    
+    public boolean registrarPago(Integer numeroFactura, Integer valorPagado) {
+        int filasAfectadas = 0;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("UPDATE facturas SET valor_pagado = ? where numero_factura = ?");
+
+            sql.setInt(1, valorPagado);
+            sql.setInt(2, numeroFactura);
+ 
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println("No funciona2");
+            }
+         
+        return filasAfectadas != 0;
+        
+    }
+    
+    public boolean modificarFechaPago(Integer numeroFactura) throws ParseException {
+        int filasAfectadas = 0;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaPago);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+        
+        //long timeInMilliSeconds = fecha.getTime();
+        //java.sql.Date date = new java.sql.Date(timeInMilliSeconds);
+        
+        System.out.println(fechaSQL);
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("UPDATE cuentas SET ultimo_pago = ? where identificador in (select numero_cuenta from facturas where numero_factura = ?)");
+
+            sql.setDate(1, (java.sql.Date) fechaSQL);
+            sql.setInt(2, numeroFactura);
+ 
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println("No funciona2");
+                System.out.println(ex.getMessage());
+            }
+         
+        return filasAfectadas != 0;
+        
+    }
+
 }
