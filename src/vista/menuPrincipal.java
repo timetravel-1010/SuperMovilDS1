@@ -5,6 +5,7 @@ import vista.usuarios.JPanelUsuarios;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import controlador.ConnectionDB;
+import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.awt.event.WindowAdapter;
@@ -213,7 +214,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     
     public void pintarPanelActual(JPanel panel){
         panelActual=panel;
-        this.getContentPane().add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 1110, 650));
+        Dimension dim = panel.getPreferredSize();
+        this.getContentPane().add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, dim.width, dim.height));
+        //this.getContentPane().add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 1110, 650));
         this.revalidate();
         this.repaint();
     }

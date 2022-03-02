@@ -8,7 +8,7 @@ import java.awt.Dimension;
  */
 public class ModuloClientes extends javax.swing.JFrame {
     
-    private JPanelTablaClientes tablaClientes;
+    private JPanelAdminClientes tablaClientes;
 
     /**
      * Creates new form ModuloClientes
@@ -16,7 +16,8 @@ public class ModuloClientes extends javax.swing.JFrame {
     public ModuloClientes() {
         initComponents();
         this.setLocationRelativeTo(null);
-        tablaClientes = new JPanelTablaClientes(this);
+        this.setResizable(false);
+        tablaClientes = new JPanelAdminClientes(null);
         //pintarPanel();
     }
     
@@ -25,7 +26,7 @@ public class ModuloClientes extends javax.swing.JFrame {
         Dimension dimension = tablaClientes.getPreferredSize();
         panelInicial.add(tablaClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, dimension.width, dimension.height));
         System.out.println("ancho: "+dimension.width+" alto: "+dimension.height);
-        tablaClientes.agregarTodos();
+        tablaClientes.agregarClientesPlan();
         this.refreshGUI();
     }
 
@@ -64,7 +65,7 @@ public class ModuloClientes extends javax.swing.JFrame {
         //this.remove(panelInicial);
         //this.revalidate();
         //this.repaint();
-        //panelTabla = new JPanelTablaClientes();
+        //panelTabla = new JPanelAdminClientes();
         this.pintarPanel();
         this.refreshGUI();
     }//GEN-LAST:event_mostrarBtnActionPerformed

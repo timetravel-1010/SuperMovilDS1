@@ -5,6 +5,7 @@
 package vista.clientes;
 
 import controlador.ConnectionDB;
+import java.awt.Dimension;
 import javax.swing.JPanel;
 import vista.menuPrincipal;
 
@@ -20,13 +21,15 @@ public class JPanelClientes extends javax.swing.JPanel {
     private JPanel panelActual;
     private menuPrincipal menup;
     private ConnectionDB conexion;
+    private JPanelAdminClientes panelTablaClientes;
     
     public JPanelClientes(menuPrincipal menu) { //Metodo constructor de la vista de clientes, recibe el menú principal
         initComponents();
         this.conexion = new ConnectionDB();
-        panelActual=new JPanel();
-        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
-        menup=menu;
+        this.panelActual=new JPanel();
+        //this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
+        this.menup=menu;
+        this.panelTablaClientes = new JPanelAdminClientes(this);
     }
 
     /**
@@ -75,15 +78,18 @@ public class JPanelClientes extends javax.swing.JPanel {
     private void jButtonAdministrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarClientesActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarCliente(this, conexion.getCliente("1133224346")));
-        menup.refrescarGUI();
-        this.enableButtons(false);
-
+        // Se debe mostrar la tabla de clientes
+        Dimension dimPanel= panelTablaClientes.getPreferredSize();
+        System.out.println("dimensiones antes: "+dimPanel.width+", "+dimPanel.height);
+        //this.add(panelTablaClientes, 60, 90, dimensionPanel.width, dimensionPanel.height);
+        pintarPanel(panelTablaClientes);
     }//GEN-LAST:event_jButtonAdministrarClientesActionPerformed
 
     public void pintarPanel(JPanel panel){//Metodo que recibe como parametro un panel y lo pinta en el espacio disponible
         panelActual=panel;
-        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
+        Dimension dimPanel = panelActual.getPreferredSize();
+        System.out.println(dimPanel.width+", "+dimPanel.height);
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, dimPanel.width, dimPanel.height));
         this.revalidate();
         this.repaint();
     }
@@ -110,4 +116,11 @@ public class JPanelClientes extends javax.swing.JPanel {
     private javax.swing.JButton jButtonAdministrarClientes;
     private javax.swing.JButton jButtonRegistrarCliente;
     // End of variables declaration//GEN-END:variables
+
+    public void regitrarCliente(String cedulaCliente) {
+        this.eliminarPanel();
+        this.pintarPanel(new JPanelRegistrarCliente(this, conexion.getCliente(cedulaCliente)));
+        menup.refrescarGUI();
+        this.enableButtons(false);
+    }
 }

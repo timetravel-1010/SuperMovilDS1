@@ -69,7 +69,7 @@ public class ConnectionDB {
         return usuarios;   
     }
     
-    public List<Cliente> getClientes() {
+    public List<Cliente> obtenerClientes() {
         List<Cliente> clientes = new ArrayList<>(); // para guardar los datos en un array.
         
         try {
@@ -91,12 +91,32 @@ public class ConnectionDB {
         return clientes;   
     }
     
-     public ArrayList<String[]> obtenerClientesReactivacion() {
+    public ArrayList<String[]> obtenerClientesPagoAtrasado() {
     	ArrayList<String[]> tabla = new ArrayList<>();
         try {
-        	PreparedStatement sql = conexion.prepareStatement("SELECT * from mostrarClientes");
+        	PreparedStatement sql = conexion.prepareStatement("SELECT * FROM mostrar_clientes_pago_atrasado;");
                 ResultSet rs = sql.executeQuery();
-                int numCol = 5;
+                int numCol = 6;
+                while (rs.next()){
+                    String[] fila = new String[numCol];
+                    for (int i = 0; i < numCol; i++) {
+                        fila[i] = rs.getString(i+1);
+                    }
+                    tabla.add(fila);
+                }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return tabla;
+    }
+    
+    public ArrayList<String[]> obtenerClientesReactivacion() {
+    	ArrayList<String[]> tabla = new ArrayList<>();
+        try {
+        	PreparedStatement sql = conexion.prepareStatement("SELECT * FROM mostrar_clientes_activar_plan;");
+                ResultSet rs = sql.executeQuery();
+                int numCol = 6;
                 while (rs.next()){
                     String[] fila = new String[numCol];
                     for (int i = 0; i < numCol; i++) {
