@@ -39,7 +39,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         this.pintarPanel();
         this.agregarTodos();
         this.setVisible(true);
-        this.enableMRS(true, false, false);
+        this.enableMRS(true, false, false, true);
     }
     
     private void pintarPanel(JPanel panel) {
@@ -119,28 +119,30 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         modificarClienteBtn = new javax.swing.JButton();
         filtrarLabel = new javax.swing.JLabel();
         comboBoxTiposTablas = new javax.swing.JComboBox<>();
+        jButtonCancelar = new javax.swing.JButton();
+        administrarLineasBtn = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(890, 510));
         setPreferredSize(new java.awt.Dimension(987, 364));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        reactivarBtn.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        reactivarBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
         reactivarBtn.setText("Reactivar Plan");
         reactivarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reactivarBtnActionPerformed(evt);
             }
         });
-        add(reactivarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 130, -1, -1));
+        add(reactivarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 300, 170, 30));
 
-        suspenderBtn.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        suspenderBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
         suspenderBtn.setText("Suspender Plan");
         suspenderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suspenderBtnActionPerformed(evt);
             }
         });
-        add(suspenderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 190, 150, -1));
+        add(suspenderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 400, 170, 30));
 
         modificarClienteBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
         modificarClienteBtn.setText("Modificar Cliente");
@@ -150,12 +152,12 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
                 modificarClienteBtnActionPerformed(evt);
             }
         });
-        add(modificarClienteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 70, 160, 40));
+        add(modificarClienteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 100, 170, 30));
 
         filtrarLabel.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         filtrarLabel.setText("Filtrar por:");
         filtrarLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        add(filtrarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        add(filtrarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 30));
 
         comboBoxTiposTablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los Clientes", "Clientes Pago Atrasado", "Clientes Reactivar Plan" }));
         comboBoxTiposTablas.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +165,26 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
                 comboBoxTiposTablasActionPerformed(evt);
             }
         });
-        add(comboBoxTiposTablas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+        add(comboBoxTiposTablas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, 30));
+
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 520, 100, 30));
+
+        administrarLineasBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        administrarLineasBtn.setText("Administrar lineas");
+        administrarLineasBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        administrarLineasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                administrarLineasBtnActionPerformed(evt);
+            }
+        });
+        add(administrarLineasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 200, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
         
     public String obtenerPlan() {
@@ -242,7 +263,10 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     }      
     
     private void modificarClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClienteBtnActionPerformed
-        this.padre.modificarCliente(this.obtenerCedulaSeleccionada()); //modificar cliente.
+        this.eliminarPanel();
+        this.pintarPanel(new JPanelModificarCliente(this, db.getCliente(this.obtenerCedulaSeleccionada())), 100, 20);
+        this.enableAll(false);
+        //this.padre.modificarCliente(this.obtenerCedulaSeleccionada()); //modificar cliente.
     }//GEN-LAST:event_modificarClienteBtnActionPerformed
 
     private void comboBoxTiposTablasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTiposTablasActionPerformed
@@ -257,7 +281,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
                 this.agregarTodos();
                 this.panelActual = tablaCliente;
                 this.pintarPanel();
-                enableMRS(true, false, false);
+                enableMRS(true, false, false, true);
                 break;
             case 1: //tabla de clientes con pagos retrasados. Para suspender su plan.
                 //this.eliminarPanel(tablaCliente);
@@ -266,21 +290,48 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
                 this.panelActual = tablaClientesPlan;
                 this.pintarPanel();
                 this.agregarClientesPlan();
-                enableMRS(false, false, true);
+                enableMRS(false, false, true, false);
                 break;
             case 2: //tabla de clientes para reactivar su plan.
                 this.eliminarPanel(panelActual);
                 this.panelActual = tablaClientesReactivar;
                 this.pintarPanel();
                 this.agregarClientesReactivar();
-                enableMRS(false, true, false);
+                enableMRS(false, true, false, false);
                 break;
         }
     }//GEN-LAST:event_comboBoxTiposTablasActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        padre.eliminarPanel();
+        padre.enableButtons(true);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void administrarLineasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrarLineasBtnActionPerformed
+        // TODO add your handling code here:
+        this.eliminarPanel();
+        this.pintarPanel(new JPanelAdminLineas(this, db.getCliente(this.obtenerCedulaSeleccionada())), 0, 50);
+        this.enableAll(false);
+    }//GEN-LAST:event_administrarLineasBtnActionPerformed
     
     public void eliminarPanel(JPanel panel) {
         this.remove(panel);
         this.refrescarGUI();
+    }
+    
+    public void eliminarPanel(){
+        this.remove(panelActual);
+        panelActual=null;
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
+        panelActual=panel;
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 1110, 570));
+        this.revalidate();
+        this.repaint();
     }
     
     public void actualizarTablaClientesPlan() {
@@ -300,16 +351,26 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         return this.getHeight();
     }
     
-
+    public void enableAll(boolean b){
+        this.comboBoxTiposTablas.setEnabled(b);
+        this.reactivarBtn.setEnabled(b);
+        this.suspenderBtn.setEnabled(b);
+        this.modificarClienteBtn.setEnabled(b);
+        this.administrarLineasBtn.setEnabled(b);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton administrarLineasBtn;
     private javax.swing.JComboBox<String> comboBoxTiposTablas;
     private javax.swing.JLabel filtrarLabel;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton modificarClienteBtn;
     private javax.swing.JButton reactivarBtn;
     private javax.swing.JButton suspenderBtn;
     // End of variables declaration//GEN-END:variables
 
-    private void enableMRS(boolean mod, boolean reac, boolean susp) {
+    public void enableMRS(boolean mod, boolean reac, boolean susp, boolean adm) {
+        this.administrarLineasBtn.setEnabled(adm);
         this.reactivarBtn.setEnabled(reac);
         this.suspenderBtn.setEnabled(susp);
         this.modificarClienteBtn.setEnabled(mod);

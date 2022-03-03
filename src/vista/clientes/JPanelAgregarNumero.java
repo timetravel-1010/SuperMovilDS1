@@ -18,13 +18,13 @@ import modelo.Plan;
 public class JPanelAgregarNumero extends javax.swing.JPanel {
 
     
-    private JPanelClientes padre;
+    private JPanelAdminLineas padre;
     private ConnectionDB conexion;
     private Cliente clienteActualizar;
     /**
      * Creates new form JPanelAgregarNumero1
      */
-    public JPanelAgregarNumero(JPanelClientes papa, Cliente cliente) {
+    public JPanelAgregarNumero(JPanelAdminLineas papa, Cliente cliente) {
         this.padre = papa;
         this.clienteActualizar = cliente;
         conexion = new ConnectionDB();
@@ -169,6 +169,7 @@ public class JPanelAgregarNumero extends javax.swing.JPanel {
                 //Independientemente de lo que suceda, se tiene que cerrar el jframe
                 padre.eliminarPanel();
                 padre.enableButtons(true);
+                padre.pintarPanel(new JPanelTablaLineas(this.padre, this.clienteActualizar), 0, 0);
             }
         }
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
@@ -177,6 +178,7 @@ public class JPanelAgregarNumero extends javax.swing.JPanel {
         // TODO add your handling code here:
         padre.eliminarPanel();
         padre.enableButtons(true);
+        padre.pintarPanel(new JPanelTablaLineas(this.padre, this.clienteActualizar), 0, 0);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonGenerarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarjButtonEnviarActionPerformed

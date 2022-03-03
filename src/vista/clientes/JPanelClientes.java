@@ -79,20 +79,14 @@ public class JPanelClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.eliminarPanel();
         // Se debe mostrar la tabla de clientes
-        Dimension dimPanel= panelTablaClientes.getPreferredSize();
-        System.out.println("dimensiones antes: "+dimPanel.width+", "+dimPanel.height);
-        //this.add(panelTablaClientes, 60, 90, dimensionPanel.width, dimensionPanel.height);
-        pintarPanel(panelTablaClientes);
-        //this.pintarPanel(new JPanelAgregarNumero(this, conexion.getCliente("1006592577")));
-        //menup.refrescarGUI();
-        //this.enableButtons(false);
+        this.pintarPanel(panelTablaClientes);
+        menup.refrescarGUI();
+        this.enableButtons(false);
     }//GEN-LAST:event_jButtonAdministrarClientesActionPerformed
 
     public void pintarPanel(JPanel panel){//Metodo que recibe como parametro un panel y lo pinta en el espacio disponible
         panelActual=panel;
-        Dimension dimPanel = panelActual.getPreferredSize();
-        System.out.println(dimPanel.width+", "+dimPanel.height);
-        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, dimPanel.width, dimPanel.height));
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
         this.revalidate();
         this.repaint();
     }
@@ -121,10 +115,4 @@ public class JPanelClientes extends javax.swing.JPanel {
     private javax.swing.JButton jButtonRegistrarCliente;
     // End of variables declaration//GEN-END:variables
 
-    public void modificarCliente(String cedulaCliente) {
-        this.eliminarPanel();
-        this.pintarPanel(new JPanelModificarCliente(this, conexion.getCliente(cedulaCliente)));
-        menup.refrescarGUI();
-        this.enableButtons(false);
-    }
 }

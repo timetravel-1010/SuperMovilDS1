@@ -601,6 +601,28 @@ public class ConnectionDB {
         return linea;
     }
     
+    public ArrayList<Linea> getLineas(Cliente cliente) {//Metodo que obtiene todas las lineas asociadas a un cliente
+    	ArrayList<Linea> lineas = new ArrayList<>(); // para guardar los datos en un array.
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select l.numero, l.plan, l.minutos_usados, l.megas_usadas, l.mensajes_enviados \n" +
+                                                                "from lineas l, cuentas c where c.numero = l.numero and c.cedula_titular = ?");
+            sql.setString(1, cliente.getCedula());
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                Linea unaLinea = new Linea(rs.getString(1),
+                                                rs.getInt(2),
+                                                rs.getInt(3),
+                                                rs.getInt(4),
+                                                rs.getInt(5));
+                lineas.add(unaLinea);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return lineas;   
+    }
+    
     public boolean validarLinea(String numero){ //Metodo que valida si un numero ya esta en uso
         String validarL = "";
         try {

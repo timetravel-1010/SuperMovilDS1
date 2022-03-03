@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
-import modelo.Cuenta;
 import modelo.Linea;
 import modelo.Plan;
 
@@ -21,17 +20,19 @@ public class JPanelModificarNumero extends javax.swing.JPanel {
 
     
 
-    private JPanelClientes padre;
+    private JPanelAdminLineas padre;
     private ConnectionDB conexion;
     private Linea lineaActualizar;
     private String numeroViejo;
+    private Cliente clienteActualizar;
     /**
      * Creates new form JPanelModificarNumero
      */
-    public JPanelModificarNumero(JPanelClientes papa, Linea linea) {
+    public JPanelModificarNumero(JPanelAdminLineas papa, Linea linea, Cliente cliente) {
         this.padre = papa;
         this.lineaActualizar = linea;
         this.numeroViejo = linea.getNumero();
+        this.clienteActualizar = cliente;
         conexion = new ConnectionDB();
         initComponents();
         this.prepararCampos();
@@ -175,6 +176,7 @@ public class JPanelModificarNumero extends javax.swing.JPanel {
             //Independientemente de lo que suceda, se tiene que cerrar el jframe
             padre.eliminarPanel();
             padre.enableButtons(true);
+            padre.pintarPanel(new JPanelTablaLineas(this.padre, this.clienteActualizar), 0, 0);
         }
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
 
@@ -182,6 +184,7 @@ public class JPanelModificarNumero extends javax.swing.JPanel {
         // TODO add your handling code here:
         padre.eliminarPanel();
         padre.enableButtons(true);
+        padre.pintarPanel(new JPanelTablaLineas(this.padre, this.clienteActualizar), 0, 0);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private String generarNumero(){//Metodo que genera un numero que no se encuentre registrado

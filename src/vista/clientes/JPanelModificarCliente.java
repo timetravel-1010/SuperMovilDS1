@@ -8,6 +8,7 @@ import controlador.ConnectionDB;
 import enums.TipoCliente;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelo.Cliente;
 import modelo.Cuenta;
 
@@ -19,12 +20,12 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
 
     
     private Cliente clienteActualizar;
-    private JPanelClientes padreModificar;
+    private JPanelAdminClientes padreModificar;
     private ConnectionDB conexion;
     /**
      * Creates new form JPanelModificarCliente
      */
-    public JPanelModificarCliente(JPanelClientes papa, Cliente cliente) {
+    public JPanelModificarCliente(JPanelAdminClientes papa, Cliente cliente) {
         this.padreModificar = papa;
         this.clienteActualizar = cliente;
         conexion = new ConnectionDB();
@@ -231,7 +232,9 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
         padreModificar.eliminarPanel();
-        padreModificar.enableButtons(true);
+        padreModificar.enableAll(true);
+        padreModificar.pintarPanel(new JPanel(), 100, 20);
+        padreModificar.enableMRS(false, false, false, false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private boolean validarActualizarCliente(){
@@ -279,8 +282,10 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "¡No se pudo realizar la actualización de los datos del cliente!",
                                 "Actualizacion fallida", JOptionPane.ERROR_MESSAGE);
         }
-        padreModificar.enableButtons(true);
+        padreModificar.enableAll(true);
         padreModificar.eliminarPanel();
+        padreModificar.pintarPanel(new JPanel(), 100, 20);
+        padreModificar.enableMRS(false, false, false, false);
     }
     
     private void prepararUpdate(){//Metodo que trae los datos del cliente a actualizar y llena los campos y los bloquea
