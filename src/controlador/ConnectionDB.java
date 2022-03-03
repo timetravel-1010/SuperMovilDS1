@@ -260,7 +260,7 @@ public class ConnectionDB {
     }
 
 
-        /**
+    /**
      * Metodo utilizado para actualizar el estado de un usuario.
      * @param nombreUsuario
      * @return Usuario, un objeto usuario con sus datos.
@@ -290,7 +290,7 @@ public class ConnectionDB {
     }
     
    /**
-    * 
+    * Metodo utilizado para actualizar un usuario
     * @param cedula
     * @param nombre
     * @param telefono
@@ -298,6 +298,7 @@ public class ConnectionDB {
     * @param nombre_usuario
     * @param passwordd
     * @param rol 
+    * @return booleano true en caso de llevarse a cabo la actualización, en caso contrario false
     */
    public boolean updateUsuario(String cedula, String nombre, String telefono, String direccion, 
                             String nombre_usuario, String passwordd, String rol) {
@@ -323,7 +324,7 @@ public class ConnectionDB {
         }
     }
    
-       /**
+     /**
      * Metodo utilizado para obtener los datos del plan que se encuentra en el sistema.
      * @param id
      * @return Plan, un objeto plan con sus datos.
@@ -353,6 +354,11 @@ public class ConnectionDB {
     }
     
     
+    /**
+     * Metodo utilizado para obtener los datos de todos los planes que se encuentra en el sistema.
+     * @param id
+     * @return ArrayList, un arreglo que contiene los planes con sus datos.
+     */
     public ArrayList<Planes> getPlanes() {
 
         ArrayList<Planes> planes = new ArrayList<>();        
@@ -377,6 +383,16 @@ public class ConnectionDB {
         return planes;
     }
     
+    /**
+     * Metodo, registra un nuevo plan en la base de datos
+     * @param nombre
+     * @param descripcion
+     * @param precio
+     * @param minutos
+     * @param megas
+     * @param mensajes
+     * @return boolean, true en caso de que el registro se ejecute correctamente, en caso contrario false
+     */
     public boolean registrarPlanes(String nombre, String descripcion, Integer precio,
                                   Integer minutos, Integer megas, Integer mensajes){
         
@@ -404,6 +420,17 @@ public class ConnectionDB {
         return filasAfectadas != 0;
     }
     
+    /**
+     * Metodo, permite actualizar un plan especifico
+     * @param identificador
+     * @param nombre
+     * @param descripcion
+     * @param precio
+     * @param minutos
+     * @param megas
+     * @param mensajes
+     * @return boolean, true en caso de que la actualización se ejecute correctamente, en caso contrario false
+     */
     public boolean updatePlan(Integer identificador, String nombre, String descripcion, Integer precio,
                                   Integer minutos, Integer megas, Integer mensajes){
         
@@ -430,6 +457,12 @@ public class ConnectionDB {
         return filasAfectadas != 0;
     }
     
+    /**
+     * metodo, registra un pago en la base de datos
+     * @param numeroFactura
+     * @param valorPagado
+     * @return boolean, true en caso de que el registro se ejecute correctamente, en caso contrario false
+     */
     public boolean registrarPago(Integer numeroFactura, Integer valorPagado) {
         int filasAfectadas = 0;
         
@@ -450,6 +483,12 @@ public class ConnectionDB {
         
     }
     
+    /**
+     * metodo, actualiza la fecha de un pago en la base de datos, tabla cuentas
+     * @param numeroFactura
+     * @return boolean, true en caso de que la actualización se ejecute correctamente, en caso contrario false
+     * @throws ParseException 
+     */
     public boolean modificarFechaPago(Integer numeroFactura) throws ParseException {
         int filasAfectadas = 0;
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -457,11 +496,7 @@ public class ConnectionDB {
         Date fecha =  formato.parse(fechaPago);
         Date fechaSQL = new java.sql.Date(fecha.getTime());
         
-        //long timeInMilliSeconds = fecha.getTime();
-        //java.sql.Date date = new java.sql.Date(timeInMilliSeconds);
-        
-        System.out.println(fechaSQL);
-        
+                
          try {
 
             PreparedStatement sql = conexion.prepareStatement("UPDATE cuentas SET ultimo_pago = ? where identificador in (select numero_cuenta from facturas where numero_factura = ?)");
@@ -472,13 +507,66 @@ public class ConnectionDB {
 
             filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
             } catch (SQLException ex) {
-                System.out.println("No funciona2");
+                System.out.println("No funciona");
                 System.out.println(ex.getMessage());
             }
          
         return filasAfectadas != 0;
         
     }
+    
+    
+    /**
+     * metodo, consulta el valor de un pago realizado, en la base de datos
+     * @param numeroFactura
+     * @return Integer, retorna el valor que se pagó, en que caso de no encontrar un pago, retorna 0
+     */
+    public Integer consultarPagoRealizado(Integer numeroFactura) { 
+        int filasAfectadas = 0;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select valor_pagado from facturas where  numero_factura = ?");
+
+            sql.setInt(1, numeroFactura);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
+    /**
+     * metodo, consulta el valor que debe pagar el cliente
+     * @param numeroFactura
+     * @return Integer, con el valor que debe pagar el cliente
+     */
+    public Integer consultarValorPago(Integer numeroFactura) {         
+        try {
+
+            PreparedStatement sql = conexion.prepareStatement("select valor_a_pagar from facturas where  numero_factura = ?");
+
+            sql.setInt(1, numeroFactura);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("No funciona");
+        }
+        
+        return 0;
+    }
+    
     
     /**
     * valida si el numero de linea existe en la base de datos
@@ -597,7 +685,7 @@ public class ConnectionDB {
 
 
 
-           numero = datos.get(n);
+          numero = datos.get(n);
            fechaPago = datos.get(f);
            System.out.println(numero +"\n");
            System.out.println(fechaPago+"\n");
@@ -622,4 +710,6 @@ public class ConnectionDB {
 
 
    }
+    
+     
 }

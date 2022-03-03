@@ -48,6 +48,7 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
         jTextFieldValorPagado = new javax.swing.JTextField();
         jTextFieldNumeroFactura = new javax.swing.JTextField();
         jButtonRegistrar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pago Factura");
@@ -69,6 +70,13 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
             }
         });
 
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,17 +88,20 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(215, 215, 215)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonRegistrar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonRegistrar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabelNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTextFieldNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(494, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,9 +117,11 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jButtonRegistrar)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRegistrar)
+                    .addComponent(jButtonCancelar))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -119,31 +132,62 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
         boolean resultado;
+        Integer pagoRealizado;
+        Integer valorPagar;
         Integer numeroFactura = Integer.parseInt(jTextFieldNumeroFactura.getText());
         Integer ValorPagado = Integer.parseInt(jTextFieldValorPagado.getText());
         
-        resultado = db.registrarPago(numeroFactura, ValorPagado);
         
-        if (resultado) {
-            try {
-                db.modificarFechaPago(numeroFactura);
-            } catch (ParseException ex) {
-                Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+        pagoRealizado = db.consultarPagoRealizado(numeroFactura);
+        
+        
+        
+        if (pagoRealizado == 0) {
+            valorPagar = db.consultarValorPago(numeroFactura);
+            System.out.println(valorPagar);
+            if (valorPagar.equals(ValorPagado)){
+                resultado = db.registrarPago(numeroFactura, ValorPagado);
+
+                if (resultado) {
+                    try {
+                        db.modificarFechaPago(numeroFactura);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JOptionPane.showMessageDialog(null, "¡El registro del pago de factura fue exitoso!",
+                            "Registro", JOptionPane.INFORMATION_MESSAGE);
+                    padreAdmin.eliminarPanel();
+                    padreAdmin.enableButtons(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
+                                "Registro", JOptionPane.ERROR_MESSAGE);
+                    padreAdmin.eliminarPanel();
+                    padreAdmin.enableButtons(true);
+                }
+
+                System.out.println("Yeaaah");
+            } else {
+                JOptionPane.showMessageDialog(null, "¡El pago de la factura es incorrecto! El usuario debe pagar: "+ valorPagar,
+                                "Registro", JOptionPane.ERROR_MESSAGE);
             }
-            JOptionPane.showMessageDialog(null, "¡El registro del pago de factura fue exitoso!",
-                    "Registro", JOptionPane.INFORMATION_MESSAGE);
-            padreAdmin.eliminarPanel();
-            padreAdmin.enableButtons(true);
+            
         } else {
-            JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
-                        "Registro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "¡El usuario ya pagó la factura ingresada!",
+                                "Registro", JOptionPane.ERROR_MESSAGE);
             padreAdmin.eliminarPanel();
             padreAdmin.enableButtons(true);
         }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        padreAdmin.eliminarPanel();
+        padreAdmin.enableButtons(true);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelNumeroFactura;
