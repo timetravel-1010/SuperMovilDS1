@@ -75,7 +75,7 @@ public class JPanelClientes extends javax.swing.JPanel {
     private void jButtonAdministrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarClientesActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelModificarCliente(this, conexion.getCliente("1007597324")));
+        this.pintarPanel(new JPanelAgregarNumero(this, conexion.getCliente("1006592577")));
         menup.refrescarGUI();
         this.enableButtons(false);
 
@@ -87,6 +87,7 @@ public class JPanelClientes extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
     }
+
     
     public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
         panelActual=panel;
