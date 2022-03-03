@@ -242,7 +242,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     }      
     
     private void modificarClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClienteBtnActionPerformed
-        this.padre.regitrarCliente(this.obtenerCedulaSeleccionada()); //modificar cliente.
+        this.padre.modificarCliente(this.obtenerCedulaSeleccionada()); //modificar cliente.
     }//GEN-LAST:event_modificarClienteBtnActionPerformed
 
     private void comboBoxTiposTablasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTiposTablasActionPerformed

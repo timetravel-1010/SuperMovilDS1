@@ -83,6 +83,9 @@ public class JPanelClientes extends javax.swing.JPanel {
         System.out.println("dimensiones antes: "+dimPanel.width+", "+dimPanel.height);
         //this.add(panelTablaClientes, 60, 90, dimensionPanel.width, dimensionPanel.height);
         pintarPanel(panelTablaClientes);
+        //this.pintarPanel(new JPanelAgregarNumero(this, conexion.getCliente("1006592577")));
+        //menup.refrescarGUI();
+        //this.enableButtons(false);
     }//GEN-LAST:event_jButtonAdministrarClientesActionPerformed
 
     public void pintarPanel(JPanel panel){//Metodo que recibe como parametro un panel y lo pinta en el espacio disponible
@@ -93,6 +96,7 @@ public class JPanelClientes extends javax.swing.JPanel {
         this.revalidate();
         this.repaint();
     }
+
     
     public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
         panelActual=panel;
@@ -117,9 +121,9 @@ public class JPanelClientes extends javax.swing.JPanel {
     private javax.swing.JButton jButtonRegistrarCliente;
     // End of variables declaration//GEN-END:variables
 
-    public void regitrarCliente(String cedulaCliente) {
+    public void modificarCliente(String cedulaCliente) {
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarCliente(this, conexion.getCliente(cedulaCliente)));
+        this.pintarPanel(new JPanelModificarCliente(this, conexion.getCliente(cedulaCliente)));
         menup.refrescarGUI();
         this.enableButtons(false);
     }
