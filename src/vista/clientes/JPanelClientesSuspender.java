@@ -12,12 +12,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pc
  */
-public class JPanelTablaClientesPlan extends javax.swing.JPanel {
+public class JPanelClientesSuspender extends javax.swing.JPanel {
 
+    private JPanelAdminClientes padre;
     /**
      * Creates new form JPanelTablaClientesPlan
      */
-    public JPanelTablaClientesPlan() {
+    public JPanelClientesSuspender(JPanelAdminClientes papa) {
+        this.padre = papa;
         initComponents();
     }
 
@@ -37,6 +39,7 @@ public class JPanelTablaClientesPlan extends javax.swing.JPanel {
             }
         }
         ;
+        suspenderTodosBtn = new javax.swing.JButton();
 
         tablaClientesEstadoPlan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -65,15 +68,30 @@ public class JPanelTablaClientesPlan extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaClientesEstadoPlan);
 
+        suspenderTodosBtn.setText("Suspender Todos");
+        suspenderTodosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suspenderTodosBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(suspenderTodosBtn)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(suspenderTodosBtn)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -82,6 +100,15 @@ public class JPanelTablaClientesPlan extends javax.swing.JPanel {
             // padre.enableMAD(true);
         }
     }//GEN-LAST:event_tablaClientesEstadoPlanMouseClicked
+
+    private void suspenderTodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspenderTodosBtnActionPerformed
+        List<String> numeros = new ArrayList<>();
+        
+        for (int i = 0; i<tablaClientesEstadoPlan.getRowCount(); i++)
+            numeros.add(this.tablaClientesEstadoPlan.getValueAt(i, 2).toString());
+        
+        this.padre.suspenderTodos(numeros);
+    }//GEN-LAST:event_suspenderTodosBtnActionPerformed
 
     public void agregarClientesPlan(List<String[]> lista) {
         DefaultTableModel modeloDatos = (DefaultTableModel) tablaClientesEstadoPlan.getModel();
@@ -116,6 +143,7 @@ public class JPanelTablaClientesPlan extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton suspenderTodosBtn;
     private javax.swing.JTable tablaClientesEstadoPlan;
     // End of variables declaration//GEN-END:variables
 }

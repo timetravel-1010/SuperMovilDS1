@@ -19,7 +19,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     private ConnectionDB db;
     private JPanelClientes padre;
     private DefaultTableModel modeloT;  
-    private JPanelTablaClientesPlan tablaClientesPlan;
+    private JPanelClientesSuspender tablaClientesPlan;
     private JPanelTablaClientes tablaCliente;
     private JPanelClientesReactivar tablaClientesReactivar;
     private JPanel panelActual;
@@ -28,7 +28,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     public JPanelAdminClientes(JPanelClientes papa) {
         this.padre = papa;
         this.db = new ConnectionDB();
-        this.tablaClientesPlan = new JPanelTablaClientesPlan();
+        this.tablaClientesPlan = new JPanelClientesSuspender(this);
         this.tablaCliente = new JPanelTablaClientes();
         this.tablaClientesReactivar = new JPanelClientesReactivar();
         initComponents();
@@ -221,6 +221,26 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         this.actualizarTablaClientesPlan();
     }//GEN-LAST:event_suspenderBtnActionPerformed
 
+    public void suspenderTodos(List<String> numeros) { 
+        int result = JOptionPane.showConfirmDialog(null,"¿Seguro que desea suspender el plan de todos los cliente?", "Confirmación",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION){
+           for (String numero : numeros) {
+                Boolean correcto = db.cambiarEstadoPlan(numero, false);
+                if (!correcto) {
+                    JOptionPane.showMessageDialog(null, "¡No se pudo realizar una modificación!",
+                             "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+           }
+           JOptionPane.showMessageDialog(null, "¡Se ha suspendido el plan correctamente!",
+                        "Exito", JOptionPane.INFORMATION_MESSAGE);
+               this.refrescarGUI();
+        }
+        this.actualizarTablaClientesPlan();
+    }      
+    
     private void modificarClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClienteBtnActionPerformed
         this.padre.regitrarCliente(this.obtenerCedulaSeleccionada()); //modificar cliente.
     }//GEN-LAST:event_modificarClienteBtnActionPerformed
