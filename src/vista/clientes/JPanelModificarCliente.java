@@ -230,6 +230,8 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
+        padreModificar.eliminarPanel();
+        padreModificar.enableButtons(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private boolean validarActualizarCliente(){
