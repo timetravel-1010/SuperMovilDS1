@@ -10,6 +10,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 import modelo.Plan;
+import modelo.Planes;
 
 /**
  *
@@ -208,12 +209,22 @@ public class JPanelAgregarNumero extends javax.swing.JPanel {
         return numero;
     }
 
-    private void prepararCampos(){//Metodo que alista el formulario con los datos previos
+    /** Método anterior al merge
+     private void prepararCampos(){//Metodo que alista el formulario con los datos previos
         ArrayList<Plan> planes = conexion.getPlanes();//Se obtienen los planes disponibles para mostrarlos en el combobox
         for(int i = 0; i<planes.size(); i++){
             jComboBoxPlan.addItem((planes.get(i)).getNombre());
         }
     }
+     */
+    
+    private void prepararCampos(){//Metodo que alista el formulario con los datos previos
+        ArrayList<Planes> planes = conexion.getPlanes();//Se obtienen los planes disponibles para mostrarlos en el combobox
+        for(int i = 0; i<planes.size(); i++){
+            jComboBoxPlan.addItem((planes.get(i)).getNombre());
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;

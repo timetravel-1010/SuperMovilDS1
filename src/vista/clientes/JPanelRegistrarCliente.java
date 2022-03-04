@@ -7,11 +7,13 @@ package vista.clientes;
 import controlador.ConnectionDB;
 import enums.TipoCliente;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 import modelo.Cuenta;
 import modelo.Plan;
+import modelo.Planes;
 
 /**
  *
@@ -605,9 +607,18 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         jButtonSiguiente.setEnabled(b);
         jButtonCancelar.setEnabled(b);
     }
-    
+    /* metodo antes del merge
     private void rellenarComboBoxDerechos(){//Metodo que hace una consulta a la base de datos para obtener los planes disponibles y lleanos los combobox
         ArrayList<Plan> planes = conexion.getPlanes();
+        for(int i = 0; i<planes.size(); i++){
+            jComboBoxPlan1.addItem((planes.get(i)).getNombre());
+            jComboBoxPlan2.addItem((planes.get(i)).getNombre());
+            jComboBoxPlan3.addItem((planes.get(i)).getNombre());
+        }
+    }*/
+    
+    private void rellenarComboBoxDerechos(){//Metodo que hace una consulta a la base de datos para obtener los planes disponibles y lleanos los combobox
+        List<Planes> planes = conexion.getPlanes();
         for(int i = 0; i<planes.size(); i++){
             jComboBoxPlan1.addItem((planes.get(i)).getNombre());
             jComboBoxPlan2.addItem((planes.get(i)).getNombre());

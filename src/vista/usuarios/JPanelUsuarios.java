@@ -1,7 +1,10 @@
 package vista.usuarios;
 
 import javax.swing.JPanel;
+import vista.clientes.JPanelDatosPlanes;
+import vista.clientes.JPanelTablaPlanes;
 import vista.menuPrincipal;
+import vista.pagos.JPanelRegistrarPagos;
 
 /**
  *
@@ -14,6 +17,10 @@ public class JPanelUsuarios extends javax.swing.JPanel {
      */
     private JPanel panelActual;
     private menuPrincipal menup;
+    private JPanelTablaPlanes tablaPlanes;
+    private JPanelTablaUsuarios tablaUsuarios;
+    //private JPanelRegistrarPagos pagos;
+    
     public JPanelUsuarios(menuPrincipal menu) {
         initComponents();
         panelActual=new JPanel();
@@ -30,12 +37,32 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonRegistrarPlan = new javax.swing.JButton();
+        jButtonAdmiinistrarPlan = new javax.swing.JButton();
         jButtonRegistrarUsuario = new javax.swing.JButton();
         jButtonAdmiinistrarUsuarios = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1110, 655));
         setPreferredSize(new java.awt.Dimension(1110, 655));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonRegistrarPlan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonRegistrarPlan.setText("Registrar Plan");
+        jButtonRegistrarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarPlanActionPerformed(evt);
+            }
+        });
+        add(jButtonRegistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 200, 30));
+
+        jButtonAdmiinistrarPlan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAdmiinistrarPlan.setText("Administrar Planes");
+        jButtonAdmiinistrarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdmiinistrarPlanActionPerformed(evt);
+            }
+        });
+        add(jButtonAdmiinistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 30, 200, 30));
 
         jButtonRegistrarUsuario.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonRegistrarUsuario.setText("Registrar Usuario");
@@ -44,7 +71,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
                 jButtonRegistrarUsuarioActionPerformed(evt);
             }
         });
-        add(jButtonRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 200, 30));
+        add(jButtonRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 200, 30));
 
         jButtonAdmiinistrarUsuarios.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonAdmiinistrarUsuarios.setText("Administrar Usuarios");
@@ -53,17 +80,26 @@ public class JPanelUsuarios extends javax.swing.JPanel {
                 jButtonAdmiinistrarUsuariosActionPerformed(evt);
             }
         });
-        add(jButtonAdmiinistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 30, 200, 30));
+        add(jButtonAdmiinistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 200, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAdmiinistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarUsuariosActionPerformed
+    private void jButtonAdmiinistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarPlanActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelAdministrarUsuarios(this));
+        this.pintarPanel(new JPanelTablaPlanes(this));
+        tablaPlanes.agregarTodos();
         menup.refrescarGUI();
         this.enableButtons(false);
         
-    }//GEN-LAST:event_jButtonAdmiinistrarUsuariosActionPerformed
+    }//GEN-LAST:event_jButtonAdmiinistrarPlanActionPerformed
+
+    private void jButtonRegistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPlanActionPerformed
+        // TODO add your handling code here:
+        this.eliminarPanel();
+        this.pintarPanel(new JPanelDatosPlanes(this)); // Cambiar a JPanelDatosUsuarios        
+        menup.refrescarGUI();
+        this.enableButtons(false);
+    }//GEN-LAST:event_jButtonRegistrarPlanActionPerformed
 
     private void jButtonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
@@ -71,7 +107,17 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         this.pintarPanel(new JPanelDatosUsuario(this), 290, 120);
         menup.refrescarGUI();
         this.enableButtons(false);
+         
     }//GEN-LAST:event_jButtonRegistrarUsuarioActionPerformed
+
+    private void jButtonAdmiinistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarUsuariosActionPerformed
+        // TODO add your handling code here:
+        this.eliminarPanel();
+        this.pintarPanel(new JPanelAdministrarUsuarios(this));
+        //tablaUsuarios.agregarTodos();
+        menup.refrescarGUI();
+        this.enableButtons(false);
+    }//GEN-LAST:event_jButtonAdmiinistrarUsuariosActionPerformed
     
     public void pintarPanel(JPanel panel){
         panelActual=panel;
@@ -80,27 +126,67 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         this.repaint();
     }
     
+
     public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
         panelActual=panel;
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 1110, 570));
-        this.revalidate();
-        this.repaint();
+        this.refrescarGUI();
+    }
+    
+    public void pintarPanel(JPanelTablaPlanes panel){
+        tablaPlanes = panel;
+        //panelTabla = panel;
+        add(tablaPlanes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
+        this.refrescarGUI();
+    }
+    
+    public void pintarPanel(JPanelTablaUsuarios panel){
+        tablaUsuarios = panel;
+        //panelTabla = panel;
+        add(tablaUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
+        this.refrescarGUI();
     }
     
     public void eliminarPanel(){
         this.remove(panelActual);
+        this.refrescarGUI();
+    }
+    
+
+    public void enableButtons(boolean b){
+        jButtonAdmiinistrarPlan.setEnabled(b);
+        jButtonRegistrarPlan.setEnabled(b);
+        jButtonRegistrarUsuario.setEnabled(b);
+        jButtonAdmiinistrarUsuarios.setEnabled(b);
+    }
+
+    
+    //Borrar despues de pruebas
+    public void eliminarTablaPlanes(){
+        this.remove(tablaPlanes);
+        tablaPlanes=null;
+        //tabla=null;
         this.revalidate();
         this.repaint();
     }
     
-    public void enableButtons(boolean b){
-        jButtonAdmiinistrarUsuarios.setEnabled(b);
-        jButtonRegistrarUsuario.setEnabled(b);
+    public void eliminarTablaUsuarios(){
+        this.remove(tablaUsuarios);
+        tablaUsuarios=null;
+        //tabla=null;
+        this.revalidate();
+        this.repaint();
     }
-
+    
+    
+    public void refrescarGUI(){
+        menup.refrescarGUI();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAdmiinistrarPlan;
     private javax.swing.JButton jButtonAdmiinistrarUsuarios;
+    private javax.swing.JButton jButtonRegistrarPlan;
     private javax.swing.JButton jButtonRegistrarUsuario;
     // End of variables declaration//GEN-END:variables
 }

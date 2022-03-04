@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import modelo.Cliente;
 import modelo.Linea;
 import modelo.Plan;
+import modelo.Planes;
 
 /**
  *
@@ -208,7 +209,7 @@ public class JPanelModificarNumero extends javax.swing.JPanel {
         //En este punto ya se genero un numero aleatorio y aunque es muy dificil que ya se haya registrado, va a ser necesario validarlo luego.
         return numero;
     }
-
+    /* Metodo antes del merge 
     private void prepararCampos(){//Metodo que alista el formulario con los datos previos
         ArrayList<Plan> planes = conexion.getPlanes();//Se obtienen los planes disponibles para mostrarlos en el combobox
         for(int i = 0; i<planes.size(); i++){
@@ -216,7 +217,17 @@ public class JPanelModificarNumero extends javax.swing.JPanel {
         }
         this.jTextNumero.setText(this.lineaActualizar.getNumero());//Se holdea el txt con el numero viejo
         this.jComboBoxPlan.setSelectedIndex(this.lineaActualizar.getPlan()-1);
+    }*/
+    
+    private void prepararCampos(){//Metodo que alista el formulario con los datos previos
+        ArrayList<Planes> planes = conexion.getPlanes();//Se obtienen los planes disponibles para mostrarlos en el combobox
+        for(int i = 0; i<planes.size(); i++){
+            jComboBoxPlan.addItem((planes.get(i)).getNombre());
+        }
+        this.jTextNumero.setText(this.lineaActualizar.getNumero());//Se holdea el txt con el numero viejo
+        this.jComboBoxPlan.setSelectedIndex(this.lineaActualizar.getPlan()-1);
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEnviar;
