@@ -28,6 +28,7 @@ public class JPanelPagos extends javax.swing.JPanel {
         panelActual=new JPanel();
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
         menup=menu;
+        db = new ConnectionDB();
     }
 
     /**

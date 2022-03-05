@@ -51,6 +51,8 @@ public class ConnectionDB {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        pb = new PagosBancos();
+        
     }
     
     public ArrayList<Usuario> getUsuarios() {
@@ -961,7 +963,7 @@ public class ConnectionDB {
 
 
 
-          numero = datos.get(n);
+           numero = datos.get(n);
            fechaPago = datos.get(f);
            System.out.println(numero +"\n");
            System.out.println(fechaPago+"\n");
