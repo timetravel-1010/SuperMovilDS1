@@ -33,12 +33,11 @@ public class PagosBancos {
                     
                  lecturaLinea.add(tokens.nextToken());                 
                  
-                }
-               
+                } 
             }
              
         }catch(Exception e){
-            System.out.print("no se encontro archivo leer");
+            System.out.print("No se encontro archivo");
         }
         return lecturaLinea;
     }

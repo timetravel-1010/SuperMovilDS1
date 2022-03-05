@@ -70,6 +70,7 @@ public class JPanelPagos extends javax.swing.JPanel {
         this.pintarPanel(new JPanelRegistrarPagos(this));        
         menup.refrescarGUI();
         this.enableButtons(false);
+        
 
     }//GEN-LAST:event_jButtonPagoIndividualActionPerformed
 
