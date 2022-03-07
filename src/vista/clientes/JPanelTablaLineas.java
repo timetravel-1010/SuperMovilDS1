@@ -81,8 +81,23 @@ public class JPanelTablaLineas extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableLineas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableLineas);
+        if (jTableLineas.getColumnModel().getColumnCount() > 0) {
+            jTableLineas.getColumnModel().getColumn(0).setResizable(false);
+            jTableLineas.getColumnModel().getColumn(1).setResizable(false);
+            jTableLineas.getColumnModel().getColumn(2).setResizable(false);
+            jTableLineas.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 510));
     }// </editor-fold>//GEN-END:initComponents
