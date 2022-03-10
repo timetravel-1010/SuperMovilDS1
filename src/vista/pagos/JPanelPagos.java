@@ -42,6 +42,7 @@ public class JPanelPagos extends javax.swing.JPanel {
 
         jButtonPagoIndividual = new javax.swing.JButton();
         jButtonPagosBancos = new javax.swing.JButton();
+        jButtonAtras = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -52,7 +53,7 @@ public class JPanelPagos extends javax.swing.JPanel {
                 jButtonPagoIndividualActionPerformed(evt);
             }
         });
-        add(jButtonPagoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 210, 30));
+        add(jButtonPagoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 210, 30));
 
         jButtonPagosBancos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonPagosBancos.setText("Cargar pagos bancarios");
@@ -61,27 +62,46 @@ public class JPanelPagos extends javax.swing.JPanel {
                 jButtonPagosBancosActionPerformed(evt);
             }
         });
-        add(jButtonPagosBancos, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 210, 30));
+        add(jButtonPagosBancos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 210, 30));
+
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPagoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagoIndividualActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarPagos(this));        
+        this.pintarPanel(new JPanelRegistrarPagos(this), 250, 100);        
         menup.refrescarGUI();
         this.enableButtons(false);
-        
-
     }//GEN-LAST:event_jButtonPagoIndividualActionPerformed
 
     private void jButtonPagosBancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagosBancosActionPerformed
         // TODO add your handling code here:
-        db.updateValorPagoCuentaM();
+        /*db.updateValorPagoCuentaM();
         db.updateUltimoPagoCuentaM();
         this.eliminarPanel();
         menup.refrescarGUI();
+        this.enableButtons(false);*/
+        this.pintarPanel(new JPanelPagosBancos (this), 250,100);
+        menup.refrescarGUI();
+        this.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonPagosBancosActionPerformed
+
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        this.menup.buttonPagos.setEnabled(true);
+        this.menup.buttonClientes.setEnabled(true);
+        this.menup.buttonFacturacion.setEnabled(true);
+        this.menup.eliminarPanelActual();
+        this.menup.refrescarGUI();
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     public void eliminarPanel(){
         this.remove(panelActual);
@@ -102,11 +122,19 @@ public class JPanelPagos extends javax.swing.JPanel {
     
     public void enableButtons(boolean b){
         jButtonPagoIndividual.setEnabled(b);
-        jButtonPagosBancos.setEnabled(b);        
+        jButtonPagosBancos.setEnabled(b);  
+        jButtonAtras.setEnabled(b);
     }
     
+    public void pintarPanel(JPanel panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
+        panelActual=panel;
+        this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 1110, 570));
+        this.revalidate();
+        this.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonPagoIndividual;
     private javax.swing.JButton jButtonPagosBancos;
     // End of variables declaration//GEN-END:variables

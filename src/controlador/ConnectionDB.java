@@ -1044,7 +1044,6 @@ public class ConnectionDB {
         return validarL.equals(numero);
     }
 
-    
     public boolean cambiarEstadoPlan(String numero, Boolean activar) {
         try {
             PreparedStatement sql = conexion.prepareStatement("UPDATE cuentas SET estado = ?::status WHERE numero = ?");
@@ -1060,5 +1059,23 @@ public class ConnectionDB {
             System.out.println(ex);
             return false;
         }
+    }
+    
+    public int consultarTotalPagos(String mes, String tipo){//Metodo que recibe un mes y un tipo de cliente para retornar el total de pagos recibidos por ese tipo de clientes en ese mes
+        int resultado = 0;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select SUM(f.valor_pagado) from facturas f, cuentas cu, clientes cl\n" +
+                                                                "where cl.tipo = ?::tipo_cliente and cl.cedula = cu.cedula_titular \n" +
+                                                                "and f.numero_cuenta = cu.identificador and to_char(cu.ultimo_pago, 'FMMonth') = ?");
+            sql.setString(1, tipo);
+            sql.setString(2, mes);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
     }
 }

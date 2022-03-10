@@ -41,6 +41,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         jButtonAdmiinistrarPlan = new javax.swing.JButton();
         jButtonRegistrarUsuario = new javax.swing.JButton();
         jButtonAdmiinistrarUsuarios = new javax.swing.JButton();
+        jButtonAtras = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1110, 655));
         setPreferredSize(new java.awt.Dimension(1110, 655));
@@ -53,7 +54,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
                 jButtonRegistrarPlanActionPerformed(evt);
             }
         });
-        add(jButtonRegistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 200, 30));
+        add(jButtonRegistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 200, 30));
 
         jButtonAdmiinistrarPlan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonAdmiinistrarPlan.setText("Administrar Planes");
@@ -62,7 +63,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
                 jButtonAdmiinistrarPlanActionPerformed(evt);
             }
         });
-        add(jButtonAdmiinistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 30, 200, 30));
+        add(jButtonAdmiinistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 200, 30));
 
         jButtonRegistrarUsuario.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonRegistrarUsuario.setText("Registrar Usuario");
@@ -71,7 +72,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
                 jButtonRegistrarUsuarioActionPerformed(evt);
             }
         });
-        add(jButtonRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 200, 30));
+        add(jButtonRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 30));
 
         jButtonAdmiinistrarUsuarios.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonAdmiinistrarUsuarios.setText("Administrar Usuarios");
@@ -80,7 +81,16 @@ public class JPanelUsuarios extends javax.swing.JPanel {
                 jButtonAdmiinistrarUsuariosActionPerformed(evt);
             }
         });
-        add(jButtonAdmiinistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 200, 30));
+        add(jButtonAdmiinistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 30));
+
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAdmiinistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarPlanActionPerformed
@@ -118,6 +128,12 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonAdmiinistrarUsuariosActionPerformed
+
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        this.menup.buttonUsuarios.setEnabled(true);
+        this.menup.eliminarPanelActual();
+        this.menup.refrescarGUI();
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
     
     public void pintarPanel(JPanel panel){
         panelActual=panel;
@@ -158,6 +174,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         jButtonRegistrarPlan.setEnabled(b);
         jButtonRegistrarUsuario.setEnabled(b);
         jButtonAdmiinistrarUsuarios.setEnabled(b);
+        jButtonAtras.setEnabled(b);
     }
 
     
@@ -186,6 +203,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdmiinistrarPlan;
     private javax.swing.JButton jButtonAdmiinistrarUsuarios;
+    private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonRegistrarPlan;
     private javax.swing.JButton jButtonRegistrarUsuario;
     // End of variables declaration//GEN-END:variables

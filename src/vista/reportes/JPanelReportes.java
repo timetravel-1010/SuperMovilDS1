@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista.clientes;
+package vista.reportes;
 
 import controlador.ConnectionDB;
-import java.awt.Dimension;
+import java.awt.Color;
 import javax.swing.JPanel;
 import vista.menuPrincipal;
 
@@ -13,22 +13,24 @@ import vista.menuPrincipal;
  *
  * @author Arman
  */
-public class JPanelClientes extends javax.swing.JPanel {
+public class JPanelReportes extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelClientes
-     */
+    
     private JPanel panelActual;
     private menuPrincipal menup;
     private ConnectionDB conexion;
-    private JPanelAdminClientes panelTablaClientes;
-    
-    public JPanelClientes(menuPrincipal menu) { //Metodo constructor de la vista de clientes, recibe el menú principal
+    /**
+     * Creates new form JPanelReportes
+     */
+    public JPanelReportes(menuPrincipal menu) {
         initComponents();
         this.conexion = new ConnectionDB();
-        this.panelActual = new JPanel();
         this.menup = menu;
-        this.panelTablaClientes = new JPanelAdminClientes(this);
+        this.panelActual = new JPanel();
+        this.pintarPanel(panelActual);
+        /*this.panelActual = new JPanel();
+        this.panelActual.setBackground(Color.red);
+        this.pintarPanel(this.panelActual); //Por alguna razón si no hago esta linea, no funciona*/
     }
 
     /**
@@ -40,31 +42,19 @@ public class JPanelClientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonRegistrarCliente = new javax.swing.JButton();
-        jButtonAdministrarClientes = new javax.swing.JButton();
+        jButtonGenerarReportes = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
-        setMinimumSize(new java.awt.Dimension(1110, 655));
-        setPreferredSize(new java.awt.Dimension(1110, 655));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonRegistrarCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jButtonRegistrarCliente.setText("Registrar Cliente");
-        jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGenerarReportes.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonGenerarReportes.setText("Generar reportes");
+        jButtonGenerarReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarClienteActionPerformed(evt);
+                jButtonGenerarReportesActionPerformed(evt);
             }
         });
-        add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 200, 30));
-
-        jButtonAdministrarClientes.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jButtonAdministrarClientes.setText("Administrar Clientes");
-        jButtonAdministrarClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdministrarClientesActionPerformed(evt);
-            }
-        });
-        add(jButtonAdministrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 200, 30));
+        add(jButtonGenerarReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 210, 30));
 
         jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonAtras.setText("Atras");
@@ -73,30 +63,19 @@ public class JPanelClientes extends javax.swing.JPanel {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 100, 30));
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
+    private void jButtonGenerarReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReportesActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarCliente(this));
+        this.pintarPanel(new JPanelGenerarReportes(this));
         menup.refrescarGUI();
         this.enableButtons(false);
-    }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
-
-    private void jButtonAdministrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarClientesActionPerformed
-        // TODO add your handling code here:
-        this.eliminarPanel();
-        // Se debe mostrar la tabla de clientes
-        this.pintarPanel(panelTablaClientes);
-        menup.refrescarGUI();
-        this.enableButtons(false);
-    }//GEN-LAST:event_jButtonAdministrarClientesActionPerformed
+    }//GEN-LAST:event_jButtonGenerarReportesActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
-        this.menup.buttonPagos.setEnabled(true);
-        this.menup.buttonClientes.setEnabled(true);
-        this.menup.buttonFacturacion.setEnabled(true);
+        this.menup.buttonReportes.setEnabled(true);
         this.menup.eliminarPanelActual();
         this.menup.refrescarGUI();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
@@ -123,15 +102,12 @@ public class JPanelClientes extends javax.swing.JPanel {
     }
     
     public void enableButtons (Boolean b){//Metodo que recibe un Boolean, si es true, se habilitan los botones, si es false, se inhabilitan
-        jButtonRegistrarCliente.setEnabled(b);
-        jButtonAdministrarClientes.setEnabled(b);
+        jButtonGenerarReportes.setEnabled(b);
         jButtonAtras.setEnabled(b);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAdministrarClientes;
     private javax.swing.JButton jButtonAtras;
-    private javax.swing.JButton jButtonRegistrarCliente;
+    private javax.swing.JButton jButtonGenerarReportes;
     // End of variables declaration//GEN-END:variables
-
 }

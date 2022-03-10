@@ -17,6 +17,7 @@ import vista.clientes.JPanelClientes;
 //import vista.clientes.JPanelClientes;
 //import vista.clientes.JPanelPlanes;
 import vista.pagos.JPanelPagos;
+import vista.reportes.JPanelReportes;
 
 
 /**
@@ -196,22 +197,30 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTerminarSesionActionPerformed
 
     private void buttonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReportesActionPerformed
-        // TODO add your handling code here:
+        this.pintarPanelActual(new JPanelReportes(this));
+        this.buttonReportes.setEnabled(false);
     }//GEN-LAST:event_buttonReportesActionPerformed
 
     private void buttonPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagosActionPerformed
         // TODO add your handling code here:
         this.pintarPanelActual(new JPanelPagos(this));
+        this.buttonPagos.setEnabled(false);
+        this.buttonClientes.setEnabled(false);
+        this.buttonFacturacion.setEnabled(false);
     }//GEN-LAST:event_buttonPagosActionPerformed
 
     private void buttonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClientesActionPerformed
         // TODO add your handling code here:
         this.pintarPanelActual(new JPanelClientes(this));
+        this.buttonPagos.setEnabled(false);
+        this.buttonClientes.setEnabled(false);
+        this.buttonFacturacion.setEnabled(false);
     }//GEN-LAST:event_buttonClientesActionPerformed
 
     private void buttonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUsuariosActionPerformed
         // TODO add your handling code here:
         this.pintarPanelActual(new JPanelUsuarios(this));
+        this.buttonUsuarios.setEnabled(false);
         //this.pintarPanelActual(new JPanelPlanes(this)); // Borrar luego
 
         
@@ -295,12 +304,12 @@ public class menuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonClientes;
-    private javax.swing.JButton buttonFacturacion;
-    private javax.swing.JButton buttonPagos;
-    private javax.swing.JButton buttonReportes;
+    public javax.swing.JButton buttonClientes;
+    public javax.swing.JButton buttonFacturacion;
+    public javax.swing.JButton buttonPagos;
+    public javax.swing.JButton buttonReportes;
     private javax.swing.JButton buttonTerminarSesion;
-    private javax.swing.JButton buttonUsuarios;
+    public javax.swing.JButton buttonUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
