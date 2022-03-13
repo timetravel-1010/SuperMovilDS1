@@ -54,7 +54,7 @@ public class JPanelReportes extends javax.swing.JPanel {
                 jButtonGenerarReportesActionPerformed(evt);
             }
         });
-        add(jButtonGenerarReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 210, 30));
+        add(jButtonGenerarReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 210, 30));
 
         jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButtonAtras.setText("Atras");
@@ -63,7 +63,7 @@ public class JPanelReportes extends javax.swing.JPanel {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 100, 30));
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGenerarReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReportesActionPerformed
