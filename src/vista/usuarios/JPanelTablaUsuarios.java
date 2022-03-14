@@ -150,6 +150,11 @@ public class JPanelTablaUsuarios extends javax.swing.JPanel {
         tablaUsuarios.setAlignmentY(0.0F);
         tablaUsuarios.setPreferredSize(new java.awt.Dimension(890, 510));
         tablaUsuarios.getTableHeader().setReorderingAllowed(false);
+        tablaUsuarios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                tablaUsuariosMouseMoved(evt);
+            }
+        });
         tablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaUsuariosMouseClicked(evt);
@@ -165,6 +170,10 @@ public class JPanelTablaUsuarios extends javax.swing.JPanel {
             padre.enableMAD(true);
         }
     }//GEN-LAST:event_tablaUsuariosMouseClicked
+
+    private void tablaUsuariosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaUsuariosMouseMoved
     
 
 

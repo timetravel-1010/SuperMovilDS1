@@ -88,6 +88,11 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 65, 30));
 
         jTextNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNombreActionPerformed(evt);
+            }
+        });
         jTextNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextNombreKeyTyped(evt);
@@ -117,6 +122,11 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 65, 30));
 
         jTextCiudad.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextCiudadActionPerformed(evt);
+            }
+        });
         jTextCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextCiudadKeyTyped(evt);
@@ -236,6 +246,14 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         padreModificar.pintarPanel(new JPanel(), 100, 20);
         padreModificar.enableMRS(false, false, false, false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNombreActionPerformed
+
+    private void jTextCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCiudadActionPerformed
 
     private boolean validarActualizarCliente(){
         boolean exito = true;

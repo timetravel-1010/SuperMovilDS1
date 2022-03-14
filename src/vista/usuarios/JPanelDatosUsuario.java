@@ -1,6 +1,8 @@
 package vista.usuarios;
 
 import controlador.ConnectionDB;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -47,12 +49,12 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
     private void initComponents() {
 
         jButtonEnviar2 = new javax.swing.JButton();
-        jTextPassword2 = new javax.swing.JTextField();
-        jTextUsername2 = new javax.swing.JTextField();
-        jTextDireccion2 = new javax.swing.JTextField();
-        jTextTelefono2 = new javax.swing.JTextField();
-        jTextNombre2 = new javax.swing.JTextField();
-        jTextCedula2 = new javax.swing.JTextField();
+        jTextPassword = new javax.swing.JTextField();
+        jTextUsername = new javax.swing.JTextField();
+        jTextDireccion = new javax.swing.JTextField();
+        jTextTelefono = new javax.swing.JTextField();
+        jTextNombre = new javax.swing.JTextField();
+        jTextCedula = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -75,33 +77,33 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         });
         add(jButtonEnviar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 100, 30));
 
-        jTextPassword2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
+        jTextPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        add(jTextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
 
-        jTextUsername2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextUsername2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
+        jTextUsername.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        add(jTextUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
 
-        jTextDireccion2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
+        jTextDireccion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
 
-        jTextTelefono2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextTelefono2.addActionListener(new java.awt.event.ActionListener() {
+        jTextTelefono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextTelefono2jTextTelefonoActionPerformed(evt);
+                jTextTelefonojTextTelefonoActionPerformed(evt);
             }
         });
-        add(jTextTelefono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 230, 30));
+        add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 230, 30));
 
-        jTextNombre2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
+        jTextNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
 
-        jTextCedula2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextCedula2.addActionListener(new java.awt.event.ActionListener() {
+        jTextCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCedula2jTextCedulaActionPerformed(evt);
+                jTextCedulajTextCedulaActionPerformed(evt);
             }
         });
-        add(jTextCedula2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 230, 30));
+        add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 230, 30));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel20.setText("Cedula");
@@ -156,53 +158,55 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
 
     private void jButtonEnviar2jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviar2jButtonEnviarActionPerformed
         // TODO add your handling code here:
-        String cedula = jTextCedula2.getText();
-        String nombre = jTextNombre2.getText();
-        String telefono = jTextTelefono2.getText();
-        String direccion = jTextDireccion2.getText();
-        String nombre_usuario = jTextUsername2.getText();
-        String passwordd = jTextPassword2.getText();
         
-        String rol = jComboBoxRol.getItemAt(jComboBoxRol.getSelectedIndex());
-        boolean resultado;
-        
-        if (tipoPanel) {
-            resultado = db.updateUsuario(cedula, nombre, telefono, direccion, nombre_usuario, passwordd, rol);
-        
-            if (resultado) {
-                JOptionPane.showMessageDialog(null, "¡La actualización de los datos del usuario fue exitosa!",
-                        "Actualización", JOptionPane.INFORMATION_MESSAGE);
+        if (validarRegistroCliente()) {
+            String cedula = jTextCedula.getText();
+            String nombre = jTextNombre.getText();
+            String telefono = jTextTelefono.getText();
+            String direccion = jTextDireccion.getText();
+            String nombre_usuario = jTextUsername.getText();
+            String passwordd = jTextPassword.getText();
+
+            String rol = jComboBoxRol.getItemAt(jComboBoxRol.getSelectedIndex());
+            boolean resultado;
+
+            if (tipoPanel) {
+                resultado = db.updateUsuario(cedula, nombre, telefono, direccion, nombre_usuario, passwordd, rol);
+
+                if (resultado) {
+                    JOptionPane.showMessageDialog(null, "¡La actualización de los datos del usuario fue exitosa!",
+                            "Actualización", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
+                            "Actualización", JOptionPane.ERROR_MESSAGE);
+                }
+                padreAdmin.eliminarPanel();
+                padreAdmin.enableButtons(true);
             } else {
-                JOptionPane.showMessageDialog(null, "¡No se realizó ninguna modificación!",
-                        "Actualización", JOptionPane.ERROR_MESSAGE);
+                resultado = db.registrarUsuarios(cedula, nombre, telefono, direccion, nombre_usuario, passwordd, rol);
+
+                if(resultado){
+                    JOptionPane.showMessageDialog(null, "¡El registro de los datos del usuario fue exitoso!",
+                            "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    padreUsers.eliminarPanel();
+                    padreUsers.enableButtons(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!", 
+                            "Registro Incorrecto", JOptionPane.ERROR_MESSAGE);
+                    padreUsers.eliminarPanel();
+                    padreUsers.enableButtons(true);
+                }
             }
-            padreAdmin.eliminarPanel();
-            padreAdmin.enableButtons(true);
-        } else {
-            resultado = db.registrarUsuarios(cedula, nombre, telefono, direccion, nombre_usuario, passwordd, rol);
-            
-            if(resultado){
-                JOptionPane.showMessageDialog(null, "¡El registro de los datos del usuario fue exitoso!",
-                        "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                padreUsers.eliminarPanel();
-                padreUsers.enableButtons(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "¡No se pudo realizar el registro!", 
-                        "Registro Incorrecto", JOptionPane.ERROR_MESSAGE);
-                padreUsers.eliminarPanel();
-                padreUsers.enableButtons(true);
-            }
-        }
-              
+        }          
     }//GEN-LAST:event_jButtonEnviar2jButtonEnviarActionPerformed
 
-    private void jTextTelefono2jTextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefono2jTextTelefonoActionPerformed
+    private void jTextTelefonojTextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTelefonojTextTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextTelefono2jTextTelefonoActionPerformed
+    }//GEN-LAST:event_jTextTelefonojTextTelefonoActionPerformed
 
-    private void jTextCedula2jTextCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCedula2jTextCedulaActionPerformed
+    private void jTextCedulajTextCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCedulajTextCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextCedula2jTextCedulaActionPerformed
+    }//GEN-LAST:event_jTextCedulajTextCedulaActionPerformed
 
     private void jComboBoxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRolActionPerformed
         // TODO add your handling code here:
@@ -220,6 +224,59 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private boolean validarRegistroCliente(){
+        boolean exito = true;
+        
+        if(jTextCedula.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una cedula valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextNombre.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese un nombre valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextTelefono.getText().length()<7){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una numero telefonico valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        Pattern pat = Pattern.compile(regex);
+        Matcher mat = pat.matcher(jTextPassword.getText());
+        if(!mat.find()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una contraeña valida!\n- Su contraseña debe contener al menos 8 caracteres"+
+                                          "\n- Una mezcla de letras mayúsculas y minúsculas \n- Una mezcla de letras y números"+ 
+                                          "\n- La inclusión de al menos un carácter especial, por ejemplo: #!@] *($",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        
+        if(jTextUsername.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese un username valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextDireccion.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una direccion valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(db.consultarUsername(jTextUsername.getText())) {
+            JOptionPane.showMessageDialog(null, "¡Nombre de usuario ya existe!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        return exito;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
@@ -232,12 +289,12 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    public javax.swing.JTextField jTextCedula2;
-    public javax.swing.JTextField jTextDireccion2;
-    public javax.swing.JTextField jTextNombre2;
-    public javax.swing.JTextField jTextPassword2;
-    public javax.swing.JTextField jTextTelefono2;
-    public javax.swing.JTextField jTextUsername2;
+    public javax.swing.JTextField jTextCedula;
+    public javax.swing.JTextField jTextDireccion;
+    public javax.swing.JTextField jTextNombre;
+    public javax.swing.JTextField jTextPassword;
+    public javax.swing.JTextField jTextTelefono;
+    public javax.swing.JTextField jTextUsername;
     public javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

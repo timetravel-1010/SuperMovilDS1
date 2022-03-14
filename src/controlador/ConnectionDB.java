@@ -1158,4 +1158,23 @@ public class ConnectionDB {
         }
         return resultado;
     }
+    
+    public boolean consultarUsername(String username) { // Si retorna true es porque existe
+        boolean resultado = false;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select * from usuarios where nombre_usuario = ?; ");
+            sql.setString(1, username);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                resultado = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    //public boolean consultarCedula(String cedula) {
+        
+    //}
 }
