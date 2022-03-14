@@ -5,7 +5,6 @@
 package vista.clientes;
 
 import controlador.ConnectionDB;
-import java.awt.Dimension;
 import javax.swing.JPanel;
 import vista.menuPrincipal;
 
@@ -25,8 +24,10 @@ public class JPanelClientes extends javax.swing.JPanel {
     
     public JPanelClientes(menuPrincipal menu) { //Metodo constructor de la vista de clientes, recibe el menú principal
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         this.conexion = new ConnectionDB();
         this.panelActual = new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.menup = menu;
         this.panelTablaClientes = new JPanelAdminClientes(this);
     }
@@ -44,11 +45,14 @@ public class JPanelClientes extends javax.swing.JPanel {
         jButtonAdministrarClientes = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(1110, 655));
         setPreferredSize(new java.awt.Dimension(1110, 655));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonRegistrarCliente.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonRegistrarCliente.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonRegistrarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonRegistrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         jButtonRegistrarCliente.setText("Registrar Cliente");
         jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +61,9 @@ public class JPanelClientes extends javax.swing.JPanel {
         });
         add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 200, 30));
 
-        jButtonAdministrarClientes.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAdministrarClientes.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAdministrarClientes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAdministrarClientes.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAdministrarClientes.setText("Administrar Clientes");
         jButtonAdministrarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +72,9 @@ public class JPanelClientes extends javax.swing.JPanel {
         });
         add(jButtonAdministrarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 200, 30));
 
-        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

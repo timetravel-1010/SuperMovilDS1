@@ -100,9 +100,12 @@ public class JPanelAdminLineas extends javax.swing.JPanel {
         JButtonAgregarLinea = new javax.swing.JButton();
         JButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JButtonModificarLinea.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        JButtonModificarLinea.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonModificarLinea.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonModificarLinea.setForeground(new java.awt.Color(0, 0, 0));
         JButtonModificarLinea.setText("Modificar Linea");
         JButtonModificarLinea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         JButtonModificarLinea.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +115,9 @@ public class JPanelAdminLineas extends javax.swing.JPanel {
         });
         add(JButtonModificarLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 150, 170, 30));
 
-        JButtonAgregarLinea.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        JButtonAgregarLinea.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonAgregarLinea.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonAgregarLinea.setForeground(new java.awt.Color(0, 0, 0));
         JButtonAgregarLinea.setText("Agregar Linea");
         JButtonAgregarLinea.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         JButtonAgregarLinea.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +127,9 @@ public class JPanelAdminLineas extends javax.swing.JPanel {
         });
         add(JButtonAgregarLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 170, 30));
 
-        JButtonAtras.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        JButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         JButtonAtras.setText("Atras");
         JButtonAtras.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         JButtonAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +157,9 @@ public class JPanelAdminLineas extends javax.swing.JPanel {
         // TODO add your handling code here:
         padre.eliminarPanel();
         padre.enableAll(true);
-        padre.pintarPanel(new JPanel(), 100, 20);
+        JPanel panelAux = new JPanel();
+        panelAux.setBackground(new java.awt.Color(218, 234, 255));
+        padre.pintarPanel(panelAux, 100, 20);
         padre.enableMRS(false, false, false, false);
     }//GEN-LAST:event_JButtonAtrasActionPerformed
 

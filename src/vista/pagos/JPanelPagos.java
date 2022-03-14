@@ -6,7 +6,6 @@ package vista.pagos;
 
 import controlador.ConnectionDB;
 import javax.swing.JPanel;
-import vista.clientes.JPanelTablaPlanes;
 import vista.menuPrincipal;
 
 /**
@@ -25,7 +24,9 @@ public class JPanelPagos extends javax.swing.JPanel {
     
     public JPanelPagos(menuPrincipal menu) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual=new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
         menup=menu;
         db = new ConnectionDB();
@@ -44,40 +45,47 @@ public class JPanelPagos extends javax.swing.JPanel {
         jButtonPagosBancos = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonPagoIndividual.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonPagoIndividual.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonPagoIndividual.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonPagoIndividual.setForeground(new java.awt.Color(0, 0, 0));
         jButtonPagoIndividual.setText("Registrar pago individual");
         jButtonPagoIndividual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagoIndividualActionPerformed(evt);
             }
         });
-        add(jButtonPagoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 210, 30));
+        add(jButtonPagoIndividual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 240, 30));
 
-        jButtonPagosBancos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonPagosBancos.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonPagosBancos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonPagosBancos.setForeground(new java.awt.Color(0, 0, 0));
         jButtonPagosBancos.setText("Cargar pagos bancarios");
         jButtonPagosBancos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPagosBancosActionPerformed(evt);
             }
         });
-        add(jButtonPagosBancos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 210, 30));
+        add(jButtonPagosBancos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 230, 30));
 
-        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 100, 30));
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPagoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagoIndividualActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarPagos(this), 250, 100);        
+        this.pintarPanel(new JPanelRegistrarPagos(this), 130, 140);        
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonPagoIndividualActionPerformed

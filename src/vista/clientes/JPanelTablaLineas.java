@@ -69,8 +69,12 @@ public class JPanelTablaLineas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLineas = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBackground(new java.awt.Color(218, 234, 255));
+
+        jTableLineas.setBackground(new java.awt.Color(218, 234, 255));
         jTableLineas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

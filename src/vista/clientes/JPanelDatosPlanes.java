@@ -26,8 +26,10 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
      */
     public JPanelDatosPlanes(JPanelUsuarios papa) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual = new JPanel();
         tipoPanel=false;
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padreAdmin = papa;
         db = new ConnectionDB();
@@ -35,8 +37,10 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
     
     public JPanelDatosPlanes(JPanelTablaPlanes papa) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual = new JPanel();
         tipoPanel=true;
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padrePlan = papa;
         db = new ConnectionDB();
@@ -65,32 +69,81 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         jTextFieldMegas = new javax.swing.JTextField();
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jLabelNombrePlan1 = new javax.swing.JLabel();
 
-        jLabelNombrePlan.setText("Nombre");
+        setBackground(new java.awt.Color(218, 234, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelMinutos.setText("Minutos");
+        jLabelNombrePlan.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelNombrePlan.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNombrePlan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNombrePlan.setText("Nombre:");
+        add(jLabelNombrePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 67, 142, 30));
 
-        jLabelPrecio.setText("Precio");
+        jLabelMinutos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelMinutos.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelMinutos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelMinutos.setText("Minutos:");
+        add(jLabelMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 166, 142, 30));
 
-        jLabelMegas.setText("Megas");
+        jLabelPrecio.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelPrecio.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelPrecio.setText("Precio:");
+        add(jLabelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 113, 142, 30));
 
-        jLabelDescripcion.setText("Descripción");
+        jLabelMegas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelMegas.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelMegas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelMegas.setText("Megas:");
+        add(jLabelMegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 215, 142, 30));
 
-        jLabelMensajes.setText("Mensajes");
+        jLabelDescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelDescripcion.setText("Descripción:");
+        add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 308, 142, 30));
 
+        jLabelMensajes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelMensajes.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelMensajes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelMensajes.setText("Mensajes:");
+        add(jLabelMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 263, 142, 30));
+
+        jTextFieldNombrePlan.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldNombrePlan.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldNombrePlan.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNombrePlan.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldNombrePlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNombrePlanActionPerformed(evt);
             }
         });
+        add(jTextFieldNombrePlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 65, 230, 30));
 
+        jTextFieldPrecio.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldPrecio.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldPrecio.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldPrecioActionPerformed(evt);
             }
         });
+        add(jTextFieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 111, 230, 30));
 
+        jTextFieldMinutos.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldMinutos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldMinutos.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextFieldMinutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 164, 230, 30));
+
+        jTextFieldMensajes.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldMensajes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldMensajes.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextFieldMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 261, 230, 30));
+
+        jTextFieldDescripcion.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldDescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextFieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,95 +155,41 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
                 jTextFieldDescripcionPropertyChange(evt);
             }
         });
+        add(jTextFieldDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 308, 239, 99));
+        jTextFieldDescripcion.getAccessibleContext().setAccessibleName("");
 
-        jButtonEnviar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextFieldMegas.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldMegas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldMegas.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextFieldMegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 215, 230, 30));
+
+        jButtonEnviar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonEnviar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonEnviar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEnviar.setText("Enviar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEnviarjButtonEnviarActionPerformed(evt);
             }
         });
+        add(jButtonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 440, 100, -1));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarjButtonEnviarActionPerformed(evt);
             }
         });
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelMegas, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldMegas, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCancelar)
-                                .addGap(86, 86, 86)
-                                .addComponent(jButtonEnviar)))))
-                .addContainerGap(212, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNombrePlan)
-                    .addComponent(jTextFieldNombrePlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPrecio)
-                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelMinutos)
-                    .addComponent(jTextFieldMinutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelMegas)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabelMensajes))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldMegas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jTextFieldMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDescripcion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEnviar)
-                    .addComponent(jButtonCancelar))
-                .addGap(24, 24, 24))
-        );
-
-        jTextFieldDescripcion.getAccessibleContext().setAccessibleName("");
+        jLabelNombrePlan1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelNombrePlan1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNombrePlan1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNombrePlan1.setText("Administrador de planes:");
+        add(jLabelNombrePlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 210, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
@@ -275,6 +274,7 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelMensajes;
     private javax.swing.JLabel jLabelMinutos;
     private javax.swing.JLabel jLabelNombrePlan;
+    private javax.swing.JLabel jLabelNombrePlan1;
     private javax.swing.JLabel jLabelPrecio;
     public javax.swing.JTextField jTextFieldDescripcion;
     public javax.swing.JTextField jTextFieldMegas;

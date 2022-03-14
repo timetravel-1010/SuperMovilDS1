@@ -41,6 +41,10 @@ public class JPanelClientesSuspender extends javax.swing.JPanel {
         ;
         suspenderTodosBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaClientesEstadoPlan.setBackground(new java.awt.Color(218, 234, 255));
         tablaClientesEstadoPlan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -68,31 +72,17 @@ public class JPanelClientesSuspender extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaClientesEstadoPlan);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 468));
+
+        suspenderTodosBtn.setBackground(new java.awt.Color(149, 193, 255));
+        suspenderTodosBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         suspenderTodosBtn.setText("Suspender Todos");
         suspenderTodosBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suspenderTodosBtnActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(suspenderTodosBtn)
-                .addGap(32, 32, 32))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(suspenderTodosBtn)
-                .addContainerGap())
-        );
+        add(suspenderTodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 470, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaClientesEstadoPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesEstadoPlanMouseClicked

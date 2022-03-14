@@ -51,13 +51,17 @@ public class JPanelAgregarNumero extends javax.swing.JPanel {
         jButtonCancelar = new javax.swing.JButton();
         jButtonGenerar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTituloIzquierdo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelTituloIzquierdo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelTituloIzquierdo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTituloIzquierdo.setText("Agregar numero:");
-        add(jLabelTituloIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 120, 30));
+        add(jLabelTituloIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 150, 30));
 
-        jTextNumero.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextNumero.setBackground(new java.awt.Color(149, 193, 255));
+        jTextNumero.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextNumero.setForeground(new java.awt.Color(0, 0, 0));
         jTextNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNumerojTextCedulaActionPerformed(evt);
@@ -70,15 +74,21 @@ public class JPanelAgregarNumero extends javax.swing.JPanel {
         });
         add(jTextNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 200, 30));
 
-        jLabelNumero.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelNumero.setText("Numero de telefono");
-        add(jLabelNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 140, 30));
+        jLabelNumero.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelNumero.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNumero.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNumero.setText("Numero de telefono:");
+        add(jLabelNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 170, 30));
 
-        jLabelPlan.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelPlan.setText("Plan Pospago");
-        add(jLabelPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 100, 30));
+        jLabelPlan.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelPlan.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelPlan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelPlan.setText("Plan Pospago:");
+        add(jLabelPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 170, 30));
 
-        jComboBoxPlan.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jComboBoxPlan.setBackground(new java.awt.Color(149, 193, 255));
+        jComboBoxPlan.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jComboBoxPlan.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxPlanActionPerformed(evt);
@@ -86,25 +96,31 @@ public class JPanelAgregarNumero extends javax.swing.JPanel {
         });
         add(jComboBoxPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 315, 30));
 
-        jButtonEnviar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonEnviar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonEnviar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonEnviar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEnviar.setText("Enviar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEnviarjButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 100, 30));
+        add(jButtonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 100, 30));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 100, 30));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 110, 30));
 
-        jButtonGenerar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonGenerar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonGenerar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonGenerar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonGenerar.setText("Generar");
         jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
