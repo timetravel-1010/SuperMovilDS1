@@ -141,7 +141,7 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         plan.jTextFieldMensajes.setText(datosPlan.getMensajes());
         plan.jTextFieldMegas.setText(datosPlan.getMegas());
         plan.jTextFieldPrecio.setText(datosPlan.getPrecio());
-        plan.jTextFieldDescripcion.setText(datosPlan.getDescripcion());
+        plan.jTextAreaDescripcion.setText(datosPlan.getDescripcion());
         //this.eliminarPanel();
         padrePlan.eliminarTablaPlanes();
         padrePlan.pintarPanel(plan, 130, 100);
