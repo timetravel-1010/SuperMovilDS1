@@ -94,7 +94,7 @@ public class Login extends javax.swing.JFrame {
         botonEntrar.setBackground(new java.awt.Color(149, 193, 255));
         botonEntrar.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         botonEntrar.setForeground(new java.awt.Color(0, 0, 0));
-        botonEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgenes/Login.png"))); // NOI18N
+        botonEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Login.png"))); // NOI18N
         botonEntrar.setText("Entrar");
         botonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,10 +103,10 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(botonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 410, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgenes/Password.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Password.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, 70));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgenes/User.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/User.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, 70));
 
         pack();

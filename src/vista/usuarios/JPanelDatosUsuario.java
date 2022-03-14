@@ -277,7 +277,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         }
         
         if(jTextTelefono.getText().length()<7){
-            JOptionPane.showMessageDialog(null, "¡Ingrese una numero telefonico valido!",
+            JOptionPane.showMessageDialog(null, "¡Ingrese un numero telefonico valido!",
                             "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
             exito = false;
         }
@@ -295,7 +295,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         
         
         if(jTextUsername.getText().isBlank()){
-            JOptionPane.showMessageDialog(null, "¡Ingrese un username valido!",
+            JOptionPane.showMessageDialog(null, "¡Ingrese un nombre de usuario valido!",
                             "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
             exito = false;
         }

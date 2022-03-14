@@ -615,7 +615,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         }
         
         if(jTextTelefono.getText().length()<7){
-            JOptionPane.showMessageDialog(null, "¡Ingrese una numero telefonico valido!",
+            JOptionPane.showMessageDialog(null, "¡Ingrese un numero telefonico valido!",
                             "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
             exito = false;
         }
