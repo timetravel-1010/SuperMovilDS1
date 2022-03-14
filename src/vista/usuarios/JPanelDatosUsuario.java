@@ -83,40 +83,40 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         });
         add(jButtonEnviar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 100, 30));
 
-        jTextPassword2.setBackground(new java.awt.Color(149, 193, 255));
-        jTextPassword2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextPassword2.setForeground(new java.awt.Color(0, 0, 0));
-        add(jTextPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
+        jTextPassword.setBackground(new java.awt.Color(149, 193, 255));
+        jTextPassword.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextPassword.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
 
-        jTextUsername2.setBackground(new java.awt.Color(149, 193, 255));
-        jTextUsername2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextUsername2.setForeground(new java.awt.Color(0, 0, 0));
-        add(jTextUsername2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
+        jTextUsername.setBackground(new java.awt.Color(149, 193, 255));
+        jTextUsername.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextUsername.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
 
-        jTextDireccion2.setBackground(new java.awt.Color(149, 193, 255));
-        jTextDireccion2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextDireccion2.setForeground(new java.awt.Color(0, 0, 0));
-        add(jTextDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
+        jTextDireccion.setBackground(new java.awt.Color(149, 193, 255));
+        jTextDireccion.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextDireccion.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
 
-        jTextTelefono2.setBackground(new java.awt.Color(149, 193, 255));
-        jTextTelefono2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextTelefono2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextTelefono2.addActionListener(new java.awt.event.ActionListener() {
+        jTextTelefono.setBackground(new java.awt.Color(149, 193, 255));
+        jTextTelefono.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextTelefonojTextTelefonoActionPerformed(evt);
             }
         });
         add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 230, 30));
 
-        jTextNombre2.setBackground(new java.awt.Color(149, 193, 255));
-        jTextNombre2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextNombre2.setForeground(new java.awt.Color(0, 0, 0));
-        add(jTextNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
+        jTextNombre.setBackground(new java.awt.Color(149, 193, 255));
+        jTextNombre.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
 
-        jTextCedula2.setBackground(new java.awt.Color(149, 193, 255));
-        jTextCedula2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        jTextCedula2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextCedula2.addActionListener(new java.awt.event.ActionListener() {
+        jTextCedula.setBackground(new java.awt.Color(149, 193, 255));
+        jTextCedula.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextCedula.setForeground(new java.awt.Color(0, 0, 0));
+        jTextCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCedulajTextCedulaActionPerformed(evt);
             }
