@@ -29,6 +29,7 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
         initComponents();
         db = new ConnectionDB();
         panelActual = new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padreAdmin = papa;
     }
@@ -50,79 +51,63 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
         jButtonRegistrar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Pago Factura");
+        jLabel1.setText("Pago Factura:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 148, 30));
 
-        jLabelNumeroFactura.setText("Numero de factura");
+        jLabelNumeroFactura.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelNumeroFactura.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNumeroFactura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNumeroFactura.setText("Numero de factura:");
+        add(jLabelNumeroFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 110, 180, 30));
 
-        jLabelValorPagado.setText("Valor a pagar");
+        jLabelValorPagado.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelValorPagado.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelValorPagado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelValorPagado.setText("Valor a pagar:");
+        add(jLabelValorPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 180, 180, 30));
 
+        jTextFieldValorPagado.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldValorPagado.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldValorPagado.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextFieldValorPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 180, 200, 30));
+
+        jTextFieldNumeroFactura.setBackground(new java.awt.Color(149, 193, 255));
+        jTextFieldNumeroFactura.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextFieldNumeroFactura.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldNumeroFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNumeroFacturaActionPerformed(evt);
             }
         });
+        add(jTextFieldNumeroFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 110, 200, 30));
 
+        jButtonRegistrar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonRegistrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonRegistrar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonRegistrar.setText("Registrar");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarActionPerformed(evt);
             }
         });
+        add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 250, -1, -1));
 
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonRegistrar))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(494, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldValorPagado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRegistrar)
-                    .addComponent(jButtonCancelar))
-                .addContainerGap(305, Short.MAX_VALUE))
-        );
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 250, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldNumeroFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroFacturaActionPerformed

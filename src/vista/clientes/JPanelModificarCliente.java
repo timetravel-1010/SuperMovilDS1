@@ -58,19 +58,25 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(555, 555));
         setPreferredSize(new java.awt.Dimension(555, 555));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTituloIzquierdo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelTituloIzquierdo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelTituloIzquierdo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTituloIzquierdo.setText("Datos basicos del cliente:");
-        add(jLabelTituloIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 180, 30));
+        add(jLabelTituloIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
 
-        jLabelCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCedula.setText("Identificacion");
-        add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 110, 90, 30));
+        jLabelCedula.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelCedula.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelCedula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelCedula.setText("Identificacion:");
+        add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 120, 30));
 
-        jTextCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextCedula.setBackground(new java.awt.Color(149, 193, 255));
+        jTextCedula.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextCedula.setForeground(new java.awt.Color(0, 0, 0));
         jTextCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCedulajTextCedulaActionPerformed(evt);
@@ -83,16 +89,16 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         });
         add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, 30));
 
-        jLabelNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelNombre.setText("Nombre");
-        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 65, 30));
+        jLabelNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNombre.setText("Nombre:");
+        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 30));
 
-        jTextNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNombreActionPerformed(evt);
-            }
-        });
+
+        jTextNombre.setBackground(new java.awt.Color(149, 193, 255));
+        jTextNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
         jTextNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextNombreKeyTyped(evt);
@@ -100,11 +106,15 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         });
         add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 230, 30));
 
-        jLabelTelefono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelTelefono.setText("Telefono");
-        add(jLabelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 65, 30));
+        jLabelTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelTelefono.setText("Telefono:");
+        add(jLabelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 120, 30));
 
-        jTextTelefono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextTelefono.setBackground(new java.awt.Color(149, 193, 255));
+        jTextTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextTelefonojTextTelefonoActionPerformed(evt);
@@ -117,16 +127,16 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         });
         add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 230, 30));
 
-        jLabelCiudad.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelCiudad.setText("Ciudad");
-        add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 65, 30));
+        jLabelCiudad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelCiudad.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelCiudad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelCiudad.setText("Ciudad:");
+        add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 120, 30));
 
-        jTextCiudad.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextCiudad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextCiudadActionPerformed(evt);
-            }
-        });
+
+        jTextCiudad.setBackground(new java.awt.Color(149, 193, 255));
+        jTextCiudad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextCiudad.setForeground(new java.awt.Color(0, 0, 0));
         jTextCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextCiudadKeyTyped(evt);
@@ -134,11 +144,15 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         });
         add(jTextCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 30));
 
-        jLabelDireccion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelDireccion.setText("Dirección");
-        add(jLabelDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 65, 30));
+        jLabelDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelDireccion.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelDireccion.setText("Direccion:");
+        add(jLabelDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 120, 30));
 
-        jTextDireccion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jTextDireccion.setBackground(new java.awt.Color(149, 193, 255));
+        jTextDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextDireccion.setForeground(new java.awt.Color(0, 0, 0));
         jTextDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextDireccionKeyTyped(evt);
@@ -146,11 +160,15 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         });
         add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 230, 30));
 
-        jLabelTipo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabelTipo.setText("Tipo");
-        add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 65, 30));
+        jLabelTipo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelTipo.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelTipo.setText("Tipo:");
+        add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 120, 30));
 
-        jComboBoxTipo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jComboBoxTipo.setBackground(new java.awt.Color(149, 193, 255));
+        jComboBoxTipo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "natural", "corporativo" }));
         jComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,23 +177,27 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         });
         add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 231, 30));
 
-        jButtonEnviar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonEnviar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonEnviar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonEnviar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEnviar.setText("Enviar");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEnviarjButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 100, 30));
+        add(jButtonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 110, 30));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 100, 30));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextCedulajTextCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCedulajTextCedulaActionPerformed
@@ -243,7 +265,9 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         padreModificar.eliminarPanel();
         padreModificar.enableAll(true);
-        padreModificar.pintarPanel(new JPanel(), 100, 20);
+        JPanel panelAux = new JPanel();
+        panelAux.setBackground(new java.awt.Color(218, 234, 255));
+        padreModificar.pintarPanel(panelAux, 100, 20);
         padreModificar.enableMRS(false, false, false, false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -302,7 +326,9 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         }
         padreModificar.enableAll(true);
         padreModificar.eliminarPanel();
-        padreModificar.pintarPanel(new JPanel(), 100, 20);
+        JPanel panelAux = new JPanel();
+        panelAux.setBackground(new java.awt.Color(218, 234, 255));
+        padreModificar.pintarPanel(panelAux, 100, 20);
         padreModificar.enableMRS(false, false, false, false);
     }
     

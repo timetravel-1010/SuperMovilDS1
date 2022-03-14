@@ -122,11 +122,14 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         jButtonCancelar = new javax.swing.JButton();
         administrarLineasBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(890, 510));
         setPreferredSize(new java.awt.Dimension(987, 364));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        reactivarBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        reactivarBtn.setBackground(new java.awt.Color(149, 193, 255));
+        reactivarBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        reactivarBtn.setForeground(new java.awt.Color(0, 0, 0));
         reactivarBtn.setText("Reactivar Plan");
         reactivarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +138,9 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         });
         add(reactivarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 300, 170, 30));
 
-        suspenderBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        suspenderBtn.setBackground(new java.awt.Color(149, 193, 255));
+        suspenderBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        suspenderBtn.setForeground(new java.awt.Color(0, 0, 0));
         suspenderBtn.setText("Suspender Plan");
         suspenderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +149,9 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         });
         add(suspenderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 400, 170, 30));
 
-        modificarClienteBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        modificarClienteBtn.setBackground(new java.awt.Color(149, 193, 255));
+        modificarClienteBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        modificarClienteBtn.setForeground(new java.awt.Color(0, 0, 0));
         modificarClienteBtn.setText("Modificar Cliente");
         modificarClienteBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         modificarClienteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -154,11 +161,15 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         });
         add(modificarClienteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 100, 170, 30));
 
-        filtrarLabel.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
+        filtrarLabel.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        filtrarLabel.setForeground(new java.awt.Color(0, 0, 0));
         filtrarLabel.setText("Filtrar por:");
         filtrarLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         add(filtrarLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 30));
 
+        comboBoxTiposTablas.setBackground(new java.awt.Color(149, 193, 255));
+        comboBoxTiposTablas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        comboBoxTiposTablas.setForeground(new java.awt.Color(0, 0, 0));
         comboBoxTiposTablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los Clientes", "Clientes Pago Atrasado", "Clientes Reactivar Plan" }));
         comboBoxTiposTablas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,16 +178,20 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         });
         add(comboBoxTiposTablas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, 30));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 520, 100, 30));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 520, 110, 30));
 
-        administrarLineasBtn.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        administrarLineasBtn.setBackground(new java.awt.Color(149, 193, 255));
+        administrarLineasBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        administrarLineasBtn.setForeground(new java.awt.Color(0, 0, 0));
         administrarLineasBtn.setText("Administrar lineas");
         administrarLineasBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         administrarLineasBtn.addActionListener(new java.awt.event.ActionListener() {

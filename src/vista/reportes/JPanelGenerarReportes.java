@@ -30,7 +30,9 @@ public class JPanelGenerarReportes extends javax.swing.JPanel {
         this.padre = papa;
         this.conexion = new ConnectionDB();
         initComponents();
-        this.pintarGrafico(new ChartPanel(null));
+        this.grafico = new ChartPanel(null);
+        this.grafico.setBackground(new java.awt.Color(218, 234, 255));
+        this.pintarGrafico(this.grafico);
     }
 
     /**
@@ -50,17 +52,24 @@ public class JPanelGenerarReportes extends javax.swing.JPanel {
         jButtonEnviar = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabelTitulo.setBackground(new java.awt.Color(218, 234, 255));
         jLabelTitulo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTitulo.setText("Generacion de reportes:");
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 30));
 
-        jLabelTipoReporte.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelTipoReporte.setBackground(new java.awt.Color(218, 234, 255));
+        jLabelTipoReporte.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabelTipoReporte.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTipoReporte.setText("Tipo de reporte:");
-        add(jLabelTipoReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 110, 30));
+        add(jLabelTipoReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 130, 30));
 
-        jComboBoxTipo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jComboBoxTipo.setBackground(new java.awt.Color(149, 193, 255));
+        jComboBoxTipo.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pagos recibidos segun tipo de cliente", "Distribucion de planes", "Clientes por ciudad", "Clientes nuevos" }));
         jComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,11 +78,14 @@ public class JPanelGenerarReportes extends javax.swing.JPanel {
         });
         add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 231, 30));
 
-        jLabelMes.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelMes.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabelMes.setForeground(new java.awt.Color(0, 0, 0));
         jLabelMes.setText("Mes del reporte:");
-        add(jLabelMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 110, 30));
+        add(jLabelMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 110, 30));
 
-        jComboBoxMes.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jComboBoxMes.setBackground(new java.awt.Color(149, 193, 255));
+        jComboBoxMes.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jComboBoxMes.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         jComboBoxMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +94,9 @@ public class JPanelGenerarReportes extends javax.swing.JPanel {
         });
         add(jComboBoxMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 110, 30));
 
-        jButtonEnviar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonEnviar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonEnviar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButtonEnviar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEnviar.setText("Generar reporte");
         jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +105,9 @@ public class JPanelGenerarReportes extends javax.swing.JPanel {
         });
         add(jButtonEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 150, 30));
 
-        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

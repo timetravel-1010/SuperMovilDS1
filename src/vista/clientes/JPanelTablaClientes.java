@@ -33,6 +33,11 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(218, 234, 255));
+
+        jScrollPane1.setBackground(new java.awt.Color(218, 234, 255));
+
+        tablaClientes.setBackground(new java.awt.Color(218, 234, 255));
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

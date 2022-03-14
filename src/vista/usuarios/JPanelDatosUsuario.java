@@ -22,7 +22,9 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
      */
     public JPanelDatosUsuario(JPanelAdministrarUsuarios papa) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual = new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         tipoPanel=true;
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padreAdmin = papa;
@@ -33,6 +35,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         initComponents();
         titulo.setText("Registro:");
         panelActual = new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         tipoPanel=false;
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 890, 490));
         padreUsers = papa;
@@ -66,78 +69,110 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         jComboBoxRol = new javax.swing.JComboBox<>();
         jButtonCancelar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonEnviar2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonEnviar2.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonEnviar2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButtonEnviar2.setForeground(new java.awt.Color(0, 0, 0));
         jButtonEnviar2.setText("Enviar");
         jButtonEnviar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEnviar2jButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonEnviar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 100, 30));
+        add(jButtonEnviar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 100, 30));
 
-        jTextPassword.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
+        jTextPassword2.setBackground(new java.awt.Color(149, 193, 255));
+        jTextPassword2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextPassword2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
 
-        jTextUsername.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
+        jTextUsername2.setBackground(new java.awt.Color(149, 193, 255));
+        jTextUsername2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextUsername2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextUsername2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
 
-        jTextDireccion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
+        jTextDireccion2.setBackground(new java.awt.Color(149, 193, 255));
+        jTextDireccion2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextDireccion2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 230, 30));
 
-        jTextTelefono.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextTelefono.addActionListener(new java.awt.event.ActionListener() {
+        jTextTelefono2.setBackground(new java.awt.Color(149, 193, 255));
+        jTextTelefono2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextTelefono2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextTelefono2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextTelefonojTextTelefonoActionPerformed(evt);
             }
         });
         add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 230, 30));
 
-        jTextNombre.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
+        jTextNombre2.setBackground(new java.awt.Color(149, 193, 255));
+        jTextNombre2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextNombre2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jTextNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 230, 30));
 
-        jTextCedula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jTextCedula.addActionListener(new java.awt.event.ActionListener() {
+        jTextCedula2.setBackground(new java.awt.Color(149, 193, 255));
+        jTextCedula2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jTextCedula2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextCedula2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextCedulajTextCedulaActionPerformed(evt);
             }
         });
         add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 230, 30));
 
-        jLabel20.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel20.setText("Cedula");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 130, 30));
+        jLabel20.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Cedula:");
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 170, 30));
 
-        jLabel18.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel18.setText("Nombre");
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 130, 30));
+        jLabel18.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setText("Nombre:");
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 170, 30));
 
-        jLabel19.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel19.setText("Telefono");
-        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 130, 30));
+        jLabel19.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("Telefono:");
+        add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 170, 30));
 
-        jLabel23.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel23.setText("Dirección");
-        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 130, 30));
+        jLabel23.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel23.setText("Dirección:");
+        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 170, 30));
 
-        jLabel21.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel21.setText("Nombre de usuario");
-        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 130, 30));
+        jLabel21.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setText("Nombre de usuario:");
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 170, 30));
 
-        jLabel22.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel22.setText("Password");
-        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 130, 30));
+        jLabel22.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel22.setText("Password:");
+        add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 170, 30));
 
-        jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel24.setText("Rol");
-        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 130, 30));
+        jLabel24.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel24.setText("Rol:");
+        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 170, 30));
 
-        titulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        titulo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        titulo.setForeground(new java.awt.Color(0, 0, 0));
         titulo.setText("jLabel1");
-        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 120, 30));
+        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 120, 30));
 
-        jComboBoxRol.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jComboBoxRol.setBackground(new java.awt.Color(149, 193, 255));
+        jComboBoxRol.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jComboBoxRol.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "administrador", "gerente", "operador" }));
         jComboBoxRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,14 +181,16 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         });
         add(jComboBoxRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 231, 30));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 420, 100, 30));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEnviar2jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviar2jButtonEnviarActionPerformed

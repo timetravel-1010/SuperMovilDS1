@@ -15,7 +15,6 @@ import vista.menuPrincipal;
  */
 public class JPanelReportes extends javax.swing.JPanel {
 
-    
     private JPanel panelActual;
     private menuPrincipal menup;
     private ConnectionDB conexion;
@@ -24,9 +23,11 @@ public class JPanelReportes extends javax.swing.JPanel {
      */
     public JPanelReportes(menuPrincipal menu) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         this.conexion = new ConnectionDB();
         this.menup = menu;
         this.panelActual = new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.pintarPanel(panelActual);
         /*this.panelActual = new JPanel();
         this.panelActual.setBackground(Color.red);
@@ -45,9 +46,12 @@ public class JPanelReportes extends javax.swing.JPanel {
         jButtonGenerarReportes = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonGenerarReportes.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonGenerarReportes.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonGenerarReportes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonGenerarReportes.setForeground(new java.awt.Color(0, 0, 0));
         jButtonGenerarReportes.setText("Generar reportes");
         jButtonGenerarReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,14 +60,16 @@ public class JPanelReportes extends javax.swing.JPanel {
         });
         add(jButtonGenerarReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 210, 30));
 
-        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 30, 100, 30));
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGenerarReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReportesActionPerformed

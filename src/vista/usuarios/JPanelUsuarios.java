@@ -23,7 +23,9 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     
     public JPanelUsuarios(menuPrincipal menu) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual=new JPanel();
+        this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
         menup=menu;
     }
@@ -43,11 +45,14 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         jButtonAdmiinistrarUsuarios = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(1110, 655));
         setPreferredSize(new java.awt.Dimension(1110, 655));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonRegistrarPlan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonRegistrarPlan.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonRegistrarPlan.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonRegistrarPlan.setForeground(new java.awt.Color(0, 0, 0));
         jButtonRegistrarPlan.setText("Registrar Plan");
         jButtonRegistrarPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +61,9 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         });
         add(jButtonRegistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 200, 30));
 
-        jButtonAdmiinistrarPlan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAdmiinistrarPlan.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAdmiinistrarPlan.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAdmiinistrarPlan.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAdmiinistrarPlan.setText("Administrar Planes");
         jButtonAdmiinistrarPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +72,9 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         });
         add(jButtonAdmiinistrarPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 200, 30));
 
-        jButtonRegistrarUsuario.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonRegistrarUsuario.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonRegistrarUsuario.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonRegistrarUsuario.setForeground(new java.awt.Color(0, 0, 0));
         jButtonRegistrarUsuario.setText("Registrar Usuario");
         jButtonRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +83,9 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         });
         add(jButtonRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 30));
 
-        jButtonAdmiinistrarUsuarios.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAdmiinistrarUsuarios.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAdmiinistrarUsuarios.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAdmiinistrarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAdmiinistrarUsuarios.setText("Administrar Usuarios");
         jButtonAdmiinistrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +94,9 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         });
         add(jButtonAdmiinistrarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 30));
 
-        jButtonAtras.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +109,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonAdmiinistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarPlanActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelTablaPlanes(this));
+        this.pintarPanel(new JPanelTablaPlanes(this),100,100);
         tablaPlanes.agregarTodos();
         menup.refrescarGUI();
         this.enableButtons(false);
@@ -106,7 +119,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonRegistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPlanActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelDatosPlanes(this)); // Cambiar a JPanelDatosUsuarios        
+        this.pintarPanel(new JPanelDatosPlanes(this), 130, 100); // Cambiar a JPanelDatosUsuarios        
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonRegistrarPlanActionPerformed
@@ -114,7 +127,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelDatosUsuario(this), 290, 120);
+        this.pintarPanel(new JPanelDatosUsuario(this), 250, 130);
         menup.refrescarGUI();
         this.enableButtons(false);
          
@@ -153,6 +166,13 @@ public class JPanelUsuarios extends javax.swing.JPanel {
         tablaPlanes = panel;
         //panelTabla = panel;
         add(tablaPlanes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
+        this.refrescarGUI();
+    }
+    
+    public void pintarPanel(JPanelTablaPlanes panel, int x, int y){//Sobrecarga que recibe coordenadas para centrar el panel
+        tablaPlanes = panel;
+        //panelTabla = panel;
+        add(tablaPlanes, new org.netbeans.lib.awtextra.AbsoluteConstraints(x, y, 890, 490));
         this.refrescarGUI();
     }
     

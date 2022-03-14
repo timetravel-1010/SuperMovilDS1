@@ -25,6 +25,7 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
     private boolean flag;
     public JPanelAdministrarUsuarios(JPanelUsuarios papa) {
         initComponents();
+        this.setBackground(new java.awt.Color(218, 234, 255));
         padre = papa;
         db = new ConnectionDB();
         JButtonModificar.setEnabled(false);
@@ -54,11 +55,14 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1110, 570));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre del Usuario:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 20, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
-        JTextNombreUsuario.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        JTextNombreUsuario.setBackground(new java.awt.Color(149, 193, 255));
+        JTextNombreUsuario.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JTextNombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         JTextNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTextNombreUsuarioActionPerformed(evt);
@@ -66,7 +70,9 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         });
         add(JTextNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 330, -1));
 
-        jButtonBuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jButtonBuscar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonBuscar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonBuscar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +81,9 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         });
         add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 18, -1, -1));
 
-        JButtonMostrarTodos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        JButtonMostrarTodos.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonMostrarTodos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonMostrarTodos.setForeground(new java.awt.Color(0, 0, 0));
         JButtonMostrarTodos.setText("Mostrar todos");
         JButtonMostrarTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +92,9 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         });
         add(JButtonMostrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
-        JButtonModificar.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        JButtonModificar.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonModificar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonModificar.setForeground(new java.awt.Color(0, 0, 0));
         JButtonModificar.setText("Modificar");
         JButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +103,9 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         });
         add(JButtonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 140, 150, 30));
 
-        JButtonActivar.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        JButtonActivar.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonActivar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonActivar.setForeground(new java.awt.Color(0, 0, 0));
         JButtonActivar.setText("Activar");
         JButtonActivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +114,9 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         });
         add(JButtonActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 280, 150, 30));
 
-        JButtonInactivar.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
+        JButtonInactivar.setBackground(new java.awt.Color(149, 193, 255));
+        JButtonInactivar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        JButtonInactivar.setForeground(new java.awt.Color(0, 0, 0));
         JButtonInactivar.setText("Inactivar");
         JButtonInactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,14 +125,16 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         });
         add(JButtonInactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 150, 30));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 520, 100, 30));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 520, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTextNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextNombreUsuarioActionPerformed
