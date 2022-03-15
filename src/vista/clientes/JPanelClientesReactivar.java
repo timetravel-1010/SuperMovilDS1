@@ -32,6 +32,11 @@ public class JPanelClientesReactivar extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaClientesReactivar = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(218, 234, 255));
+
+        jScrollPane1.setBackground(new java.awt.Color(218, 234, 255));
+
+        tablaClientesReactivar.setBackground(new java.awt.Color(218, 234, 255));
         tablaClientesReactivar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

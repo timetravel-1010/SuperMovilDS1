@@ -74,6 +74,10 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         jButtonModificar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTablePlanes.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jTablePlanes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -100,6 +104,11 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTablePlanes);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 868, -1));
+
+        jButtonModificar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonModificar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonModificar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonModificar.setText("Modificar");
         jButtonModificar.setEnabled(false);
         jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,39 +116,18 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
                 jButtonModificarActionPerformed(evt);
             }
         });
+        add(jButtonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 450, -1, 23));
 
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonModificar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, -1, 23));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -156,7 +144,7 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         plan.jTextFieldDescripcion.setText(datosPlan.getDescripcion());
         //this.eliminarPanel();
         padrePlan.eliminarTablaPlanes();
-        padrePlan.pintarPanel(plan);
+        padrePlan.pintarPanel(plan, 130, 100);
         padrePlan.refrescarGUI();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 

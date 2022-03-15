@@ -42,31 +42,40 @@ public class JPanelPagosBancos extends javax.swing.JPanel {
         jButtonCargar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTitulo.setText("Cargar pagos bancarios:");
-        add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 160, 30));
+        add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 200, 30));
 
-        jButtonSeleccionar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonSeleccionar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonSeleccionar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonSeleccionar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonSeleccionar.setText("Seleccionar archivo");
         jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSeleccionarjButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 160, 30));
+        add(jButtonSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 200, 30));
 
+        jTextArea1.setBackground(new java.awt.Color(149, 193, 255));
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
         jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 510, 200));
 
-        jButtonCargar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCargar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCargar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCargar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCargar.setText("Enviar");
         jButtonCargar.setEnabled(false);
         jButtonCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,16 +83,18 @@ public class JPanelPagosBancos extends javax.swing.JPanel {
                 jButtonCargarjButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 100, 30));
+        add(jButtonCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 110, 30));
 
-        jButtonCancelar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButtonCancelar.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonCancelar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 100, 30));
+        add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSeleccionarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarjButtonEnviarActionPerformed

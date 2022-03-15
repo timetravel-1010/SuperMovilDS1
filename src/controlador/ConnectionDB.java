@@ -2,7 +2,6 @@ package controlador;
 
 import enums.TipoCliente;
 import enums.TipoLogin;
-import static java.lang.String.format;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -361,11 +360,15 @@ public class ConnectionDB {
     }    
     
     public boolean registrarClientes(String cedula, String nombre, String telefono,
-                                  String direccion, String ciudad, String tipo){
+                                  String direccion, String ciudad, String tipo) throws ParseException{
         int filasAfectadas = 0;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaPago);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
             try {
 
-            PreparedStatement sql = conexion.prepareStatement("INSERT INTO clientes VALUES(?,?,?,?,?,?::tipo_cliente)");
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO clientes VALUES(?,?,?,?,?,?::tipo_cliente,?)");
 
             sql.setString(1, cedula);
             sql.setString(2, nombre);
@@ -373,6 +376,7 @@ public class ConnectionDB {
             sql.setString(4, direccion);
             sql.setString(5, ciudad);
             sql.setString(6, tipo);
+            sql.setDate(7, (java.sql.Date) fechaSQL);
 
             filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
             } catch (SQLException ex) {
@@ -1066,9 +1070,85 @@ public class ConnectionDB {
         try {
             PreparedStatement sql = conexion.prepareStatement("select SUM(f.valor_pagado) from facturas f, cuentas cu, clientes cl\n" +
                                                                 "where cl.tipo = ?::tipo_cliente and cl.cedula = cu.cedula_titular \n" +
-                                                                "and f.numero_cuenta = cu.identificador and to_char(cu.ultimo_pago, 'FMMonth') = ?");
+                                                                "and f.numero_cuenta = cu.identificador and to_char(f.fecha_limite_pago, 'FMMonth') = ?");
             sql.setString(1, tipo);
             sql.setString(2, mes);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    public int consultarTotalNumerosPlan(int plan){
+        int resultado = 0;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select count(l.numero) from lineas l, cuentas c  where plan = ? and l.numero = c.numero and c.estado ='activo';");
+            sql.setInt(1, plan);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    public ArrayList<String> obtenerCiudades(){
+        String ciudad = " ";
+        ArrayList<String> ciudades = new ArrayList<>();
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select distinct UPPER(ciudad) from clientes");
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                ciudad = rs.getString(1);
+                ciudades.add(ciudad);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ciudades;
+    }
+    
+    public int consultarTotalClientesCiudad(String ciudad){
+        int resultado = 0;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select count(cedula) from clientes c  where upper(ciudad) =?;");
+            sql.setString(1, ciudad);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    public int consultarClientesNuevos(String mes){
+        int resultado = 0;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select count(cedula) from clientes c where to_char(c.fecha_registro, 'FMMonth') = ? ; ");
+            sql.setString(1, mes);
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            if (rs.next()) {
+                resultado = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    public int consultarClientesViejos(String mes){
+        int resultado = 0;
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select count(c.cedula)  from clientes c where c.fecha_registro < ?::date;");
+            sql.setString(1, mes);
             ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
             if (rs.next()) {
                 resultado = rs.getInt(1);

@@ -41,6 +41,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         this.login = login;
         this.usuarioLogueado = conexion.getUsuarioOnline();
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(218, 234, 255));
         this.setIconImage(new ImageIcon(getClass().getResource("/vista/img/icono.png")).getImage());
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent arg0) {
@@ -81,19 +82,20 @@ public class menuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelSuperior = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         labelRol = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
+        buttonTerminarSesion = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         buttonUsuarios = new javax.swing.JButton();
         buttonReportes = new javax.swing.JButton();
         buttonFacturacion = new javax.swing.JButton();
         buttonClientes = new javax.swing.JButton();
         buttonPagos = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        buttonTerminarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menu principal");
@@ -107,31 +109,60 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelSuperior.setBackground(new java.awt.Color(149, 193, 255));
+        jPanelSuperior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Usuario:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 90, 40));
+        jPanelSuperior.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 40));
 
         labelUsuario.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        labelUsuario.setForeground(new java.awt.Color(0, 0, 0));
         labelUsuario.setText("jLabel2");
-        getContentPane().add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 200, 40));
+        jPanelSuperior.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 200, 40));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Rol:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 40, 40));
+        jPanelSuperior.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 40, 40));
 
         labelRol.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        labelRol.setForeground(new java.awt.Color(0, 0, 0));
         labelRol.setText("jLabel3");
-        getContentPane().add(labelRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 150, 40));
+        jPanelSuperior.add(labelRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 150, 40));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Fecha sesion:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 140, 40));
+        jPanelSuperior.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 140, 40));
 
         labelFecha.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        labelFecha.setForeground(new java.awt.Color(0, 0, 0));
         labelFecha.setText("jLabel4");
-        getContentPane().add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 250, 40));
+        jPanelSuperior.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 250, 40));
 
-        buttonUsuarios.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        buttonTerminarSesion.setBackground(new java.awt.Color(82, 155, 255));
+        buttonTerminarSesion.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        buttonTerminarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        buttonTerminarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Exit.png"))); // NOI18N
+        buttonTerminarSesion.setText("  Terminar sesion");
+        buttonTerminarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTerminarSesionActionPerformed(evt);
+            }
+        });
+        jPanelSuperior.add(buttonTerminarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, 240, 40));
+
+        getContentPane().add(jPanelSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 60));
+
+        jPanel2.setBackground(new java.awt.Color(149, 193, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonUsuarios.setBackground(new java.awt.Color(82, 155, 255));
+        buttonUsuarios.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        buttonUsuarios.setForeground(new java.awt.Color(0, 0, 0));
+        buttonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Users.png"))); // NOI18N
         buttonUsuarios.setText("Usuarios");
         buttonUsuarios.setEnabled(false);
         buttonUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -139,9 +170,12 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonUsuariosActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, 40));
+        jPanel2.add(buttonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 160, 40));
 
-        buttonReportes.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        buttonReportes.setBackground(new java.awt.Color(82, 155, 255));
+        buttonReportes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        buttonReportes.setForeground(new java.awt.Color(0, 0, 0));
+        buttonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Reports.png"))); // NOI18N
         buttonReportes.setText("Reportes");
         buttonReportes.setEnabled(false);
         buttonReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -149,14 +183,20 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonReportesActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 256, 120, 40));
+        jPanel2.add(buttonReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 178, 160, 40));
 
-        buttonFacturacion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        buttonFacturacion.setBackground(new java.awt.Color(82, 155, 255));
+        buttonFacturacion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        buttonFacturacion.setForeground(new java.awt.Color(0, 0, 0));
+        buttonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Billing.png"))); // NOI18N
         buttonFacturacion.setText("Facturacion");
         buttonFacturacion.setEnabled(false);
-        getContentPane().add(buttonFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 372, 120, 40));
+        jPanel2.add(buttonFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 160, 40));
 
-        buttonClientes.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        buttonClientes.setBackground(new java.awt.Color(82, 155, 255));
+        buttonClientes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        buttonClientes.setForeground(new java.awt.Color(0, 0, 0));
+        buttonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Clients.png"))); // NOI18N
         buttonClientes.setText("Clientes");
         buttonClientes.setEnabled(false);
         buttonClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +204,12 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonClientesActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 488, 120, 40));
+        jPanel2.add(buttonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 442, 160, 40));
 
-        buttonPagos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        buttonPagos.setBackground(new java.awt.Color(82, 155, 255));
+        buttonPagos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        buttonPagos.setForeground(new java.awt.Color(0, 0, 0));
+        buttonPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Payment.png"))); // NOI18N
         buttonPagos.setText("Pagos");
         buttonPagos.setEnabled(false);
         buttonPagos.addActionListener(new java.awt.event.ActionListener() {
@@ -174,19 +217,9 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonPagosActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 604, 120, 40));
+        jPanel2.add(buttonPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 574, 160, 40));
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 220, -1, -1));
-
-        buttonTerminarSesion.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        buttonTerminarSesion.setText("Terminar sesion");
-        buttonTerminarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonTerminarSesionActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonTerminarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1061, 0, 220, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 660));
 
         setSize(new java.awt.Dimension(1296, 759));
         setLocationRelativeTo(null);
@@ -313,7 +346,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelSuperior;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelRol;
     private javax.swing.JLabel labelUsuario;
