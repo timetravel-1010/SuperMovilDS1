@@ -168,7 +168,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonUsuariosActionPerformed(evt);
             }
         });
-        jPanel2.add(buttonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 160, 40));
+        jPanel2.add(buttonUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 40));
 
         buttonReportes.setBackground(new java.awt.Color(82, 155, 255));
         buttonReportes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -181,7 +181,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonReportesActionPerformed(evt);
             }
         });
-        jPanel2.add(buttonReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 178, 160, 40));
+        jPanel2.add(buttonReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 160, 40));
 
         buttonFacturacion.setBackground(new java.awt.Color(82, 155, 255));
         buttonFacturacion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -207,7 +207,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonClientesActionPerformed(evt);
             }
         });
-        jPanel2.add(buttonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 160, 40));
+        jPanel2.add(buttonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 160, 40));
 
         buttonPagos.setBackground(new java.awt.Color(82, 155, 255));
         buttonPagos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -220,7 +220,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonPagosActionPerformed(evt);
             }
         });
-        jPanel2.add(buttonPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 574, 160, 40));
+        jPanel2.add(buttonPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 160, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 660));
 
