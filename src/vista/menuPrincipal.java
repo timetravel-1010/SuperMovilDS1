@@ -2,7 +2,7 @@ package vista;
 
 import vista.usuarios.Login;
 import vista.usuarios.JPanelUsuarios;
-import vista.clientes.JPanelTablaPlanes;
+import vista.usuarios.JPanelTablaPlanes;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import controlador.ConnectionDB;

@@ -1,8 +1,6 @@
 package vista.usuarios;
 
 import javax.swing.JPanel;
-import vista.clientes.JPanelDatosPlanes;
-import vista.clientes.JPanelTablaPlanes;
 import vista.menuPrincipal;
 import vista.pagos.JPanelRegistrarPagos;
 

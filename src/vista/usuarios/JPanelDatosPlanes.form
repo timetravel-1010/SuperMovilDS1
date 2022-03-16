@@ -322,7 +322,6 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="jjss&#xf1;jsjlkdklddsjkfs&#xf1;flsfkjfklfjmklfmklfmklfmklfmfklmkflfklfkf"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="autoscrolls" type="boolean" value="false"/>
             <Property name="doubleBuffered" type="boolean" value="true"/>
