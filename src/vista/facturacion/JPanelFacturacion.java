@@ -4,16 +4,21 @@
  */
 package vista.facturacion;
 
+import vista.menuPrincipal;
+
 /**
  *
  * @author pc
  */
 public class JPanelFacturacion extends javax.swing.JPanel {
 
+    private menuPrincipal main;
+    
     /**
      * Creates new form JPanelFacturacion
      */
-    public JPanelFacturacion() {
+    public JPanelFacturacion(menuPrincipal main) {
+        this.main = main;
         initComponents();
     }
 

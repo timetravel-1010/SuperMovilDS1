@@ -469,65 +469,65 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonGenerar3jButtonEnviarActionPerformed
 
     private void jButtonEnviarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarjButtonEnviarActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            
             //Se capturan los datos del cliente para registrarlo o actualizarlo
-        String cedula = jTextCedula.getText();
-        String nombre = jTextNombre.getText();
-        String telefono = jTextTelefono.getText();
-        String direccion = jTextDireccion.getText();
-        String ciudad = jTextCiudad.getText();
-        String tipo = jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex());
-                boolean permiso = true;
-                if(!jTextNumero1.getText().isBlank()){//Si el campo de linea 1 no esta vacio, quiere decir que s eesta tratando de usar
-                    if(jTextNumero1.getText().length()==10){//Se valida que sea un numero valido
-                        if(conexion.validarLinea(jTextNumero1.getText())){//El numero ya existe
-                            JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #1 ya se encuentra en uso!",
-                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
-                            permiso = false;
-                        }
-                    } else {//Es un numero invalido
-                        JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #1!",
-                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+            String cedula = jTextCedula.getText();
+            String nombre = jTextNombre.getText();
+            String telefono = jTextTelefono.getText();
+            String direccion = jTextDireccion.getText();
+            String ciudad = jTextCiudad.getText();
+            String tipo = jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex());
+            boolean permiso = true;
+            if(!jTextNumero1.getText().isBlank()){//Si el campo de linea 1 no esta vacio, quiere decir que s eesta tratando de usar
+                if(jTextNumero1.getText().length()==10){//Se valida que sea un numero valido
+                    if(conexion.validarLinea(jTextNumero1.getText())){//El numero ya existe
+                        JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #1 ya se encuentra en uso!",
+                                "Numero encontrado", JOptionPane.ERROR_MESSAGE);
                         permiso = false;
                     }
-                }
-                
-                if(!jTextNumero2.getText().isBlank()){//Si el campo de linea 2 no esta vacio, quiere decir que s eesta tratando de usar
-                    if(jTextNumero2.getText().length()==10){//Se valida que sea un numero valido
-                        if(conexion.validarLinea(jTextNumero2.getText())){//El numero ya existe
-                            JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #2 ya se encuentra en uso!",
-                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
-                            permiso = false;
-                        }
-                    } else {//Es un numero invalido
-                        JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #2!",
+                } else {//Es un numero invalido
+                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #1!",
                             "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                    permiso = false;
+                }
+            }
+            
+            if(!jTextNumero2.getText().isBlank()){//Si el campo de linea 2 no esta vacio, quiere decir que s eesta tratando de usar
+                if(jTextNumero2.getText().length()==10){//Se valida que sea un numero valido
+                    if(conexion.validarLinea(jTextNumero2.getText())){//El numero ya existe
+                        JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #2 ya se encuentra en uso!",
+                                "Numero encontrado", JOptionPane.ERROR_MESSAGE);
                         permiso = false;
                     }
-                }
-                
-                if(!jTextNumero3.getText().isBlank()){//Si el campo de linea 3 no esta vacio, quiere decir que s eesta tratando de usar
-                    if(jTextNumero3.getText().length()==10){//Se valida que sea un numero valido
-                        if(conexion.validarLinea(jTextNumero3.getText())){//El numero ya existe
-                            JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #3 ya se encuentra en uso!",
-                            "Numero encontrado", JOptionPane.ERROR_MESSAGE);
-                            permiso = false;
-                        }
-                    } else {//Es un numero invalido
-                        JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #3!",
+                } else {//Es un numero invalido
+                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #2!",
                             "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                    permiso = false;
+                }
+            }
+            
+            if(!jTextNumero3.getText().isBlank()){//Si el campo de linea 3 no esta vacio, quiere decir que s eesta tratando de usar
+                if(jTextNumero3.getText().length()==10){//Se valida que sea un numero valido
+                    if(conexion.validarLinea(jTextNumero3.getText())){//El numero ya existe
+                        JOptionPane.showMessageDialog(null, "¡El numero ingresado en la linea #3 ya se encuentra en uso!",
+                                "Numero encontrado", JOptionPane.ERROR_MESSAGE);
                         permiso = false;
                     }
+                } else {//Es un numero invalido
+                    JOptionPane.showMessageDialog(null, "¡Ingrese un numero valido para la linea #3!",
+                            "Numero invalido", JOptionPane.ERROR_MESSAGE);
+                    permiso = false;
                 }
-                
-                if(jTextNumero1.getText().isBlank() && jTextNumero2.getText().isBlank() && jTextNumero3.getText().isBlank()){//Las tres lineas estan vacias
-                    JOptionPane.showMessageDialog(null, "¡Para poder registrar a un cliente, debe asignarle al menos un numero!",
-                            "Ingrese un numero", JOptionPane.ERROR_MESSAGE);
-                            permiso = false;
-                }
-                if(permiso) try {
-                    this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo); //Si paso la validacion, se procede a registrar
+            }
+            
+            if(jTextNumero1.getText().isBlank() && jTextNumero2.getText().isBlank() && jTextNumero3.getText().isBlank()){//Las tres lineas estan vacias
+                JOptionPane.showMessageDialog(null, "¡Para poder registrar a un cliente, debe asignarle al menos un numero!",
+                        "Ingrese un numero", JOptionPane.ERROR_MESSAGE);
+                permiso = false;
+            }
+            if(permiso) this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo); //Si paso la validacion, se procede a registrar
         } catch (ParseException ex) {
             Logger.getLogger(JPanelRegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -615,7 +615,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         }
         
         if(jTextTelefono.getText().length()<7){
-            JOptionPane.showMessageDialog(null, "¡Ingrese una numero telefonico valido!",
+            JOptionPane.showMessageDialog(null, "¡Ingrese un numero telefonico valido!",
                             "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
             exito = false;
         }

@@ -44,6 +44,7 @@ public class JPanelClientes extends javax.swing.JPanel {
         jButtonRegistrarCliente = new javax.swing.JButton();
         jButtonAdministrarClientes = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
+        jButtonRegistrarCliente1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(1110, 655));
@@ -52,18 +53,16 @@ public class JPanelClientes extends javax.swing.JPanel {
 
         jButtonRegistrarCliente.setBackground(new java.awt.Color(149, 193, 255));
         jButtonRegistrarCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButtonRegistrarCliente.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonRegistrarCliente.setText("Registrar Cliente");
+        jButtonRegistrarCliente.setText("Cargar consumo");
         jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarClienteActionPerformed(evt);
+                cargarConsumo(evt);
             }
         });
-        add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 200, 30));
+        add(jButtonRegistrarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 200, 30));
 
         jButtonAdministrarClientes.setBackground(new java.awt.Color(149, 193, 255));
         jButtonAdministrarClientes.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButtonAdministrarClientes.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAdministrarClientes.setText("Administrar Clientes");
         jButtonAdministrarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +73,6 @@ public class JPanelClientes extends javax.swing.JPanel {
 
         jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
         jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,15 +80,26 @@ public class JPanelClientes extends javax.swing.JPanel {
             }
         });
         add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 100, 30));
+
+        jButtonRegistrarCliente1.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonRegistrarCliente1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonRegistrarCliente1.setText("Registrar Cliente");
+        jButtonRegistrarCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarCliente1ActionPerformed(evt);
+            }
+        });
+        add(jButtonRegistrarCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 200, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
+    private void cargarConsumo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarConsumo
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarCliente(this));
+        this.pintarPanel(new JPanelConsumo (this));
         menup.refrescarGUI();
+        //this.refrescarGUI();
         this.enableButtons(false);
-    }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
+    }//GEN-LAST:event_cargarConsumo
 
     private void jButtonAdministrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdministrarClientesActionPerformed
         // TODO add your handling code here:
@@ -108,6 +117,10 @@ public class JPanelClientes extends javax.swing.JPanel {
         this.menup.eliminarPanelActual();
         this.menup.refrescarGUI();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void jButtonRegistrarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRegistrarCliente1ActionPerformed
 
     public void pintarPanel(JPanel panel){//Metodo que recibe como parametro un panel y lo pinta en el espacio disponible
         panelActual=panel;
@@ -140,6 +153,7 @@ public class JPanelClientes extends javax.swing.JPanel {
     private javax.swing.JButton jButtonAdministrarClientes;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonRegistrarCliente;
+    private javax.swing.JButton jButtonRegistrarCliente1;
     // End of variables declaration//GEN-END:variables
 
 }

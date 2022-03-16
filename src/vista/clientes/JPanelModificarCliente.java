@@ -95,6 +95,7 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         jLabelNombre.setText("Nombre:");
         add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 120, 30));
 
+
         jTextNombre.setBackground(new java.awt.Color(149, 193, 255));
         jTextNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jTextNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -131,6 +132,7 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         jLabelCiudad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelCiudad.setText("Ciudad:");
         add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 120, 30));
+
 
         jTextCiudad.setBackground(new java.awt.Color(149, 193, 255));
         jTextCiudad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -268,6 +270,14 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
         padreModificar.pintarPanel(panelAux, 100, 20);
         padreModificar.enableMRS(false, false, false, false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextNombreActionPerformed
+
+    private void jTextCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCiudadActionPerformed
 
     private boolean validarActualizarCliente(){
         boolean exito = true;

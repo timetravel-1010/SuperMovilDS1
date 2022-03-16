@@ -4,6 +4,7 @@
  */
 package vista.pagos;
 
+import controlador.ConnectionDB;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,12 +19,19 @@ import javax.swing.JOptionPane;
 public class JPanelPagosBancos extends javax.swing.JPanel {
     
     private JPanelPagos padre;
+    private FileReader archivos;
+    private ConnectionDB db;
+    private String ruta="";
     /**
      * Creates new form JPanelPagosBancos
      */
     public JPanelPagosBancos(JPanelPagos papa) {
         this.padre = papa;
         initComponents();
+      //  archivos = null;
+        db = new ConnectionDB();
+       
+         
     }
 
     /**
@@ -108,13 +116,13 @@ public class JPanelPagosBancos extends javax.swing.JPanel {
          file.showOpenDialog(this);
          /**abrimos el archivo seleccionado*/
          File abre=file.getSelectedFile();
-
+         this.ruta=abre.getAbsolutePath();
          /**recorremos el archivo, lo leemos para plasmarlo
          *en el area de texto*/
          if(abre!=null)
          {     
             this.jButtonCargar.setEnabled(true);
-            FileReader archivos=new FileReader(abre);
+            this.archivos=new FileReader(abre);
             BufferedReader lee=new BufferedReader(archivos);
             while((aux=lee.readLine())!=null)
             {
@@ -135,8 +143,12 @@ public class JPanelPagosBancos extends javax.swing.JPanel {
     private void jButtonCargarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarjButtonEnviarActionPerformed
         // TODO add your handling code here:
         //Se capturan los datos del cliente para registrarlo o actualizarlo
+        db.updateValorPagoCuentaM(ruta);
+        db.updateUltimoPagoCuentaM(ruta);
         this.padre.eliminarPanel();
-        this.padre.enableButtons(true);
+        this.padre.enableButtons(true);       
+        
+       
     }//GEN-LAST:event_jButtonCargarjButtonEnviarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed

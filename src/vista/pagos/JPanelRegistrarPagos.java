@@ -129,7 +129,6 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
         
         if (pagoRealizado == 0) {
             valorPagar = db.consultarValorPago(numeroFactura);
-            System.out.println(valorPagar);
             if (valorPagar.equals(ValorPagado)){
                 resultado = db.registrarPago(numeroFactura, ValorPagado);
 
@@ -150,15 +149,20 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
                     padreAdmin.enableButtons(true);
                 }
 
-                System.out.println("Yeaaah");
             } else {
-                JOptionPane.showMessageDialog(null, "¡El pago de la factura es incorrecto! El usuario debe pagar: "+ valorPagar,
+                if (!db.consultarFactura(numeroFactura)){
+                    JOptionPane.showMessageDialog(null, "¡La factura no existe!",
                                 "Registro", JOptionPane.ERROR_MESSAGE);
-            }
-            
+                } else {
+                    JOptionPane.showMessageDialog(null, "¡El pago de la factura es incorrecto! El usuario debe pagar: "+ valorPagar,
+                                "Registro", JOptionPane.ERROR_MESSAGE);
+                }
+            }            
         } else {
-            JOptionPane.showMessageDialog(null, "¡El usuario ya pagó la factura ingresada!",
+
+                JOptionPane.showMessageDialog(null, "¡El usuario ya pagó la factura ingresada!",
                                 "Registro", JOptionPane.ERROR_MESSAGE);
+            
             padreAdmin.eliminarPanel();
             padreAdmin.enableButtons(true);
         }

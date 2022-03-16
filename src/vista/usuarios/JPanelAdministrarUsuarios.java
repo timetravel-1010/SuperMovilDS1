@@ -208,14 +208,14 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
         String cedula = tabla.indexTabla();
         Usuario user = db.getUsuario2(cedula);
         usuario.titulo.setText("Modificar");
-        usuario.jTextCedula2.setText(user.getCedula());
-        usuario.jTextNombre2.setText(user.getNombre());
-        usuario.jTextDireccion2.setText(user.getDireccion());
-        usuario.jTextPassword2.setText(user.getPasswordd());
+        usuario.jTextCedula.setText(user.getCedula());
+        usuario.jTextNombre.setText(user.getNombre());
+        usuario.jTextDireccion.setText(user.getDireccion());
+        usuario.jTextPassword.setText(user.getPasswordd());
         usuario.jComboBoxRol.setSelectedItem(user.getRol());
-        usuario.jTextTelefono2.setText(user.getTelefono());
-        usuario.jTextUsername2.setText(user.getNombre_usuario());
-        usuario.jTextCedula2.setEditable(false);
+        usuario.jTextTelefono.setText(user.getTelefono());
+        usuario.jTextUsername.setText(user.getNombre_usuario());
+        usuario.jTextCedula.setEditable(false);
         if (flag)this.eliminarTabla();
         
         this.pintarPanel(usuario, 135, 75);

@@ -1,8 +1,10 @@
 package vista.pagos;
 
+import controlador.ConnectionDB;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import vista.usuarios.Login;
 
 /**
@@ -19,13 +23,12 @@ import vista.usuarios.Login;
  */
 public class PagosBancos {
     
-    public ArrayList<String>leerDeArchivo(){
+    public ArrayList<String>leerDeArchivo(String ruta){
         
         ArrayList<String> lecturaLinea = new ArrayList<>();
        
         try{
-            BufferedReader bf = new BufferedReader(new FileReader("/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/vista/pagos/bancoA.txt"));
-            //BufferedReader bf = new BufferedReader(new FileReader("/pagos/bancoA.txt"));
+            BufferedReader bf = new BufferedReader(new FileReader(ruta));
             String read;
             while((read = bf.readLine()) != null){
                 StringTokenizer tokens=new StringTokenizer(read);
@@ -69,8 +72,7 @@ public class PagosBancos {
             System.out.print("no se encontro archivo");
         }
     }
-    
-   
+
 }
 
 

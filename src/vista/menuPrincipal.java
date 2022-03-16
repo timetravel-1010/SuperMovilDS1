@@ -2,7 +2,7 @@ package vista;
 
 import vista.usuarios.Login;
 import vista.usuarios.JPanelUsuarios;
-import vista.clientes.JPanelTablaPlanes;
+import vista.usuarios.JPanelTablaPlanes;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import controlador.ConnectionDB;
@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import vista.clientes.JPanelClientes;
+import vista.facturacion.JPanelFacturacion;
 //import vista.clientes.JPanelClientes;
 //import vista.clientes.JPanelPlanes;
 import vista.pagos.JPanelPagos;
@@ -191,6 +192,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         buttonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Billing.png"))); // NOI18N
         buttonFacturacion.setText("Facturacion");
         buttonFacturacion.setEnabled(false);
+        buttonFacturacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFacturacionActionPerformed(evt);
+            }
+        });
         jPanel2.add(buttonFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 160, 40));
 
         buttonClientes.setBackground(new java.awt.Color(82, 155, 255));
@@ -262,6 +268,12 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
                 // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
+
+    private void buttonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFacturacionActionPerformed
+        // TODO add your handling code here:
+        this.pintarPanelActual(new JPanelFacturacion(this));
+        this.buttonFacturacion.setEnabled(false);
+    }//GEN-LAST:event_buttonFacturacionActionPerformed
     
     public void pintarPanelActual(JPanel panel){
         panelActual=panel;

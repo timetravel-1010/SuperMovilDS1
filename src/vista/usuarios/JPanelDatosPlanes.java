@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista.clientes;
+package vista.usuarios;
 
 import controlador.ConnectionDB;
 import javax.swing.JOptionPane;
@@ -65,11 +65,12 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         jTextFieldPrecio = new javax.swing.JTextField();
         jTextFieldMinutos = new javax.swing.JTextField();
         jTextFieldMensajes = new javax.swing.JTextField();
-        jTextFieldDescripcion = new javax.swing.JTextField();
         jTextFieldMegas = new javax.swing.JTextField();
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabelNombrePlan1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaDescripcion = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(218, 234, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,23 +142,6 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         jTextFieldMensajes.setForeground(new java.awt.Color(0, 0, 0));
         add(jTextFieldMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 261, 230, 30));
 
-        jTextFieldDescripcion.setBackground(new java.awt.Color(149, 193, 255));
-        jTextFieldDescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jTextFieldDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        jTextFieldDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextFieldDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDescripcionActionPerformed(evt);
-            }
-        });
-        jTextFieldDescripcion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jTextFieldDescripcionPropertyChange(evt);
-            }
-        });
-        add(jTextFieldDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 308, 239, 99));
-        jTextFieldDescripcion.getAccessibleContext().setAccessibleName("");
-
         jTextFieldMegas.setBackground(new java.awt.Color(149, 193, 255));
         jTextFieldMegas.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jTextFieldMegas.setForeground(new java.awt.Color(0, 0, 0));
@@ -190,6 +174,17 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         jLabelNombrePlan1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelNombrePlan1.setText("Administrador de planes:");
         add(jLabelNombrePlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 210, 30));
+
+        jTextAreaDescripcion.setBackground(new java.awt.Color(149, 193, 255));
+        jTextAreaDescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextAreaDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.setToolTipText("");
+        jTextAreaDescripcion.setAutoscrolls(false);
+        jTextAreaDescripcion.setDoubleBuffered(true);
+        jScrollPane1.setViewportView(jTextAreaDescripcion);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 230, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecioActionPerformed
@@ -202,8 +197,10 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
 
     private void jButtonEnviarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarjButtonEnviarActionPerformed
         // TODO add your handling code here:
-        String nombre = jTextFieldNombrePlan.getText();
-        String descripcion = jTextFieldDescripcion.getText();
+        
+        if (validarRegistroCliente()) {
+                    String nombre = jTextFieldNombrePlan.getText();
+        String descripcion = jTextAreaDescripcion.getText();
         Integer precio = Integer.parseInt(jTextFieldPrecio.getText());
         Integer minutos = Integer.parseInt(jTextFieldMinutos.getText());
         Integer megas = Integer.parseInt(jTextFieldMegas.getText());
@@ -226,7 +223,7 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
                     "Actualización", JOptionPane.ERROR_MESSAGE);
             }
             padrePlan.auxUpdateGui();
-        } else {
+            } else {
             resultado = db.registrarPlanes(nombre, descripcion, precio, minutos, megas, mensajes);
 
             if(resultado){
@@ -240,17 +237,11 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
             }
             padreAdmin.eliminarPanel();
             padreAdmin.enableButtons(true);
+            }
+            
         }
 
     }//GEN-LAST:event_jButtonEnviarjButtonEnviarActionPerformed
-
-    private void jTextFieldDescripcionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDescripcionPropertyChange
-
-    private void jTextFieldDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDescripcionActionPerformed
 
     private void jButtonCancelarjButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarjButtonEnviarActionPerformed
         // TODO add your handling code here:
@@ -263,6 +254,47 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButtonCancelarjButtonEnviarActionPerformed
 
+    private boolean validarRegistroCliente(){
+        boolean exito = true;
+        
+        if(jTextAreaDescripcion.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una descripción valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextFieldNombrePlan.getText().isBlank()){
+            JOptionPane.showMessageDialog(null, "¡Ingrese un nombre valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextFieldMegas.getText().length()<1){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una cantidad de megas valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextFieldMensajes.getText().length()<1){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una cantidad de mensajes valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextFieldMinutos.getText().length()<1){
+            JOptionPane.showMessageDialog(null, "¡Ingrese una cantidad de minutos valida!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        if(jTextFieldPrecio.getText().length()<3){
+            JOptionPane.showMessageDialog(null, "¡Ingrese un precio valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            exito = false;
+        }
+        
+        return exito;
+    }
     
     
 
@@ -276,7 +308,8 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelNombrePlan;
     private javax.swing.JLabel jLabelNombrePlan1;
     private javax.swing.JLabel jLabelPrecio;
-    public javax.swing.JTextField jTextFieldDescripcion;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextArea jTextAreaDescripcion;
     public javax.swing.JTextField jTextFieldMegas;
     public javax.swing.JTextField jTextFieldMensajes;
     public javax.swing.JTextField jTextFieldMinutos;

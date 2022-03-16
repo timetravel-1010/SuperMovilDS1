@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista.clientes;
+package vista.usuarios;
 
+import vista.usuarios.JPanelDatosPlanes;
 import controlador.ConnectionDB;
 import java.util.List;
 import javax.swing.JPanel;
@@ -141,7 +142,7 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
         plan.jTextFieldMensajes.setText(datosPlan.getMensajes());
         plan.jTextFieldMegas.setText(datosPlan.getMegas());
         plan.jTextFieldPrecio.setText(datosPlan.getPrecio());
-        plan.jTextFieldDescripcion.setText(datosPlan.getDescripcion());
+        plan.jTextAreaDescripcion.setText(datosPlan.getDescripcion());
         //this.eliminarPanel();
         padrePlan.eliminarTablaPlanes();
         padrePlan.pintarPanel(plan, 130, 100);
