@@ -105,6 +105,50 @@ public class ConnectionDB {
         return clientes;   
     }
     
+    public List<Cliente> obtenerClientesCorreo() {
+        List<Cliente> clientes = new ArrayList<>(); // para guardar los datos en un array.
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM Clientes WHERE modo_entrega_factura = 'email'");
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                Cliente unCliente = new Cliente(rs.getString(1),
+                                                rs.getString(2),
+                                                rs.getString(3),
+                                                rs.getString(4),
+                                                rs.getString(5),
+                                                TipoCliente.valueOf(rs.getString(6)));
+                clientes.add(unCliente);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return clientes;   
+    }
+    
+    public List<Cliente> obtenerClientesDireccion() {
+        List<Cliente> clientes = new ArrayList<>(); // para guardar los datos en un array.
+        
+        try {
+            PreparedStatement sql = conexion.prepareStatement("SELECT * FROM Clientes WHERE modo_entrega_factura = 'direccion'");
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            
+            while (rs.next()){ // guardar los datos en la lista de usuarios.
+                Cliente unCliente = new Cliente(rs.getString(1),
+                                                rs.getString(2),
+                                                rs.getString(3),
+                                                rs.getString(4),
+                                                rs.getString(5),
+                                                TipoCliente.valueOf(rs.getString(6)));
+                clientes.add(unCliente);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+        return clientes;   
+    }
+    
     public ArrayList<String[]> obtenerClientesPagoAtrasado() {
     	ArrayList<String[]> tabla = new ArrayList<>();
         try {
@@ -363,16 +407,18 @@ public class ConnectionDB {
         }
     }    
     
-    public boolean registrarClientes(String cedula, String nombre, String telefono,
-                                  String direccion, String ciudad, String tipo) throws ParseException{
+    public boolean registrarClientes(String cedula, String nombre, String telefono, String direccion, String ciudad, String email, String tipo, String modoEntregaFactura) throws ParseException{
         int filasAfectadas = 0;
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         Date fecha =  formato.parse(fechaPago);
         Date fechaSQL = new java.sql.Date(fecha.getTime());
+        
+        modoEntregaFactura = modoEntregaFactura.equals("Email") ? "email" : "direccion";
+        
             try {
 
-            PreparedStatement sql = conexion.prepareStatement("INSERT INTO clientes VALUES(?,?,?,?,?,?::tipo_cliente,?)");
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO clientes VALUES(?,?,?,?,?,?::tipo_cliente,?,?,?::modo_entrega)");
 
             sql.setString(1, cedula);
             sql.setString(2, nombre);
@@ -381,6 +427,8 @@ public class ConnectionDB {
             sql.setString(5, ciudad);
             sql.setString(6, tipo);
             sql.setDate(7, (java.sql.Date) fechaSQL);
+            sql.setString(8, email);
+            sql.setString(9, modoEntregaFactura);
 
             filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
             } catch (SQLException ex) {

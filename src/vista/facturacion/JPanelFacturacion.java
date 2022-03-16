@@ -4,6 +4,13 @@
  */
 package vista.facturacion;
 
+import controlador.ConnectionDB;
+import java.awt.Dimension;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import modelo.Cliente;
+import vista.clientes.JPanelTablaClientes;
 import vista.menuPrincipal;
 
 /**
@@ -13,13 +20,18 @@ import vista.menuPrincipal;
 public class JPanelFacturacion extends javax.swing.JPanel {
 
     private menuPrincipal main;
+    private JPanelTablaClientes tablaClientes;
+    private ConnectionDB db;
     
     /**
      * Creates new form JPanelFacturacion
      */
     public JPanelFacturacion(menuPrincipal main) {
         this.main = main;
+        this.tablaClientes = new JPanelTablaClientes();
+        this.db = new ConnectionDB();
         initComponents();
+        mostrarBotonesFacturacion(false);
     }
 
     /**
@@ -32,8 +44,14 @@ public class JPanelFacturacion extends javax.swing.JPanel {
     private void initComponents() {
 
         genFacturacionBtn = new javax.swing.JButton();
+        facturacionBtn = new javax.swing.JButton();
+        labelFiltrar = new javax.swing.JLabel();
+        comboTipoEntrega = new javax.swing.JComboBox<>();
         enviarFacturacionBtn = new javax.swing.JButton();
+        enviarATodosBtn = new javax.swing.JButton();
 
+        setMinimumSize(new java.awt.Dimension(1256, 680));
+        setPreferredSize(new java.awt.Dimension(1256, 680));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         genFacturacionBtn.setText("Generar Facturación");
@@ -42,28 +60,127 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 genFacturacionBtnActionPerformed(evt);
             }
         });
-        add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
+        add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
-        enviarFacturacionBtn.setText("Enviar Facturación");
+        facturacionBtn.setText("Facturación");
+        facturacionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facturacionBtnActionPerformed(evt);
+            }
+        });
+        add(facturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
+
+        labelFiltrar.setText("Filtrar por:");
+        add(labelFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+
+        comboTipoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Email", "De Manera Fisica" }));
+        comboTipoEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoEntregaActionPerformed(evt);
+            }
+        });
+        add(comboTipoEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        enviarFacturacionBtn.setText("Enviar Facturacion");
         enviarFacturacionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enviarFacturacionBtnActionPerformed(evt);
             }
         });
-        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
+        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 110, -1, -1));
+
+        enviarATodosBtn.setText("Enviar A Todos");
+        enviarATodosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarATodosBtnActionPerformed(evt);
+            }
+        });
+        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void genFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFacturacionBtnActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_genFacturacionBtnActionPerformed
+
+    private void pintarPanel(JPanel panel) {
+        Dimension dimTabla = panel.getPreferredSize();
+        add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, dimTabla.width, dimTabla.height));
+        this.refrescarGUI();
+    }
+    
+    private void pintarPanel() {
+        //Dimension dimTabla = panelActual.getPreferredSize();
+        //add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, dimTabla.width, dimTabla.height));
+        this.refrescarGUI();
+    }
+    
+    public void agregarTodosCorreo(){
+        List<Cliente> lista = db.obtenerClientesCorreo();
+        tablaClientes.agregarTodos(lista);
+        this.refrescarGUI();
+    }
+    
+    public void agregarTodosDireccion(){
+        List<Cliente> lista = db.obtenerClientesDireccion();
+        tablaClientes.agregarTodos(lista);
+        this.refrescarGUI();
+    }
+    
+    public void refrescarGUI() {
+        this.revalidate();
+        this.repaint();
+    }
+    
+    private void mostrarBotonesFacturacion(boolean b) {
+        this.labelFiltrar.setVisible(b);
+        this.comboTipoEntrega.setVisible(b);
+        this.enviarFacturacionBtn.setVisible(b);
+    }
+    
+    private void facturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturacionBtnActionPerformed
+        // TODO add your handling code here:
+        pintarPanel(tablaClientes);
+        mostrarBotonesFacturacion(true);
+        agregarTodosCorreo();
+    }//GEN-LAST:event_facturacionBtnActionPerformed
+
+    private void comboTipoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEntregaActionPerformed
+        // TODO add your handling code here:
+        int modoEntrega = comboTipoEntrega.getSelectedIndex(); // 0 para email, 1 para direccion.
+        if (modoEntrega == 0) {
+            agregarTodosCorreo();
+            System.out.println("Entra1");
+        } else {
+            agregarTodosDireccion();
+            System.out.println("Entra2");
+        }
+    }//GEN-LAST:event_comboTipoEntregaActionPerformed
 
     private void enviarFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarFacturacionBtnActionPerformed
         // TODO add your handling code here:
+        // mostrar mensaje diciendo que se envio la facturacion.
+        // pendiente validar que se haya seleccionado una fila de la tabla antes
+        
+        JOptionPane.showMessageDialog(null, "¡Se ha enviado la facturacion exitosamente!",
+                        "Envio exitoso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_enviarFacturacionBtnActionPerformed
+
+    private void enviarATodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarATodosBtnActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "¡Se ha enviado la facturacion exitosamente!",
+                        "Envio exitoso", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_enviarATodosBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboTipoEntrega;
+    private javax.swing.JButton enviarATodosBtn;
     private javax.swing.JButton enviarFacturacionBtn;
+    private javax.swing.JButton facturacionBtn;
     private javax.swing.JButton genFacturacionBtn;
+    private javax.swing.JLabel labelFiltrar;
     // End of variables declaration//GEN-END:variables
+
+
 }

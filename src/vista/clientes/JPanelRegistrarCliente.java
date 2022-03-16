@@ -81,6 +81,10 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         jButtonGenerar3 = new javax.swing.JButton();
         jButtonEnviar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jTextCorreo = new javax.swing.JTextField();
+        jLabelDireccion1 = new javax.swing.JLabel();
+        jLabelDireccion2 = new javax.swing.JLabel();
+        jComboBoxModoEntrega = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(1110, 600));
@@ -106,7 +110,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextCiudadKeyTyped(evt);
             }
         });
-        add(jTextCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 30));
+        add(jTextCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 230, 30));
 
         jTextDireccion.setBackground(new java.awt.Color(149, 193, 255));
         jTextDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -116,7 +120,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextDireccionKeyTyped(evt);
             }
         });
-        add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 230, 30));
+        add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 30));
 
         jTextTelefono.setBackground(new java.awt.Color(149, 193, 255));
         jTextTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -131,7 +135,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextTelefonoKeyTyped(evt);
             }
         });
-        add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 230, 30));
+        add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 230, 30));
 
         jTextNombre.setBackground(new java.awt.Color(149, 193, 255));
         jTextNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -141,7 +145,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextNombreKeyTyped(evt);
             }
         });
-        add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 230, 30));
+        add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 230, 30));
 
         jTextCedula.setBackground(new java.awt.Color(149, 193, 255));
         jTextCedula.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -156,48 +160,48 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextCedulaKeyTyped(evt);
             }
         });
-        add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, 30));
+        add(jTextCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 230, 30));
 
         jLabelCedula.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelCedula.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCedula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelCedula.setText("Identificacion:");
-        add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 200, 30));
+        add(jLabelCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 200, 30));
 
         jLabelNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelNombre.setText("Nombre:");
-        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 30));
+        add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, 30));
 
         jLabelTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTelefono.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelTelefono.setText("Telefono:");
-        add(jLabelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 200, 30));
+        add(jLabelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 200, 30));
 
         jLabelDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelDireccion.setForeground(new java.awt.Color(0, 0, 0));
         jLabelDireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelDireccion.setText("Direccion:");
-        add(jLabelDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 200, 30));
+        add(jLabelDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 200, 30));
 
         jLabelCiudad.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelCiudad.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCiudad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelCiudad.setText("Ciudad:");
-        add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 200, 30));
+        add(jLabelCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 200, 30));
 
         jLabelTipo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelTipo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelTipo.setText("Tipo:");
-        add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 200, 30));
+        add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 200, 30));
 
         jLabelTituloIzquierdo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelTituloIzquierdo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTituloIzquierdo.setText("Datos basicos del cliente:");
-        add(jLabelTituloIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 210, 30));
+        add(jLabelTituloIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 210, 30));
 
         jComboBoxTipo.setBackground(new java.awt.Color(149, 193, 255));
         jComboBoxTipo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -208,7 +212,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jComboBoxTipoActionPerformed(evt);
             }
         });
-        add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 231, 30));
+        add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 231, 30));
 
         jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
         jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -224,13 +228,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         jLabelTituloDerecho.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelTituloDerecho.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTituloDerecho.setText("Asignacion de numeros:");
-        add(jLabelTituloDerecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 220, 30));
+        add(jLabelTituloDerecho, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 220, 30));
 
         jLabelNumero1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelNumero1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNumero1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelNumero1.setText("Numero de telefono 1:");
-        add(jLabelNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 200, 30));
+        add(jLabelNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 200, 30));
 
         jTextNumero1.setBackground(new java.awt.Color(149, 193, 255));
         jTextNumero1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -245,13 +249,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextNumero1KeyTyped(evt);
             }
         });
-        add(jTextNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 110, 200, 30));
+        add(jTextNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 200, 30));
 
         jLabelNumero2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelNumero2.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNumero2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelNumero2.setText("Numero de telefono 2:");
-        add(jLabelNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 200, 30));
+        add(jLabelNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 200, 30));
 
         jTextNumero2.setBackground(new java.awt.Color(149, 193, 255));
         jTextNumero2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -266,13 +270,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextNumero2KeyTyped(evt);
             }
         });
-        add(jTextNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 230, 200, 30));
+        add(jTextNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 190, 200, 30));
 
         jLabelNumero3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelNumero3.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNumero3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelNumero3.setText("Numero de telefono 3:");
-        add(jLabelNumero3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 200, 30));
+        add(jLabelNumero3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 200, 30));
 
         jTextNumero3.setBackground(new java.awt.Color(149, 193, 255));
         jTextNumero3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -287,13 +291,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jTextNumero3KeyTyped(evt);
             }
         });
-        add(jTextNumero3, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 350, 200, 30));
+        add(jTextNumero3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, 200, 30));
 
         jLabelPlan1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelPlan1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelPlan1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelPlan1.setText("Plan Pospago:");
-        add(jLabelPlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 200, 30));
+        add(jLabelPlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 200, 30));
 
         jComboBoxPlan1.setBackground(new java.awt.Color(149, 193, 255));
         jComboBoxPlan1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -303,13 +307,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jComboBoxPlan1ActionPerformed(evt);
             }
         });
-        add(jComboBoxPlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 170, 315, 30));
+        add(jComboBoxPlan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 315, 30));
 
         jLabelPlan2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelPlan2.setForeground(new java.awt.Color(0, 0, 0));
         jLabelPlan2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelPlan2.setText("Plan Pospago:");
-        add(jLabelPlan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 200, 30));
+        add(jLabelPlan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 200, 30));
 
         jComboBoxPlan2.setBackground(new java.awt.Color(149, 193, 255));
         jComboBoxPlan2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -319,13 +323,13 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jComboBoxPlan2ActionPerformed(evt);
             }
         });
-        add(jComboBoxPlan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 290, 315, 30));
+        add(jComboBoxPlan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 250, 315, 30));
 
         jLabelPlan3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabelPlan3.setForeground(new java.awt.Color(0, 0, 0));
         jLabelPlan3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelPlan3.setText("Plan Pospago:");
-        add(jLabelPlan3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 200, 30));
+        add(jLabelPlan3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 200, 30));
 
         jComboBoxPlan3.setBackground(new java.awt.Color(149, 193, 255));
         jComboBoxPlan3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -335,7 +339,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jComboBoxPlan3ActionPerformed(evt);
             }
         });
-        add(jComboBoxPlan3, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 410, 315, 30));
+        add(jComboBoxPlan3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 315, 30));
 
         jButtonGenerar1.setBackground(new java.awt.Color(149, 193, 255));
         jButtonGenerar1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -391,6 +395,39 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
             }
         });
         add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 120, 30));
+
+        jTextCorreo.setBackground(new java.awt.Color(149, 193, 255));
+        jTextCorreo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jTextCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        jTextCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextCorreoKeyTyped(evt);
+            }
+        });
+        add(jTextCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 230, 30));
+
+        jLabelDireccion1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelDireccion1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDireccion1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelDireccion1.setText("Email:");
+        add(jLabelDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 200, 30));
+
+        jLabelDireccion2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabelDireccion2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDireccion2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelDireccion2.setText("Modo Entrega Factura:");
+        add(jLabelDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 200, 30));
+
+        jComboBoxModoEntrega.setBackground(new java.awt.Color(149, 193, 255));
+        jComboBoxModoEntrega.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jComboBoxModoEntrega.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBoxModoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Email", "De Manera Fisica" }));
+        jComboBoxModoEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxModoEntregaActionPerformed(evt);
+            }
+        });
+        add(jComboBoxModoEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 394, 230, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSiguientejButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguientejButtonEnviarActionPerformed
@@ -478,7 +515,9 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
             String telefono = jTextTelefono.getText();
             String direccion = jTextDireccion.getText();
             String ciudad = jTextCiudad.getText();
+            String email = jTextCorreo.getText();
             String tipo = jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex());
+            String modoEntregaFactura = jComboBoxModoEntrega.getItemAt(jComboBoxModoEntrega.getSelectedIndex());
             boolean permiso = true;
             if(!jTextNumero1.getText().isBlank()){//Si el campo de linea 1 no esta vacio, quiere decir que s eesta tratando de usar
                 if(jTextNumero1.getText().length()==10){//Se valida que sea un numero valido
@@ -527,7 +566,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                         "Ingrese un numero", JOptionPane.ERROR_MESSAGE);
                 permiso = false;
             }
-            if(permiso) this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, tipo); //Si paso la validacion, se procede a registrar
+            if(permiso) this.registrarCliente(cedula, nombre, telefono, direccion, ciudad, email, tipo, modoEntregaFactura); //Si paso la validacion, se procede a registrar
         } catch (ParseException ex) {
             Logger.getLogger(JPanelRegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -598,6 +637,14 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(jTextDireccion.getText().length() >= 100) evt.consume(); //Que solo acepte max 100 digitos
     }//GEN-LAST:event_jTextDireccionKeyTyped
+
+    private void jTextCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextCorreoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextCorreoKeyTyped
+
+    private void jComboBoxModoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModoEntregaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxModoEntregaActionPerformed
 
     private boolean validarRegistroCliente(){
         boolean exito = true;
@@ -720,11 +767,11 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         return numero;
     }
     
-    private void registrarCliente(String cedula, String nombre, String telefono, String direccion, String ciudad, String tipo) throws ParseException{//Metodo que recibe informacion para registrar un cliente, dependiendo del tipo de cliente
+    private void registrarCliente(String cedula, String nombre, String telefono, String direccion, String ciudad, String email, String tipo, String modoEntregaFactura) throws ParseException{//Metodo que recibe informacion para registrar un cliente, dependiendo del tipo de cliente
             
-        boolean resultadoRegistrarCliente = conexion.registrarClientes(cedula, nombre, telefono, direccion, ciudad, tipo);//Se hace la consulta
+        boolean resultadoRegistrarCliente = conexion.registrarClientes(cedula, nombre, telefono, direccion, ciudad, email, tipo, modoEntregaFactura);//Se hace la consulta
             if (resultadoRegistrarCliente) {//La consulta es exitosa
-                //Una vez se registro el cliente, se le debe crear una cuenta y sus respectivas lineas
+                //Una vez se registro el cliente, se le debe crear una cuenta y sus respectivas lineas 
                     //Basicamente toca hacer lo mismo para los tres distintos numeros, valiendose de las validaciones
                     boolean vacio1 = false;
                     boolean vacio2 = false;
@@ -1070,6 +1117,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
     private javax.swing.JButton jButtonGenerar2;
     private javax.swing.JButton jButtonGenerar3;
     private javax.swing.JButton jButtonSiguiente;
+    private javax.swing.JComboBox<String> jComboBoxModoEntrega;
     public javax.swing.JComboBox<String> jComboBoxPlan1;
     public javax.swing.JComboBox<String> jComboBoxPlan2;
     public javax.swing.JComboBox<String> jComboBoxPlan3;
@@ -1077,6 +1125,8 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelCedula;
     private javax.swing.JLabel jLabelCiudad;
     private javax.swing.JLabel jLabelDireccion;
+    private javax.swing.JLabel jLabelDireccion1;
+    private javax.swing.JLabel jLabelDireccion2;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelNumero1;
     private javax.swing.JLabel jLabelNumero2;
@@ -1090,6 +1140,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
     public javax.swing.JLabel jLabelTituloIzquierdo;
     public javax.swing.JTextField jTextCedula;
     public javax.swing.JTextField jTextCiudad;
+    public javax.swing.JTextField jTextCorreo;
     public javax.swing.JTextField jTextDireccion;
     public javax.swing.JTextField jTextNombre;
     public javax.swing.JTextField jTextNumero1;

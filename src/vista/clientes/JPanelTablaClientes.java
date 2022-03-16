@@ -87,6 +87,7 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
         }
         this.refrescarGUI();
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

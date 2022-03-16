@@ -120,6 +120,10 @@ public class JPanelClientes extends javax.swing.JPanel {
 
     private void jButtonRegistrarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarCliente1ActionPerformed
         // TODO add your handling code here:
+        this.eliminarPanel();
+        this.pintarPanel(new JPanelRegistrarCliente(this));
+        menup.refrescarGUI();
+        this.enableButtons(false);
     }//GEN-LAST:event_jButtonRegistrarCliente1ActionPerformed
 
     public void pintarPanel(JPanel panel){//Metodo que recibe como parametro un panel y lo pinta en el espacio disponible
