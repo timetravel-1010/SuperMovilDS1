@@ -23,11 +23,11 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
     private JPanelUsuarios padre;
     private JPanelTablaUsuarios panelTabla;
     private boolean flag;
-    public JPanelAdministrarUsuarios(JPanelUsuarios papa) {
+    public JPanelAdministrarUsuarios(JPanelUsuarios papa, ConnectionDB db) {
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
         padre = papa;
-        db = new ConnectionDB();
+        this.db = db;
         JButtonModificar.setEnabled(false);
         JButtonActivar.setEnabled(false);
         JButtonInactivar.setEnabled(false);
@@ -204,7 +204,7 @@ public class JPanelAdministrarUsuarios extends javax.swing.JPanel {
 
     private void JButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonModificarActionPerformed
         // TODO add your handling code here:
-        usuario = new JPanelDatosUsuario(this);
+        usuario = new JPanelDatosUsuario(this, this.db);
         String cedula = tabla.indexTabla();
         Usuario user = db.getUsuario2(cedula);
         usuario.titulo.setText("Modificar");

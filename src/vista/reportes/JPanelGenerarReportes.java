@@ -26,9 +26,9 @@ public class JPanelGenerarReportes extends javax.swing.JPanel {
     /**
      * Creates new form JPanelGenerarReportes
      */
-    public JPanelGenerarReportes(JPanelReportes papa) {
+    public JPanelGenerarReportes(JPanelReportes papa, ConnectionDB conexion) {
         this.padre = papa;
-        this.conexion = new ConnectionDB();
+        this.conexion = conexion;
         initComponents();
         this.grafico = new ChartPanel(null);
         this.grafico.setBackground(new java.awt.Color(218, 234, 255));

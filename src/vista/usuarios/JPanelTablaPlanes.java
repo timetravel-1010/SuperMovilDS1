@@ -29,9 +29,9 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
     /**
      * Creates new form JPanelPlanes
      */
-    public JPanelTablaPlanes(JPanelUsuarios papa ) {
+    public JPanelTablaPlanes(JPanelUsuarios papa, ConnectionDB db) {
         padrePlan=papa;
-        db = new ConnectionDB();
+        this.db = db;
         modeloT = new DefaultTableModel();
         String [] titulo = new String[]{"Nombre", "Costo", "Mensajes", "Minutos", "Megas", "Descripción"};
         modeloT.setColumnIdentifiers(titulo);
@@ -133,7 +133,7 @@ public class JPanelTablaPlanes extends javax.swing.JPanel {
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
-        plan = new JPanelDatosPlanes(this);
+        plan = new JPanelDatosPlanes(this, this.db);
         Integer identificador = indexTabla();
         Planes datosPlan = db.getPlan(identificador);
         //plan.titulo.setText("Modificar");

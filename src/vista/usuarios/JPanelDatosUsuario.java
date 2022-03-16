@@ -21,7 +21,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
     /**
      * Creates new form JPanelDatosUsuario
      */
-    public JPanelDatosUsuario(JPanelAdministrarUsuarios papa) {
+    public JPanelDatosUsuario(JPanelAdministrarUsuarios papa, ConnectionDB db) {
         initComponents();
         //titulo.setText("Modificar:");
         this.setBackground(new java.awt.Color(218, 234, 255));
@@ -30,10 +30,10 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         tipoPanel=true;
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padreAdmin = papa;
-        db = new ConnectionDB();
+        this.db = db;
     }
     
-    public JPanelDatosUsuario(JPanelUsuarios papa) {
+    public JPanelDatosUsuario(JPanelUsuarios papa, ConnectionDB db) {
         initComponents();
         titulo.setText("Registro:");
         panelActual = new JPanel();
@@ -41,7 +41,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         tipoPanel=false;
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 890, 490));
         padreUsers = papa;
-        db = new ConnectionDB();
+        this.db = db;
     }
 
     /**
