@@ -29,7 +29,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         this.padre = papa;
         this.db = new ConnectionDB();
         this.tablaClientesPlan = new JPanelClientesSuspender(this);
-        this.tablaCliente = new JPanelTablaClientes();
+        this.tablaCliente = new JPanelTablaClientes(this);
         this.tablaClientesReactivar = new JPanelClientesReactivar();
         initComponents();
         //tablaClientes.setModel(modeloT);
@@ -276,6 +276,11 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         }
         this.actualizarTablaClientesPlan();
     }      
+    
+    public void enableButtons(Boolean b) {
+        this.administrarLineasBtn.setEnabled(b);
+        this.modificarClienteBtn.setEnabled(b);
+    }
     
     private void modificarClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClienteBtnActionPerformed
         this.eliminarPanel();

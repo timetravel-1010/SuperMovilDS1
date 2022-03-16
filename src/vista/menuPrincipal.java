@@ -273,6 +273,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.pintarPanelActual(new JPanelFacturacion(this));
         this.buttonFacturacion.setEnabled(false);
+        this.buttonPagos.setEnabled(false);
+        this.buttonClientes.setEnabled(false);
     }//GEN-LAST:event_buttonFacturacionActionPerformed
     
     public void pintarPanelActual(JPanel panel){

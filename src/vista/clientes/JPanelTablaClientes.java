@@ -5,8 +5,10 @@
 package vista.clientes;
 
 import java.util.List;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
+import vista.facturacion.JPanelFacturacion;
 
 /**
  *
@@ -14,10 +16,14 @@ import modelo.Cliente;
  */
 public class JPanelTablaClientes extends javax.swing.JPanel {
 
+    private JPanel padre;
+    
     /**
      * Creates new form JPanelTablaClientes
+     * @param dad
      */
-    public JPanelTablaClientes() {
+    public JPanelTablaClientes(JPanel dad) {
+        this.padre = dad;
         initComponents();
     }
 
@@ -54,6 +60,11 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -67,6 +78,19 @@ public class JPanelTablaClientes extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        // TODO add your handling code here:
+        if (tablaClientes.getSelectedRow() != -1) {
+            if (padre.getClass() == JPanelAdminClientes.class) {
+                JPanelAdminClientes nuevoPadre =  (JPanelAdminClientes) padre;
+                nuevoPadre.enableButtons(true);
+            } else {
+                JPanelFacturacion nuevoPadre = (JPanelFacturacion) padre;
+                nuevoPadre.enableButtons(true);
+            }
+        }
+    }//GEN-LAST:event_tablaClientesMouseClicked
 
     public void agregarTodos(List<Cliente> lista){
         DefaultTableModel modelo = (DefaultTableModel) tablaClientes.getModel();

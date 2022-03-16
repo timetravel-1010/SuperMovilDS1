@@ -19,7 +19,7 @@ import vista.menuPrincipal;
  */
 public class JPanelFacturacion extends javax.swing.JPanel {
 
-    private menuPrincipal main;
+    private menuPrincipal menup;
     private JPanelTablaClientes tablaClientes;
     private ConnectionDB db;
     
@@ -27,8 +27,8 @@ public class JPanelFacturacion extends javax.swing.JPanel {
      * Creates new form JPanelFacturacion
      */
     public JPanelFacturacion(menuPrincipal main) {
-        this.main = main;
-        this.tablaClientes = new JPanelTablaClientes();
+        this.menup = main;
+        this.tablaClientes = new JPanelTablaClientes(this);
         this.db = new ConnectionDB();
         initComponents();
         mostrarBotonesFacturacion(false);
@@ -49,11 +49,16 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         comboTipoEntrega = new javax.swing.JComboBox<>();
         enviarFacturacionBtn = new javax.swing.JButton();
         enviarATodosBtn = new javax.swing.JButton();
+        jButtonAtras = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(1256, 680));
         setPreferredSize(new java.awt.Dimension(1256, 680));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        genFacturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
+        genFacturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        genFacturacionBtn.setForeground(new java.awt.Color(0, 0, 0));
         genFacturacionBtn.setText("Generar Facturación");
         genFacturacionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +67,9 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         });
         add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
 
+        facturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
+        facturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        facturacionBtn.setForeground(new java.awt.Color(0, 0, 0));
         facturacionBtn.setText("Facturación");
         facturacionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,9 +78,15 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         });
         add(facturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
 
+        labelFiltrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        labelFiltrar.setForeground(new java.awt.Color(0, 0, 0));
         labelFiltrar.setText("Filtrar por:");
-        add(labelFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+        labelFiltrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(labelFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, 30));
 
+        comboTipoEntrega.setBackground(new java.awt.Color(149, 193, 255));
+        comboTipoEntrega.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        comboTipoEntrega.setForeground(new java.awt.Color(0, 0, 0));
         comboTipoEntrega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Email", "De Manera Fisica" }));
         comboTipoEntrega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,21 +95,38 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         });
         add(comboTipoEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
+        enviarFacturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
+        enviarFacturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        enviarFacturacionBtn.setForeground(new java.awt.Color(0, 0, 0));
         enviarFacturacionBtn.setText("Enviar Facturacion");
         enviarFacturacionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enviarFacturacionBtnActionPerformed(evt);
             }
         });
-        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 110, -1, -1));
+        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, -1, -1));
 
+        enviarATodosBtn.setBackground(new java.awt.Color(149, 193, 255));
+        enviarATodosBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        enviarATodosBtn.setForeground(new java.awt.Color(0, 0, 0));
         enviarATodosBtn.setText("Enviar A Todos");
         enviarATodosBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enviarATodosBtnActionPerformed(evt);
             }
         });
-        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 190, -1, -1));
+        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 190, -1, -1));
+
+        jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
+        jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonAtras.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void genFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFacturacionBtnActionPerformed
@@ -132,6 +163,11 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         this.repaint();
     }
     
+    public void enableButtons(Boolean b) {
+        this.enviarFacturacionBtn.setEnabled(b);
+        this.enviarATodosBtn.setEnabled(b);
+    }
+    
     private void mostrarBotonesFacturacion(boolean b) {
         this.labelFiltrar.setVisible(b);
         this.comboTipoEntrega.setVisible(b);
@@ -143,6 +179,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         pintarPanel(tablaClientes);
         mostrarBotonesFacturacion(true);
         agregarTodosCorreo();
+        enviarFacturacionBtn.setEnabled(false); // se inhabilita porque no hay fila seleccionada.
     }//GEN-LAST:event_facturacionBtnActionPerformed
 
     private void comboTipoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoEntregaActionPerformed
@@ -172,6 +209,14 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                         "Envio exitoso", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_enviarATodosBtnActionPerformed
 
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        this.menup.buttonPagos.setEnabled(true);
+        this.menup.buttonClientes.setEnabled(true);
+        this.menup.buttonFacturacion.setEnabled(true);
+        this.menup.eliminarPanelActual();
+        this.menup.refrescarGUI();
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboTipoEntrega;
@@ -179,6 +224,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
     private javax.swing.JButton enviarFacturacionBtn;
     private javax.swing.JButton facturacionBtn;
     private javax.swing.JButton genFacturacionBtn;
+    private javax.swing.JButton jButtonAtras;
     private javax.swing.JLabel labelFiltrar;
     // End of variables declaration//GEN-END:variables
 
