@@ -135,6 +135,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
 
     private void generacionFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generacionFacturacionBtnActionPerformed
         // TODO add your handling code here:
+
         pintarPanel(tablaClientes);
         mostrarBotonesFacturacion(true);
         this.agregarTodos();
@@ -159,7 +160,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         this.refrescarGUI();
     }
     
-    public void agregarTodosCorreo(){
+    public void agregarTodosCorreo() {
         List<Cliente> lista = db.obtenerClientesCorreo();
         tablaClientes.agregarTodos(lista);
         this.refrescarGUI();
@@ -207,6 +208,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
             System.out.println("Entra2");
         }
     }//GEN-LAST:event_comboTipoEntregaActionPerformed
+          
 
     private void enviarFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarFacturacionBtnActionPerformed
         // TODO add your handling code here:
