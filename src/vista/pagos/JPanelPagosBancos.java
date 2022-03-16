@@ -25,11 +25,11 @@ public class JPanelPagosBancos extends javax.swing.JPanel {
     /**
      * Creates new form JPanelPagosBancos
      */
-    public JPanelPagosBancos(JPanelPagos papa) {
+    public JPanelPagosBancos(JPanelPagos papa, ConnectionDB db) {
         this.padre = papa;
         initComponents();
       //  archivos = null;
-        db = new ConnectionDB();
+        this.db = db;
        
          
     }

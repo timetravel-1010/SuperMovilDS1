@@ -1,8 +1,8 @@
 package vista.usuarios;
 
+import controlador.ConnectionDB;
 import javax.swing.JPanel;
 import vista.menuPrincipal;
-import vista.pagos.JPanelRegistrarPagos;
 
 /**
  *
@@ -14,12 +14,14 @@ public class JPanelUsuarios extends javax.swing.JPanel {
      * Creates new form JPanelUsuarios
      */
     private JPanel panelActual;
+    private ConnectionDB conexion;
     private menuPrincipal menup;
     private JPanelTablaPlanes tablaPlanes;
     private JPanelTablaUsuarios tablaUsuarios;
     //private JPanelRegistrarPagos pagos;
     
-    public JPanelUsuarios(menuPrincipal menu) {
+    public JPanelUsuarios(menuPrincipal menu, ConnectionDB conexion) {
+        this.conexion = conexion;
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual=new JPanel();
@@ -107,7 +109,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonAdmiinistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarPlanActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelTablaPlanes(this),100,100);
+        this.pintarPanel(new JPanelTablaPlanes(this, this.conexion),100,100);
         tablaPlanes.agregarTodos();
         menup.refrescarGUI();
         this.enableButtons(false);
@@ -117,7 +119,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonRegistrarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarPlanActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelDatosPlanes(this), 130, 100); // Cambiar a JPanelDatosUsuarios        
+        this.pintarPanel(new JPanelDatosPlanes(this, this.conexion), 130, 100); // Cambiar a JPanelDatosUsuarios        
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonRegistrarPlanActionPerformed
@@ -125,7 +127,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelDatosUsuario(this), 250, 130);
+        this.pintarPanel(new JPanelDatosUsuario(this, this.conexion), 250, 130);
         menup.refrescarGUI();
         this.enableButtons(false);
          
@@ -134,7 +136,7 @@ public class JPanelUsuarios extends javax.swing.JPanel {
     private void jButtonAdmiinistrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdmiinistrarUsuariosActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelAdministrarUsuarios(this));
+        this.pintarPanel(new JPanelAdministrarUsuarios(this, this.conexion));
         //tablaUsuarios.agregarTodos();
         menup.refrescarGUI();
         this.enableButtons(false);

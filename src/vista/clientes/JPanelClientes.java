@@ -22,14 +22,14 @@ public class JPanelClientes extends javax.swing.JPanel {
     private ConnectionDB conexion;
     private JPanelAdminClientes panelTablaClientes;
     
-    public JPanelClientes(menuPrincipal menu) { //Metodo constructor de la vista de clientes, recibe el menú principal
+    public JPanelClientes(menuPrincipal menu, ConnectionDB conexion) { //Metodo constructor de la vista de clientes, recibe el menú principal
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
-        this.conexion = new ConnectionDB();
+        this.conexion = conexion;
         this.panelActual = new JPanel();
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.menup = menu;
-        this.panelTablaClientes = new JPanelAdminClientes(this);
+        this.panelTablaClientes = new JPanelAdminClientes(this, this.conexion);
     }
 
     /**
@@ -95,7 +95,7 @@ public class JPanelClientes extends javax.swing.JPanel {
     private void cargarConsumo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarConsumo
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelConsumo (this));
+        this.pintarPanel(new JPanelConsumo (this, this.conexion));
         menup.refrescarGUI();
         //this.refrescarGUI();
         this.enableButtons(false);
@@ -121,7 +121,7 @@ public class JPanelClientes extends javax.swing.JPanel {
     private void jButtonRegistrarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarCliente1ActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarCliente(this));
+        this.pintarPanel(new JPanelRegistrarCliente(this, this.conexion));
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonRegistrarCliente1ActionPerformed

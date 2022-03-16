@@ -21,10 +21,10 @@ public class JPanelReportes extends javax.swing.JPanel {
     /**
      * Creates new form JPanelReportes
      */
-    public JPanelReportes(menuPrincipal menu) {
+    public JPanelReportes(menuPrincipal menu, ConnectionDB conexion) {
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
-        this.conexion = new ConnectionDB();
+        this.conexion = conexion;
         this.menup = menu;
         this.panelActual = new JPanel();
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
@@ -75,7 +75,7 @@ public class JPanelReportes extends javax.swing.JPanel {
     private void jButtonGenerarReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerarReportesActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelGenerarReportes(this));
+        this.pintarPanel(new JPanelGenerarReportes(this, this.conexion));
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonGenerarReportesActionPerformed

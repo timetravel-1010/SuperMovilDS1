@@ -2,7 +2,6 @@ package vista;
 
 import vista.usuarios.Login;
 import vista.usuarios.JPanelUsuarios;
-import vista.usuarios.JPanelTablaPlanes;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import controlador.ConnectionDB;
@@ -15,8 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import vista.clientes.JPanelClientes;
 import vista.facturacion.JPanelFacturacion;
-//import vista.clientes.JPanelClientes;
-//import vista.clientes.JPanelPlanes;
 import vista.pagos.JPanelPagos;
 import vista.reportes.JPanelReportes;
 
@@ -210,7 +207,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 buttonClientesActionPerformed(evt);
             }
         });
-        jPanel2.add(buttonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 442, 160, 40));
+        jPanel2.add(buttonClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 160, 40));
 
         buttonPagos.setBackground(new java.awt.Color(82, 155, 255));
         buttonPagos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -236,13 +233,13 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonTerminarSesionActionPerformed
 
     private void buttonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReportesActionPerformed
-        this.pintarPanelActual(new JPanelReportes(this));
+        this.pintarPanelActual(new JPanelReportes(this, this.conexion));
         this.buttonReportes.setEnabled(false);
     }//GEN-LAST:event_buttonReportesActionPerformed
 
     private void buttonPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPagosActionPerformed
         // TODO add your handling code here:
-        this.pintarPanelActual(new JPanelPagos(this));
+        this.pintarPanelActual(new JPanelPagos(this, this.conexion));
         this.buttonPagos.setEnabled(false);
         this.buttonClientes.setEnabled(false);
         this.buttonFacturacion.setEnabled(false);
@@ -250,7 +247,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void buttonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClientesActionPerformed
         // TODO add your handling code here:
-        this.pintarPanelActual(new JPanelClientes(this));
+        this.pintarPanelActual(new JPanelClientes(this, this.conexion));
         this.buttonPagos.setEnabled(false);
         this.buttonClientes.setEnabled(false);
         this.buttonFacturacion.setEnabled(false);
@@ -258,11 +255,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void buttonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUsuariosActionPerformed
         // TODO add your handling code here:
-        this.pintarPanelActual(new JPanelUsuarios(this));
+        this.pintarPanelActual(new JPanelUsuarios(this, this.conexion));
         this.buttonUsuarios.setEnabled(false);
-        //this.pintarPanelActual(new JPanelPlanes(this)); // Borrar luego
-
-        
     }//GEN-LAST:event_buttonUsuariosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -271,7 +265,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void buttonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFacturacionActionPerformed
         // TODO add your handling code here:
-        this.pintarPanelActual(new JPanelFacturacion(this));
+        this.pintarPanelActual(new JPanelFacturacion(this, this.conexion));
         this.buttonFacturacion.setEnabled(false);
         this.buttonPagos.setEnabled(false);
         this.buttonClientes.setEnabled(false);

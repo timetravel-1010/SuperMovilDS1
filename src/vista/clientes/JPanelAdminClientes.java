@@ -3,9 +3,7 @@ package vista.clientes;
 import vista.usuarios.*;
 import controlador.ConnectionDB;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -25,17 +23,14 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     private JPanel panelActual;
     
 
-    public JPanelAdminClientes(JPanelClientes papa) {
+    public JPanelAdminClientes(JPanelClientes papa, ConnectionDB db) {
         this.padre = papa;
-        this.db = new ConnectionDB();
+        this.db = db;
         this.tablaClientesPlan = new JPanelClientesSuspender(this);
         this.tablaCliente = new JPanelTablaClientes(this);
         this.tablaClientesReactivar = new JPanelClientesReactivar();
         initComponents();
-        //tablaClientes.setModel(modeloT);
-        //this.agregarClientesPlan();
         panelActual = tablaCliente;
-        //this.pintarPanel(tablaCliente);
         this.pintarPanel();
         this.agregarTodos();
         this.setVisible(true);
@@ -285,7 +280,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     
     private void modificarClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarClienteBtnActionPerformed
         this.eliminarPanel();
-        this.pintarPanel(new JPanelModificarCliente(this, db.getCliente(this.obtenerCedulaSeleccionada())), 100, 20);
+        this.pintarPanel(new JPanelModificarCliente(this, db.getCliente(this.obtenerCedulaSeleccionada()), this.db), 100, 20);
         this.enableAll(false);
         //this.padre.modificarCliente(this.obtenerCedulaSeleccionada()); //modificar cliente.
     }//GEN-LAST:event_modificarClienteBtnActionPerformed
@@ -332,7 +327,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
     private void administrarLineasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrarLineasBtnActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelAdminLineas(this, db.getCliente(this.obtenerCedulaSeleccionada())), 0, 50);
+        this.pintarPanel(new JPanelAdminLineas(this, db.getCliente(this.obtenerCedulaSeleccionada()), this.db), 0, 50);
         this.enableAll(false);
     }//GEN-LAST:event_administrarLineasBtnActionPerformed
     

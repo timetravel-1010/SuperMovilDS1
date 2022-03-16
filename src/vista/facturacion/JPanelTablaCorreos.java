@@ -19,9 +19,9 @@ public class JPanelTablaCorreos extends javax.swing.JPanel {
     /**
      * Creates new form JPanelTablaCorreos
      */
-    public JPanelTablaCorreos() {
+    public JPanelTablaCorreos(ConnectionDB db) {
         //padre=papa;
-        db = new ConnectionDB();
+        this.db = db;
         initComponents();
     }
 

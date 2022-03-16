@@ -24,7 +24,7 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
     /**
      * Creates new form JPanelDatosPlanes
      */
-    public JPanelDatosPlanes(JPanelUsuarios papa) {
+    public JPanelDatosPlanes(JPanelUsuarios papa, ConnectionDB db) {
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual = new JPanel();
@@ -32,10 +32,10 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padreAdmin = papa;
-        db = new ConnectionDB();
+        this.db = db;
     }
     
-    public JPanelDatosPlanes(JPanelTablaPlanes papa) {
+    public JPanelDatosPlanes(JPanelTablaPlanes papa, ConnectionDB db) {
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual = new JPanel();
@@ -43,7 +43,7 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));
         padrePlan = papa;
-        db = new ConnectionDB();
+        this.db = db;
     }
 
     /**

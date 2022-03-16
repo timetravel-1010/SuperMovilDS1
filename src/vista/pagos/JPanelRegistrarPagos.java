@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import vista.usuarios.JPanelUsuarios;
 
 /**
  *
@@ -26,9 +25,9 @@ public class JPanelRegistrarPagos extends javax.swing.JPanel {
     /**
      * Creates new form JPanelPagos
      */
-    public JPanelRegistrarPagos(JPanelPagos papa) {
+    public JPanelRegistrarPagos(JPanelPagos papa, ConnectionDB db) {
         initComponents();
-        db = new ConnectionDB();
+        this.db = db;
         panelActual = new JPanel();
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 890, 490));

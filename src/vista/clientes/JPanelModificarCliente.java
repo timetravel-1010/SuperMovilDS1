@@ -6,11 +6,9 @@ package vista.clientes;
 
 import controlador.ConnectionDB;
 import enums.TipoCliente;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Cliente;
-import modelo.Cuenta;
 
 /**
  *
@@ -25,10 +23,10 @@ public class JPanelModificarCliente extends javax.swing.JPanel {
     /**
      * Creates new form JPanelModificarCliente
      */
-    public JPanelModificarCliente(JPanelAdminClientes papa, Cliente cliente) {
+    public JPanelModificarCliente(JPanelAdminClientes papa, Cliente cliente, ConnectionDB conexion) {
         this.padreModificar = papa;
         this.clienteActualizar = cliente;
-        conexion = new ConnectionDB();
+        this.conexion = conexion;
         initComponents();
         this.prepararUpdate();
     }

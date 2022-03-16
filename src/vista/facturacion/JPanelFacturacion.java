@@ -26,10 +26,10 @@ public class JPanelFacturacion extends javax.swing.JPanel {
     /**
      * Creates new form JPanelFacturacion
      */
-    public JPanelFacturacion(menuPrincipal main) {
+    public JPanelFacturacion(menuPrincipal main, ConnectionDB db) {
         this.menup = main;
         this.tablaClientes = new JPanelTablaClientes(this);
-        this.db = new ConnectionDB();
+        this.db = db;
         initComponents();
         mostrarBotonesFacturacion(false);
     }
@@ -94,7 +94,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 comboTipoEntregaActionPerformed(evt);
             }
         });
-        add(comboTipoEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        add(comboTipoEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
 
         enviarFacturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
         enviarFacturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N

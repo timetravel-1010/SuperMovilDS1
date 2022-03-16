@@ -26,10 +26,10 @@ public class JPanelAdminLineas extends javax.swing.JPanel {
     /**
      * Creates new form JPanelAdminLineas
      */
-    public JPanelAdminLineas(JPanelAdminClientes papa, Cliente cliente) {
+    public JPanelAdminLineas(JPanelAdminClientes papa, Cliente cliente, ConnectionDB db) {
         this.padre = papa;
         this.cliente = cliente;
-        this.db = new ConnectionDB();
+        this.db = db;
         this.tabla = new JPanelTablaLineas(this, this.cliente);
         initComponents();
         this.pintarPanel(tabla, 0, 0);

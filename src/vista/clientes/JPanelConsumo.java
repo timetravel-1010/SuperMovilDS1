@@ -11,7 +11,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import vista.pagos.JPanelPagos;
 import vista.clientes.JPanelClientes;
 
 /**
@@ -27,10 +26,10 @@ public class JPanelConsumo extends javax.swing.JPanel {
     private ConnectionDB db;
     private FileReader archivos;
     private String ruta="";
-    public JPanelConsumo(JPanelClientes papa) {
+    public JPanelConsumo(JPanelClientes papa, ConnectionDB db) {
         this.padre = papa;
         initComponents();
-        db = new ConnectionDB();
+        this.db = db;
     }
 
     /**

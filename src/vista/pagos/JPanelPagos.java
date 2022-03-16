@@ -22,14 +22,14 @@ public class JPanelPagos extends javax.swing.JPanel {
     private ConnectionDB db;
     
     
-    public JPanelPagos(menuPrincipal menu) {
+    public JPanelPagos(menuPrincipal menu, ConnectionDB db) {
         initComponents();
         this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual=new JPanel();
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
         this.add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1110, 570));
         menup=menu;
-        db = new ConnectionDB();
+        this.db = db;
     }
 
     /**
@@ -85,7 +85,7 @@ public class JPanelPagos extends javax.swing.JPanel {
     private void jButtonPagoIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagoIndividualActionPerformed
         // TODO add your handling code here:
         this.eliminarPanel();
-        this.pintarPanel(new JPanelRegistrarPagos(this), 130, 140);        
+        this.pintarPanel(new JPanelRegistrarPagos(this, this.db), 130, 140);        
         menup.refrescarGUI();
         this.enableButtons(false);
     }//GEN-LAST:event_jButtonPagoIndividualActionPerformed
@@ -97,7 +97,7 @@ public class JPanelPagos extends javax.swing.JPanel {
         this.eliminarPanel();
         menup.refrescarGUI();
         this.enableButtons(false);*/
-        this.pintarPanel(new JPanelPagosBancos (this), 250,100);
+        this.pintarPanel(new JPanelPagosBancos (this, this.db), 250,100);
         menup.refrescarGUI();
         this.refrescarGUI();
         this.enableButtons(false);
