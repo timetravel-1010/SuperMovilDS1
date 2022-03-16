@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import modelo.Usuario;
 
 /**
  *
@@ -22,6 +23,7 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
      */
     public JPanelDatosUsuario(JPanelAdministrarUsuarios papa) {
         initComponents();
+        //titulo.setText("Modificar:");
         this.setBackground(new java.awt.Color(218, 234, 255));
         panelActual = new JPanel();
         this.panelActual.setBackground(new java.awt.Color(218, 234, 255));
@@ -91,6 +93,11 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         jTextUsername.setBackground(new java.awt.Color(149, 193, 255));
         jTextUsername.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jTextUsername.setForeground(new java.awt.Color(0, 0, 0));
+        jTextUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextUsernameActionPerformed(evt);
+            }
+        });
         add(jTextUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 30));
 
         jTextDireccion.setBackground(new java.awt.Color(149, 193, 255));
@@ -261,6 +268,10 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    private void jTextUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextUsernameActionPerformed
+
     private boolean validarRegistroCliente(){
         boolean exito = true;
         
@@ -295,8 +306,14 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         
         
         if(jTextUsername.getText().isBlank()){
-            JOptionPane.showMessageDialog(null, "¡Ingrese un nombre de usuario valido!",
+            if (!db.consultarNombreUsuario(jTextUsername.getText())) {
+                JOptionPane.showMessageDialog(null, "¡El nombre de usuario ya existe! Ingrese otro",
                             "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "¡Ingrese un nombre de usuario valido!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+            }
+            
             exito = false;
         }
         
@@ -306,7 +323,17 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
             exito = false;
         }
         
-        if(db.consultarUsername(jTextUsername.getText())) {
+        if (tipoPanel) {
+            Usuario user = db.getUsuario2(jTextCedula.getText());
+            String UsernameActual = user.getNombre_usuario();
+            if (!UsernameActual.equals(jTextUsername.getText()) && db.consultarUsername(jTextUsername.getText())) {
+                JOptionPane.showMessageDialog(null, "¡Nombre de usuario ya existe!",
+                            "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
+                exito = false;
+            }
+        }
+        
+        if(!tipoPanel && db.consultarUsername(jTextUsername.getText())) {
             JOptionPane.showMessageDialog(null, "¡Nombre de usuario ya existe!",
                             "Validacion incorrecta", JOptionPane.ERROR_MESSAGE);
             exito = false;

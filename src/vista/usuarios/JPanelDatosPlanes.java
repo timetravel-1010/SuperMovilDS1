@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package vista.clientes;
+package vista.usuarios;
 
 import controlador.ConnectionDB;
 import javax.swing.JOptionPane;
@@ -179,7 +179,6 @@ public class JPanelDatosPlanes extends javax.swing.JPanel {
         jTextAreaDescripcion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jTextAreaDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         jTextAreaDescripcion.setRows(5);
-        jTextAreaDescripcion.setText("jjssñjsjlkdklddsjkfsñflsfkjfklfjmklfmklfmklfmklfmfklmkflfklfkf");
         jTextAreaDescripcion.setToolTipText("");
         jTextAreaDescripcion.setAutoscrolls(false);
         jTextAreaDescripcion.setDoubleBuffered(true);

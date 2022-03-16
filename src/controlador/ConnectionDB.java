@@ -812,7 +812,7 @@ public class ConnectionDB {
         
          try {
 
-            PreparedStatement sql = conexion.prepareStatement("select valor_pagado from facturas where  numero_factura = ?");
+            PreparedStatement sql = conexion.prepareStatement("select valor_pagado from facturas where numero_factura = ?");
 
             sql.setInt(1, numeroFactura);
  
@@ -828,6 +828,59 @@ public class ConnectionDB {
         return 0;
     }
     
+    
+    /**
+     * metodo, consulta si una factura existe, en la base de datos
+     * @param numeroFactura
+     * @return Boolean, retorna true si existe la factura, en que caso de no encontrar una factura, retorna false
+     */
+    public boolean consultarFactura(Integer numeroFactura) { 
+        boolean filasAfectadas = false;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select * from facturas where numero_factura = ?");
+
+            sql.setInt(1, numeroFactura);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return true;
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return false;
+    }
+    
+    
+    /**
+     * metodo, consulta si un nombre de usuario existe, en la base de datos
+     * @param nombre_usuario
+     * @return Boolean, retorna true si existe la factura, en que caso de no encontrar una factura, retorna false
+     */
+    public boolean consultarNombreUsuario(String nombre_usuario) { 
+        boolean filasAfectadas = false;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select * from usuarios where nombre_usuario = ?");
+
+            sql.setString(1, nombre_usuario);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return true;
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return false;
+    }
     
     /**
      * metodo, consulta el valor que debe pagar el cliente
