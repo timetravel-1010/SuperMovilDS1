@@ -88,6 +88,11 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
         jTextPassword.setBackground(new java.awt.Color(149, 193, 255));
         jTextPassword.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jTextPassword.setForeground(new java.awt.Color(0, 0, 0));
+        jTextPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextPasswordActionPerformed(evt);
+            }
+        });
         add(jTextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 230, 30));
 
         jTextUsername.setBackground(new java.awt.Color(149, 193, 255));
@@ -271,6 +276,10 @@ public class JPanelDatosUsuario extends javax.swing.JPanel {
     private void jTextUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextUsernameActionPerformed
+
+    private void jTextPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPasswordActionPerformed
 
     private boolean validarRegistroCliente(){
         boolean exito = true;

@@ -40,6 +40,7 @@ public class JPanelAdminClientes extends javax.swing.JPanel {
         this.agregarTodos();
         this.setVisible(true);
         this.enableMRS(true, false, false, true);
+        this.enableButtons(false);
     }
     
     private void pintarPanel(JPanel panel) {

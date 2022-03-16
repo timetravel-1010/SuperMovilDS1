@@ -43,29 +43,30 @@ public class JPanelFacturacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        genFacturacionBtn = new javax.swing.JButton();
+        generacionFacturacionBtn = new javax.swing.JButton();
         facturacionBtn = new javax.swing.JButton();
         labelFiltrar = new javax.swing.JLabel();
         comboTipoEntrega = new javax.swing.JComboBox<>();
         enviarFacturacionBtn = new javax.swing.JButton();
         enviarATodosBtn = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
+        genFacturacionBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(218, 234, 255));
         setMinimumSize(new java.awt.Dimension(1256, 680));
         setPreferredSize(new java.awt.Dimension(1256, 680));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        genFacturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
-        genFacturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        genFacturacionBtn.setForeground(new java.awt.Color(0, 0, 0));
-        genFacturacionBtn.setText("Generar Facturación");
-        genFacturacionBtn.addActionListener(new java.awt.event.ActionListener() {
+        generacionFacturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
+        generacionFacturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        generacionFacturacionBtn.setForeground(new java.awt.Color(0, 0, 0));
+        generacionFacturacionBtn.setText("Generación de Facturación");
+        generacionFacturacionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genFacturacionBtnActionPerformed(evt);
+                generacionFacturacionBtnActionPerformed(evt);
             }
         });
-        add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, -1));
+        add(generacionFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
 
         facturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
         facturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -76,7 +77,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 facturacionBtnActionPerformed(evt);
             }
         });
-        add(facturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
+        add(facturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 30, -1, -1));
 
         labelFiltrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelFiltrar.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,7 +105,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 enviarFacturacionBtnActionPerformed(evt);
             }
         });
-        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, -1, -1));
+        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 110, -1, -1));
 
         enviarATodosBtn.setBackground(new java.awt.Color(149, 193, 255));
         enviarATodosBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -115,7 +116,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 enviarATodosBtnActionPerformed(evt);
             }
         });
-        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 190, -1, -1));
+        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 180, -1, -1));
 
         jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
         jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -126,23 +127,35 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 30, 100, 30));
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 100, 30));
+
+        genFacturacionBtn.setText("Generar Facturación");
+        add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void genFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFacturacionBtnActionPerformed
+    private void generacionFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generacionFacturacionBtnActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_genFacturacionBtnActionPerformed
+        pintarPanel(tablaClientes);
+        mostrarBotonesFacturacion(true);
+        this.agregarTodos();
+        enviarFacturacionBtn.setEnabled(false); // se inhabilita porque no hay fila seleccionada.
+    }//GEN-LAST:event_generacionFacturacionBtnActionPerformed
 
     private void pintarPanel(JPanel panel) {
         Dimension dimTabla = panel.getPreferredSize();
-        add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, dimTabla.width, dimTabla.height));
+        add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, dimTabla.width, dimTabla.height));
         this.refrescarGUI();
     }
     
     private void pintarPanel() {
         //Dimension dimTabla = panelActual.getPreferredSize();
         //add(panelActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, dimTabla.width, dimTabla.height));
+        this.refrescarGUI();
+    }
+    
+    public void agregarTodos() {
+        List<Cliente> lista = db.obtenerClientes();
+        tablaClientes.agregarTodos(lista);
         this.refrescarGUI();
     }
     
@@ -172,6 +185,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         this.labelFiltrar.setVisible(b);
         this.comboTipoEntrega.setVisible(b);
         this.enviarFacturacionBtn.setVisible(b);
+        this.enviarATodosBtn.setVisible(b);
     }
     
     private void facturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facturacionBtnActionPerformed
@@ -198,9 +212,13 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         // TODO add your handling code here:
         // mostrar mensaje diciendo que se envio la facturacion.
         // pendiente validar que se haya seleccionado una fila de la tabla antes
-        
-        JOptionPane.showMessageDialog(null, "¡Se ha enviado la facturacion exitosamente!",
-                        "Envio exitoso", JOptionPane.INFORMATION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(null,"¿Seguro que desea enviar la facturacion al cliente?", "Confirmación",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        if (result == JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(null, "¡Se ha enviado la facturacion exitosamente!",
+                            "Envio exitoso", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_enviarFacturacionBtnActionPerformed
 
     private void enviarATodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarATodosBtnActionPerformed
@@ -224,6 +242,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
     private javax.swing.JButton enviarFacturacionBtn;
     private javax.swing.JButton facturacionBtn;
     private javax.swing.JButton genFacturacionBtn;
+    private javax.swing.JButton generacionFacturacionBtn;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JLabel labelFiltrar;
     // End of variables declaration//GEN-END:variables
