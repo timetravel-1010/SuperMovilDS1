@@ -349,7 +349,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jButtonGenerar1jButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, 100, 30));
+        add(jButtonGenerar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 70, 100, 30));
 
         jButtonGenerar2.setBackground(new java.awt.Color(149, 193, 255));
         jButtonGenerar2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -360,7 +360,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jButtonGenerar2jButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonGenerar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 230, 100, 30));
+        add(jButtonGenerar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 190, 100, 30));
 
         jButtonGenerar3.setBackground(new java.awt.Color(149, 193, 255));
         jButtonGenerar3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -371,7 +371,7 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
                 jButtonGenerar3jButtonEnviarActionPerformed(evt);
             }
         });
-        add(jButtonGenerar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 350, 100, 30));
+        add(jButtonGenerar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 310, 100, 30));
 
         jButtonEnviar.setBackground(new java.awt.Color(149, 193, 255));
         jButtonEnviar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -724,6 +724,8 @@ public class JPanelRegistrarCliente extends javax.swing.JPanel {
         jComboBoxTipo.setEnabled(b);
         jButtonSiguiente.setEnabled(b);
         jButtonCancelar.setEnabled(b);
+        jTextCorreo.setEnabled(b);
+        jComboBoxModoEntrega.setEnabled(b);
     }
     /* metodo antes del merge
     private void rellenarComboBoxDerechos(){//Metodo que hace una consulta a la base de datos para obtener los planes disponibles y lleanos los combobox

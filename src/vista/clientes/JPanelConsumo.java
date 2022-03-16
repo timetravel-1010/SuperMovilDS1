@@ -177,6 +177,10 @@ public class JPanelConsumo extends javax.swing.JPanel {
         db.updateConsumoClientes(ruta);
         this.padre.eliminarPanel();
         this.padre.enableButtons(true);
+        
+        
+        JOptionPane.showMessageDialog(null, "¡Se ha cargado el consumo correctamente!",
+                        "Carga correcta", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_jButtonCargarjButtonEnviarActionPerformed
 

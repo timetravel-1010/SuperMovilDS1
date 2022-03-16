@@ -6,12 +6,17 @@ package vista.facturacion;
 
 import controlador.ConnectionDB;
 import java.awt.Dimension;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.Cliente;
 import vista.clientes.JPanelTablaClientes;
 import vista.menuPrincipal;
+import vista.pagos.JPanelRegistrarPagos;
 
 /**
  *
@@ -32,6 +37,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         this.db = db;
         initComponents();
         mostrarBotonesFacturacion(false);
+        genFacturacionBtn.setVisible(false);
     }
 
     /**
@@ -105,7 +111,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 enviarFacturacionBtnActionPerformed(evt);
             }
         });
-        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 110, -1, -1));
+        add(enviarFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 110, -1, -1));
 
         enviarATodosBtn.setBackground(new java.awt.Color(149, 193, 255));
         enviarATodosBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -116,7 +122,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 enviarATodosBtnActionPerformed(evt);
             }
         });
-        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 180, -1, -1));
+        add(enviarATodosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 180, -1, -1));
 
         jButtonAtras.setBackground(new java.awt.Color(149, 193, 255));
         jButtonAtras.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -127,19 +133,28 @@ public class JPanelFacturacion extends javax.swing.JPanel {
                 jButtonAtrasActionPerformed(evt);
             }
         });
-        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 30, 100, 30));
+        add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 30, 100, 30));
 
+        genFacturacionBtn.setBackground(new java.awt.Color(149, 193, 255));
+        genFacturacionBtn.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        genFacturacionBtn.setForeground(new java.awt.Color(0, 0, 0));
         genFacturacionBtn.setText("Generar Facturación");
-        add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 260, -1, -1));
+        genFacturacionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genFacturacionBtnActionPerformed(evt);
+            }
+        });
+        add(genFacturacionBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void generacionFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generacionFacturacionBtnActionPerformed
         // TODO add your handling code here:
 
         pintarPanel(tablaClientes);
-        mostrarBotonesFacturacion(true);
+        mostrarBotonesFacturacion(false);
         this.agregarTodos();
-        enviarFacturacionBtn.setEnabled(false); // se inhabilita porque no hay fila seleccionada.
+        genFacturacionBtn.setVisible(true);
+        //enviarFacturacionBtn.setEnabled(false); // se inhabilita porque no hay fila seleccionada.
     }//GEN-LAST:event_generacionFacturacionBtnActionPerformed
 
     private void pintarPanel(JPanel panel) {
@@ -194,6 +209,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         pintarPanel(tablaClientes);
         mostrarBotonesFacturacion(true);
         agregarTodosCorreo();
+        genFacturacionBtn.setVisible(false);
         enviarFacturacionBtn.setEnabled(false); // se inhabilita porque no hay fila seleccionada.
     }//GEN-LAST:event_facturacionBtnActionPerformed
 
@@ -236,6 +252,105 @@ public class JPanelFacturacion extends javax.swing.JPanel {
         this.menup.eliminarPanelActual();
         this.menup.refrescarGUI();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void genFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFacturacionBtnActionPerformed
+        // TODO add your handling code here:
+        
+        ArrayList<Integer> cuentasPagadas = new ArrayList(); 
+        ArrayList<Integer> cuentasNoPagadas = new ArrayList();
+        try {
+            cuentasPagadas = db.facturasFechaLimitePagada();
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            cuentasNoPagadas = db.facturasFechaLimiteNoPagada();
+        } catch (ParseException ex) {
+            Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for(Integer cuenta :cuentasPagadas) {
+            
+            Integer minutosUsados = db.consultarMinutosUsados(cuenta);
+            Integer minutosPlan = db.consultarMinutosPlan(cuenta);
+            Integer precioPlan = db.consultarPrecioPlan(cuenta);
+            
+            Integer ultimaFactura = db.consultarUltimaFactura(cuenta);
+            Integer numeroFactura = null;
+            try {
+                numeroFactura = db.consultarFacturaCuenta(cuenta);
+            } catch (ParseException ex) {
+                Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            System.out.println(ultimaFactura +" = "+ numeroFactura);
+            if (ultimaFactura == numeroFactura) {
+
+                if (minutosUsados > minutosPlan) {
+                    Integer totalPagar =  precioPlan + precioPlan/minutosPlan*minutosUsados;
+                    try {
+                        db.registrarFactura(cuenta, totalPagar);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    try {
+                        db.registrarFactura(cuenta, precioPlan);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+            }
+          
+        }
+        
+        for(Integer cuenta :cuentasNoPagadas) {
+            
+            Integer minutosUsados = db.consultarMinutosUsados(cuenta);
+            Integer minutosPlan = db.consultarMinutosPlan(cuenta);
+            Integer precioPlan = db.consultarPrecioPlan(cuenta);
+            Integer ultimaFactura = db.consultarUltimaFactura(cuenta);
+            Integer deudaAnterior = null;
+            
+            Integer numeroFactura = null;
+            try {
+                numeroFactura = db.consultarFacturaAnterior(cuenta);
+            } catch (ParseException ex) {
+                Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if (ultimaFactura == numeroFactura) {
+                try {
+                    deudaAnterior = db.consultarDeudaAnterior(cuenta);
+                } catch (ParseException ex) {
+                    Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (minutosUsados > minutosPlan) {
+                    Integer totalPagar =  precioPlan + precioPlan/minutosPlan*minutosUsados + deudaAnterior;
+                    try {
+                        db.registrarFactura(cuenta, totalPagar);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    try {
+                        db.registrarFactura(cuenta, precioPlan+deudaAnterior);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(JPanelRegistrarPagos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                db.registrarPago(numeroFactura, 0);
+                
+            }
+        }    
+        JOptionPane.showMessageDialog(null, "¡Se ha generado correctamente la facturacion!",
+                        "Generacion correcta", JOptionPane.INFORMATION_MESSAGE);
+               
+        //-------------Borrar-------------------//
+    }//GEN-LAST:event_genFacturacionBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

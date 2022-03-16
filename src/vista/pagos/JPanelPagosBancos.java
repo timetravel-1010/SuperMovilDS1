@@ -148,7 +148,8 @@ public class JPanelPagosBancos extends javax.swing.JPanel {
         this.padre.eliminarPanel();
         this.padre.enableButtons(true);       
         
-       
+       JOptionPane.showMessageDialog(null, "¡Se han cargado los pagos correctamente!",
+                        "Carga correcta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonCargarjButtonEnviarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
