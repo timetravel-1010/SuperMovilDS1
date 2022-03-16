@@ -2,6 +2,9 @@ package controlador;
 
 import enums.TipoCliente;
 import enums.TipoLogin;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,6 +20,7 @@ import modelo.Linea;
 import modelo.Plan;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Planes;
@@ -903,7 +907,7 @@ public class ConnectionDB {
     /**
     * realiza cambios masivos en la tabla facturas segun los pagos realizados en los bancos
     */
-    public void updateValorPagoCuentaM() {
+    public void updateValorPagoCuentaM(String ruta) {
        
                 
         String identificador="";
@@ -911,7 +915,7 @@ public class ConnectionDB {
         String pago;
         
         ArrayList<String> datos = new ArrayList<>();
-        datos = pb.leerDeArchivo();
+        datos = pb.leerDeArchivo(ruta);
         
         int n=0;
         int p=1;
@@ -950,14 +954,14 @@ public class ConnectionDB {
     /**
     * realiza cambios masivos en la tabla cuenta segun los pagos realizados en los bancos
     */
-    public void updateUltimoPagoCuentaM() {
+    public void updateUltimoPagoCuentaM(String ruta) {
 
 
         String fechaPago ;
         String numero ;
 
         ArrayList<String> datos = new ArrayList<>();
-        datos = pb.leerDeArchivo();
+        datos = pb.leerDeArchivo(ruta);
 
         int n=0;
         int f=2;
@@ -1174,7 +1178,93 @@ public class ConnectionDB {
         return resultado;
     }
     
+    /**
+    * Lee los datos del archivo de consumos de los clientes
+    */
+    public ArrayList<String> leerDeArchivoConsumo(String ruta){
+        
+         ArrayList<String> lecturaLinea = new ArrayList<>();
+       
+        try{
+            BufferedReader bf = new BufferedReader(new FileReader(ruta));
+            String read;
+            while((read = bf.readLine()) != null){
+                StringTokenizer tokens=new StringTokenizer(read);
+                while(tokens.hasMoreTokens()){
+                    
+                 lecturaLinea.add(tokens.nextToken());                 
+                 
+                } 
+            }
+             
+        }catch(Exception e){
+            System.out.print("No se encontro archivo");
+        }
+        return lecturaLinea;
+    }
+    
+     /**
+    * Carga el consumo maxivo de los clientes a la base de datos
+    */
+    public void updateConsumoClientes(String ruta) {
+
+        String numero;
+        String minutosUsados;
+        String megasUsadas;
+        String mensajesEnviados;
+
+        ArrayList<String> datos = new ArrayList<>();
+        datos = leerDeArchivoConsumo(ruta);
+
+        int numeroL=0;
+        int minutos=1;
+        int megas=2;
+        int mensajes=3;
+        int iteracciones = datos.size()/4;
+
+        for(int i = 0; i<iteracciones; i++){
+
+
+
+           numero = datos.get(numeroL);
+           minutosUsados = datos.get(minutos);
+           megasUsadas = datos.get(megas);
+           mensajesEnviados = datos.get(mensajes);
+           //System.out.println(numero +"\n");
+           //System.out.println(+"\n");
+            try {
+            PreparedStatement sql = conexion.prepareStatement("UPDATE lineas SET minutos_usados = ?::int, megas_usadas = ?::int, mensajes_enviados = ?::int WHERE numero = ?::bpchar");
+            sql.setString(1, minutosUsados );
+            sql.setString(2, megasUsadas );
+            sql.setString(3, mensajesEnviados);
+            sql.setString(4, numero);
+
+            int rs = sql.executeUpdate();  // ejecutar la sentencia.
+            System.out.println("Se han actualizado: "+rs+" filas.\n");
+            if (rs == 0) { // no se afecto ninguna fila.
+                //return false; // se debe mostrar un mensaje de error o algo.
+             }
+
+            } catch (SQLException ex) {
+            System.out.println("no funciona upDate");
+            }
+         numeroL=numeroL+4;
+         minutos=minutos+4;
+         megas=megas+4;
+         mensajes=mensajes+4;
+       } 
+   }
     //public boolean consultarCedula(String cedula) {
         
     //}
+    /*public static void main(String args[]) {
+      
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                 ConnectionDB db= new ConnectionDB();
+                 db.updateConsumoClientes("/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/vista/clientes/consumo.txt");
+           
+            }
+        });
+    }*/
 }
