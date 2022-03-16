@@ -1307,17 +1307,258 @@ public class ConnectionDB {
          mensajes=mensajes+4;
        } 
    }
-    //public boolean consultarCedula(String cedula) {
-        
-    //}
-    /*public static void main(String args[]) {
-      
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                 ConnectionDB db= new ConnectionDB();
-                 db.updateConsumoClientes("/home/cristian/univalle/desarrolloDeSoftware/SuperMovilDS1/src/vista/clientes/consumo.txt");
-           
+    
+    /**
+     * Metodo utilizado para obtener los datos de todos los planes que se encuentra en el sistema.
+     * @param id
+     * @return ArrayList, un arreglo que contiene los planes con sus datos.
+     */
+    public ArrayList<Integer> facturasFechaLimitePagada() throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaActual = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaActual);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+
+        ArrayList<Integer> cuentas = new ArrayList();      
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select distinct numero_cuenta from facturas f, cuentas c where c.estado = 'activo' and c.identificador = f.numero_cuenta and f.fecha_limite_pago <= ? and f.valor_pagado is not Null");
+            sql.setDate(1, (java.sql.Date) fechaSQL);
+            
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            while (rs.next()) {
+                cuentas.add(rs.getInt(1));               
             }
-        });
-    }*/
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cuentas;
+    }
+    
+    
+    
+    /**
+     * Metodo utilizado para obtener los datos de todos los planes que se encuentra en el sistema.
+     * @param id
+     * @return ArrayList, un arreglo que contiene los planes con sus datos.
+     */
+    public ArrayList<Integer> facturasFechaLimiteNoPagada() throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaActual = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaActual);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+
+        ArrayList<Integer> cuentas = new ArrayList();      
+        try {
+            PreparedStatement sql = conexion.prepareStatement("select distinct numero_cuenta from facturas f, cuentas c where c.estado = 'activo' and c.identificador = f.numero_cuenta and f.fecha_limite_pago <= ? and f.valor_pagado is Null");
+            sql.setDate(1, (java.sql.Date) fechaSQL);
+            
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+            while (rs.next()) {
+                cuentas.add(rs.getInt(1));               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cuentas;
+    }
+    
+        /**
+     * metodo, consulta el valor de un pago realizado, en la base de datos
+     * @param numeroFactura
+     * @return Integer, retorna el valor que se pagó, en que caso de no encontrar un pago, retorna 0
+     */
+    public Integer consultarPrecioPlan(Integer numeroCuenta) { 
+        int filasAfectadas = 0;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select precio from planes where identificador = (select plan from lineas where numero = (select numero from cuentas where identificador = ?))");
+
+            sql.setInt(1, numeroCuenta);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
+    public Integer consultarMinutosUsados(Integer numeroCuenta) { 
+        int filasAfectadas = 0;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select minutos_usados from lineas where numero = (select numero from cuentas where identificador = ?)");
+
+            sql.setInt(1, numeroCuenta);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
+    public Integer consultarMinutosPlan(Integer numeroCuenta) { 
+        int filasAfectadas = 0;
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select precio from planes where identificador = (select plan from lineas where numero = (select numero from cuentas where identificador = ?))");
+
+            sql.setInt(1, numeroCuenta);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
+    public boolean registrarFactura(Integer numeroCuenta, Integer ValorPagar) throws ParseException{
+        int filasAfectadas = 0;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaPago);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+            try {
+
+            PreparedStatement sql = conexion.prepareStatement("INSERT INTO public.facturas(numero_cuenta, valor_a_pagar, fecha_generada, fecha_limite_pago) VALUES (?, ?, ?, '2022-04-16')");
+
+            sql.setInt(1, numeroCuenta);
+            sql.setInt(2, ValorPagar);
+            sql.setDate(3, (java.sql.Date) fechaSQL);
+
+            filasAfectadas = sql.executeUpdate();  // ejecutar la sentencia.
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        
+        return filasAfectadas != 0;
+    }
+    
+    
+    public Integer consultarDeudaAnterior(Integer numeroCuenta) throws ParseException { 
+        int filasAfectadas = 0;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaPago);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select distinct valor_a_pagar from facturas f, cuentas c where numero_cuenta = ? and c.estado = 'activo' and c.identificador = f.numero_cuenta and f.fecha_limite_pago <= ? and f.valor_pagado is Null");
+
+            sql.setInt(1, numeroCuenta);
+            sql.setDate(2, (java.sql.Date) fechaSQL);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    public Integer consultarFacturaAnterior(Integer numeroCuenta) throws ParseException { 
+        int filasAfectadas = 0;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaPago);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select distinct numero_factura from facturas f, cuentas c where numero_cuenta = ? and c.estado = 'activo' and c.identificador = f.numero_cuenta and f.fecha_limite_pago <= ? and f.valor_pagado is Null");
+
+            sql.setInt(1, numeroCuenta);
+            sql.setDate(2, (java.sql.Date) fechaSQL);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
+    public Integer consultarFacturaCuenta(Integer numeroCuenta) throws ParseException { 
+        int filasAfectadas = 0;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaPago = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Date fecha =  formato.parse(fechaPago);
+        Date fechaSQL = new java.sql.Date(fecha.getTime());
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select distinct numero_factura from facturas f, cuentas c where numero_cuenta = ? and c.estado = 'activo' and c.identificador = f.numero_cuenta and f.fecha_limite_pago <= ? and f.valor_pagado is not Null");
+
+            sql.setInt(1, numeroCuenta);
+            sql.setDate(2, (java.sql.Date) fechaSQL);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
+    public Integer consultarUltimaFactura(Integer numeroCuenta) { 
+        int filasAfectadas = 0;
+
+        
+         try {
+
+            PreparedStatement sql = conexion.prepareStatement("select numero_factura from facturas where numero_factura = (select max(numero_factura) from facturas where numero_cuenta = ?)");
+
+            sql.setInt(1, numeroCuenta);
+ 
+
+            ResultSet rs = sql.executeQuery();  // ejecutar la sentencia.
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                System.out.println("No funciona");
+            }
+        
+        return 0;
+    }
+    
+    
 }

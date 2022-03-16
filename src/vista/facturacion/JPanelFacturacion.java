@@ -4,6 +4,7 @@
  */
 package vista.facturacion;
 
+import controlador.ConnectionDB;
 import vista.menuPrincipal;
 
 /**
@@ -13,6 +14,7 @@ import vista.menuPrincipal;
 public class JPanelFacturacion extends javax.swing.JPanel {
 
     private menuPrincipal main;
+    private ConnectionDB db;
     
     /**
      * Creates new form JPanelFacturacion
@@ -55,6 +57,7 @@ public class JPanelFacturacion extends javax.swing.JPanel {
 
     private void genFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFacturacionBtnActionPerformed
         // TODO add your handling code here:
+        db.facturasFechaLimitePagada();
     }//GEN-LAST:event_genFacturacionBtnActionPerformed
 
     private void enviarFacturacionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarFacturacionBtnActionPerformed
